@@ -1,0 +1,1 @@
+web: gunicorn bracket_app.wsgi --log-file -
