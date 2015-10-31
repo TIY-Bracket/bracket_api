@@ -8,6 +8,7 @@ def hello(request):
                 <body>
                 <h1>Deployment Check</h1>
                 <h2>Glenn checking in from Linux.</h2>
+                <h2>Glenn checking in from Mac.</h2>
                 </body>
             </html>"""
     return HttpResponse(html)
