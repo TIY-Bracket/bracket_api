@@ -1,0 +1,38 @@
+{# {% extends "base.html" %}#}
+
+{# {% block content %}#}
+{% load staticfiles %}
+
+
+<head>
+
+
+    <title>Create A Bracket</title>
+
+
+
+</head>
+<body>
+
+  <h2>Create A Bracket</h2>
+
+  <form method="POST" action="{% url 'bracket_create' %}">
+  {% csrf_token %}
+
+  <br><br>
+  <div class="row">
+    <div class="col-md-8">
+      <textarea class="form-control" cols="30" id="id_text" maxlength="2000" name="title" rows="30" placeholder="Competitors"></textarea>
+
+      </div>
+      <br><br>
+      <input type="submit" class="btn btn-md btn-primary" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create Bracket!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+    </div>
+
+  </div>
+</form>
+
+
+</body>
+
+{# {% endblock %}#}
