@@ -7,6 +7,8 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'bracket', views.BracketViewSet)
+router.register(r'competitor', views.CompetitorViewSet)
+
 
 urlpatterns = [
     url(r'^$', views.bracket_view, name='bracket_view'),
