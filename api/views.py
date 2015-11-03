@@ -12,7 +12,6 @@ def hello(request):
                 <h2>Jermaine checking in from Mac.</h2>
                 <h2>Tyler checking in from Mac.</h2>
                 <h2>Karthik checking in from Mac.</h2>
-
                 </body>
             </html>"""
     return HttpResponse(html)
