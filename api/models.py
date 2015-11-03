@@ -12,7 +12,7 @@ class Bracket(models.Model):
 
 class Competitor(models.Model):
     title = models.CharField(max_length=255)
-    user_id = models.ForeignKey(User)
+    user = models.ForeignKey(User)
 
 
 class Positions(models.Model):
