@@ -15,7 +15,7 @@ class Competitor(models.Model):
     user = models.ForeignKey(User)
 
 
-class Positions(models.Model):
+class Position(models.Model):
     bracket = models.ForeignKey(Bracket)
     competitor = models.ForeignKey(Competitor)
     position = models.IntegerField()
