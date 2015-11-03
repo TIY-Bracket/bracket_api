@@ -16,7 +16,7 @@ class Competitor(models.Model):
 
 
 class Positions(models.Model):
-    bracket_id = models.ForeignKey(Bracket)
-    competitor_id = models.ForeignKey(Competitor)
+    bracket = models.ForeignKey(Bracket)
+    competitor = models.ForeignKey(Competitor)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)
