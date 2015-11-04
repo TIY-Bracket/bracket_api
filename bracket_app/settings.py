@@ -38,6 +38,26 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'social.apps.django_app.default',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,7 +119,7 @@ USE_TZ = True
 # Parse database configuration from $DATABASE_URL
 # ******comment out for local*******
 
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 
 # Enable Connection Pooling (if desired)
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
@@ -124,3 +144,13 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/home/'
+SOCIAL_AUTH_LOGIN_URL = '/'
+
+
+SOCIAL_AUTH_TWITTER_KEY = '0N20oYXidmd6LGJPVVaVXqABT'
+SOCIAL_AUTH_TWITTER_SECRET = 'Jo6B9myqtKIyuITG9A0JBKVSiYb6Pqu4NGB3RnCauhICQ5PUyS'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '780903975368705'
+SOCIAL_AUTH_FACEBOOK_SECRET = '662e850a8f72551d4998d20d85c0a740'
