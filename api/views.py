@@ -3,7 +3,9 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from serializers import UserSerializer, GroupSerializer, BracketSerializer, CompetitorSerializer, PositionSerializer
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from bracket_app.forms import CompetitorForm, BracketForm
+from django.contrib import messages
 
 import json
 
@@ -14,6 +16,10 @@ from models import Bracket, Competitor, Position
 
 def bracket_view(request):
     return render(request, 'api/bracket_view.html')
+
+
+def bracket_create(request):
+    return render(request, 'api/bracket_create.html')
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -60,11 +66,11 @@ class PositionViewSet(viewsets.ModelViewSet):
 def hello_world(request):
     if request.method == 'POST':
         json_obj = request.data
+        print(json_obj)
         num_positions = int(len(json_obj['Competitors']) * 2 - 1)
         new_competitors = []
         bracket = Bracket(title=json_obj['Title'])
         bracket.save()
-        print(type(bracket.id))
         for value in json_obj['Competitors']:
             competitor = Competitor(title=value['name'])
             competitor.save()
@@ -84,5 +90,6 @@ def hello_world(request):
             position.save()
             num_positions -= 1
         return Response({"message": "Got some data!",
-                         "Bracket": bracket.id})
+                         "Bracket": bracket.id},
+                          status=201)
     return Response({"message": "Hello World!"})
