@@ -1,6 +1,6 @@
 {# {% extends "base.html" %}#}
 
-{# {% block content %}#}
+{% block content %}
 {% load staticfiles %}
 
 
@@ -19,6 +19,7 @@
   <form method="POST" action="{% url 'bracket_create' %}">
   {% csrf_token %}
 
+{{ bracketform.as_p }}
   <br><br>
   <div class="row">
     <div class="col-md-8">
@@ -35,4 +36,4 @@
 
 </body>
 
-{# {% endblock %}#}
+{% endblock %}

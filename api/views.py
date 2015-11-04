@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from bracket_app.forms import BracketForm
+from bracket_app.forms import CompetitorForm, BracketForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from .models import Competitor
@@ -14,11 +14,16 @@ def bracket_view(request):
 
 def bracket_create(request):
     if request.method == 'POST':
-        form = BracketForm(request.POST)
-        if form.is_valid():
-            competitor = form.save(commit=False)
-            competitor.user = request.user
+        competitorform = CompetitorForm(request.POST)
+        bracketform = BracketForm(request.POST)
+        if competitorform.is_valid() and bracketform.is_valid():
+            competitor = competitorform.save(commit=False)
+            # competitor.user = request.user
             competitor.save()
+
+            bracket = bracketform.save(commit=False)
+            bracket.save()
+
             messages.add_message(request,
                                  messages.SUCCESS,
                                  'Bracket Created.')
@@ -30,7 +35,9 @@ def bracket_create(request):
                                  'Form data invalid.')
 
     else:
-        form = BracketForm()
+        competitorform = CompetitorForm()
+        bracketform = BracketForm()
     return render(request,
                   'api/bracket_create.html',
-                  {'form': form})
+                  {'bracketform': bracketform,
+                   'competitorform': competitorform})
