@@ -1,3 +1,11 @@
+
+.center{
+margin:auto;
+width:400px;
+}
+
+
+
 .node circle {
   fill: #000;
 }
