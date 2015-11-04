@@ -21,83 +21,6 @@
 
 <script>
 
-var bracketJSON = [
-  {
-    "name": "",
-    "parent": "null",
-    "children": [
-      {
-        "name": "",
-        "parent": "1",
-        "children": [
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "NCSU",
-                "parent": "2"
-              },
-              {
-                "name": "WFU",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "Duke",
-                "parent": "2"
-              },
-              {
-                "name": "UNC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "",
-        "parent": "1",
-
-        "children": [
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "UVA",
-                "parent": "2"
-              },
-              {
-                "name": "Clem",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "FSU",
-                "parent": "2"
-              },
-              {
-                "name": "BC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-];
 
 var margin = {top: 10, right: 10, bottom: 10, left: 60}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
 
@@ -109,9 +32,11 @@ var tree = d3.layout.tree().size([height, width]);
 
 var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-root = bracketJSON[0];
+d3.json("bracket.json", function(bracketJSON) {
+root = bracketJSON;
 
 update(root);
+});
 
 function update(source) {var nodes = tree.nodes(root).reverse(),links = tree.links(nodes);
   nodes.forEach(function(d) { d.y = d.depth * 180; });

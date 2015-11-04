@@ -1,154 +1,34 @@
 {
-  "name": "1",
-  "parent": "null",
-  "children": [
-    {
-      "name": "2",
-      "parent": "1",
-      "children": [
-        {
-          "name": "4",
-          "parent": "2",
-          "children": [
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "UF",
-                  "parent": "2"
-                },
-                {
-                  "name": "Bye",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "UOA",
-                  "parent": "2"
-                },
-                {
-                  "name": "Bama",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "5",
-          "parent": "2",
-          "children": [
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "A&M",
-                  "parent": "2"
-                },
-                {
-                  "name": "Mizzou",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "MSU",
-                  "parent": "2"
-                },
-                {
-                  "name": "AUB",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "3",
-      "parent": "1",
-      "children": [
-        {
-          "name": "6",
-          "parent": "3",
-          "children": [
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "USC",
-                  "parent": "2"
-                },
-                {
-                  "name": "UGA",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "Ole Miss",
-                  "parent": "2"
-                },
-                {
-                  "name": "UK",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "7",
-          "parent": "3",
-          "children": [
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "UT",
-                  "parent": "2"
-                },
-                {
-                  "name": "Vandy",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "Bye",
-                  "parent": "2"
-                },
-                {
-                  "name": "LSU",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+    "name": "",
+    "parent": "null",
+    "children": [
+      {
+        "name": "",
+        "parent": "1",
+        "children": [
+          {
+            "name": "NCSU",
+            "parent": "2"
+          },
+          {
+            "name": "Duke",
+            "parent": "2"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "parent": "1",
+        "children": [
+          {
+            "name": "WFU",
+            "parent": "3"
+          },
+          {
+            "name": "UNC",
+            "parent": "3"
+          }
+        ]
+      }
+    ]
 }
