@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from serializers import UserSerializer, GroupSerializer, BracketSerializer, CompetitorSerializer
+from serializers import UserSerializer, GroupSerializer, BracketSerializer, CompetitorSerializer, PositionSerializer
 from django.shortcuts import render
 
-from models import Bracket, Competitor
+from models import Bracket, Competitor, Position
 
 # Create your views here.
 
@@ -42,3 +42,12 @@ class CompetitorViewSet(viewsets.ModelViewSet):
     """
     queryset = Competitor.objects.all()
     serializer_class = CompetitorSerializer
+
+
+class PositionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows bracket positions to be created, viewed and edited.
+    """
+    queryset = Position.objects.all()
+    serializer_class = PositionSerializer
+

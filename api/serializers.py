@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from models import Bracket, Competitor
+from models import Bracket, Competitor, Position
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,3 +26,9 @@ class CompetitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competitor
         fields = ('title',)
+
+
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Position
+        fields = ('position', 'parent', 'bracket', 'competitor')

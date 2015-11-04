@@ -8,6 +8,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'bracket', views.BracketViewSet)
 router.register(r'competitor', views.CompetitorViewSet)
+router.register(r'position', views.PositionViewSet)
 
 
 urlpatterns = [
