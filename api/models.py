@@ -17,6 +17,6 @@ class Competitor(models.Model):
 
 class Position(models.Model):
     bracket = models.ForeignKey(Bracket)
-    competitor = models.ForeignKey(Competitor)
+    competitor = models.ForeignKey(Competitor, blank=True, null=True)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)

@@ -1,7 +1,11 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from serializers import UserSerializer, GroupSerializer, BracketSerializer, CompetitorSerializer, PositionSerializer
 from django.shortcuts import render
+
+import json
 
 from models import Bracket, Competitor, Position
 
@@ -51,3 +55,34 @@ class PositionViewSet(viewsets.ModelViewSet):
     queryset = Position.objects.all()
     serializer_class = PositionSerializer
 
+
+@api_view(['GET', 'POST'])
+def hello_world(request):
+    if request.method == 'POST':
+        json_obj = request.data
+        num_positions = int(len(json_obj['Competitors']) * 2 - 1)
+        new_competitors = []
+        bracket = Bracket(title=json_obj['Title'])
+        bracket.save()
+        print(type(bracket.id))
+        for value in json_obj['Competitors']:
+            competitor = Competitor(title=value['name'])
+            competitor.save()
+            new_competitors.append(competitor)
+        for new_competitor in new_competitors:
+            position = Position(position=num_positions,
+                                parent=int(num_positions/2),
+                                bracket_id=bracket.id,
+                                competitor_id=new_competitor.id)
+            position.save()
+            num_positions -= 1
+        while num_positions > 0:
+            position = Position(position=num_positions,
+                                parent=int(num_positions/2),
+                                bracket_id=bracket.id,
+                                competitor_id=None)
+            position.save()
+            num_positions -= 1
+        return Response({"message": "Got some data!",
+                         "Bracket": bracket.id})
+    return Response({"message": "Hello World!"})
