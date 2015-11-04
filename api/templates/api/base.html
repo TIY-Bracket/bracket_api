@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="{% static 'main.css' %}" />
-    <title>{% block title %}{% endblock %}</title>
-</head>
-
-<body>
-  <div class="container">
-    {% block container %}
-    {% endblock %}
-    <div id="sidebar">
-      {# {% block sidebar %}#}
-      {# {% endblock %}#}
-
-    <div id="content">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="{% static 'main.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
+      <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+      {% block nav %}
+      <nav id="home-nav">
+           <ul class="nav-bar">
+                <li class="nav-button-bracket"><a href="#">Bracket Guys</a></li>
+                <li class="nav-button-create"><a href="#">Create a Bracket</a></li>
+           </ul>
+      </nav>
+      {% endblock %}
         {% block content %}
         {% endblock %}
-    </div>
-  </div>
-</div>
-</body>
+
+        {% block extrascript %}{% endblock %}
+    </body>
+
+    <footer>
+      <p>&copy; 2015 Bracket Guys, No Rights yet Reserved </p>
+    </footer>
 </html>

@@ -1,9 +1,15 @@
 
-.center{
-margin:auto;
-width:400px;
+#center {
+    display: table;
+    margin: auto;
 }
 
+#graph {
+    width: 80%;
+    margin-left: 15%;
+    margin-right: 5%;
+
+}
 
 
 .node circle {
@@ -17,3 +23,20 @@ width:400px;
   stroke: #ccc;
   stroke-width: 4px;
 }
+
+
+
+
+.nav-bar { list-style:none; margin-top: 0px; }
+.nav-bar li { display:inline; padding:0 50px; }
+
+.nav-bar li a {
+  text-decoration: none;
+  padding-left: 50px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.nav-bar .nav-button-app-name a { background:url(); }
+
+.nav-bar .nav-button-create-bracket { background:url(); }
