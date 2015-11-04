@@ -7,28 +7,28 @@ from models import Bracket, Competitor, Position
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('id', 'url', 'username', 'email', 'groups')
 
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        field = ('url', 'name')
+        field = ('id', 'url', 'name')
 
 
 class BracketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bracket
-        fields = ('title', 'start_dt', 'end_dt')
+        fields = ('id', 'title', 'start_dt', 'end_dt')
 
 
 class CompetitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competitor
-        fields = ('title',)
+        fields = ('id', 'title',)
 
 
 class PositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Position
-        fields = ('position', 'parent', 'bracket', 'competitor')
+        fields = ('id', 'position', 'parent', 'bracket', 'competitor')
