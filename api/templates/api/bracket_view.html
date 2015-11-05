@@ -45,7 +45,7 @@ var svg = d3.select("body").append("svg").attr("width", width + margin.right + m
 var input_data;
 
 
-  d3.json("bracket.json", function(data) {
+  d3.json("{% url "get_bracket" bracket.pk %}", function(data) {
     console.log("danai");
     input_data = data
     console.log(input_data);
