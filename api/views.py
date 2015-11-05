@@ -2,24 +2,13 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from serializers import UserSerializer, GroupSerializer, BracketSerializer, CompetitorSerializer, PositionSerializer
-from django.shortcuts import render, redirect
-from bracket_app.forms import CompetitorForm, BracketForm
-from django.contrib import messages
-
-import json
+from serializers import UserSerializer, GroupSerializer, BracketSerializer, \
+    CompetitorSerializer, PositionSerializer
+from django.shortcuts import render
 
 from models import Bracket, Competitor, Position
 
 # Create your views here.
-
-
-def bracket_view(request):
-    return render(request, 'api/bracket_view.html')
-
-
-def bracket_create(request):
-    return render(request, 'api/bracket_create.html')
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -62,11 +51,18 @@ class PositionViewSet(viewsets.ModelViewSet):
     serializer_class = PositionSerializer
 
 
-@api_view(['GET', 'POST'])
-def hello_world(request):
+def bracket_view(request):
+    return render(request, 'api/bracket_view.html')
+
+
+def bracket_create(request):
+    return render(request, 'api/bracket_create.html')
+
+
+@api_view(['POST'])
+def new_bracket(request):
     if request.method == 'POST':
         json_obj = request.data
-        print(json_obj)
         num_positions = int(len(json_obj['Competitors']) * 2 - 1)
         new_competitors = []
         bracket = Bracket(title=json_obj['Title'])
@@ -89,7 +85,22 @@ def hello_world(request):
                                 competitor_id=None)
             position.save()
             num_positions -= 1
-        return Response({"message": "Got some data!",
-                         "Bracket": bracket.id},
-                          status=201)
-    return Response({"message": "Hello World!"})
+        return Response({"Bracket": bracket.id},
+                        status=201)
+
+
+@api_view()
+def get_bracket(request, bracket_id):
+    positions = Position.objects.filter(bracket_id=bracket_id)
+    bracket_structure = []
+    for position in positions:
+        try:
+            competitor = Competitor.objects.get(pk=position.competitor_id)
+            bracket_structure.append({'name': competitor.title,
+                                      'position': position.position,
+                                      'parent': position.parent})
+        except:
+            bracket_structure.append({'name': '',
+                                      'position': position.position,
+                                      'parent': position.parent})
+    return Response(bracket_structure)

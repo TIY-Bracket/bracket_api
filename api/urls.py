@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
-    url(r'^new_bracket/', views.hello_world, name="new_bracket"),
+    url(r'^new_bracket/', views.new_bracket, name="new_bracket"),
+    url(r'^bracket/(?P<bracket_id>.+)', views.get_bracket),
     url(r'^bracket_create/', views.bracket_create, name="bracket_create"),
 ]

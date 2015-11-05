@@ -36,9 +36,6 @@ Player 3:<input type="text" class="competitor-input" name="Competitor3" maxlengt
 Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlength="36" size="12"/> <br/>
 <p><input type="submit" /></p>
 </form>
-<h2>JSON</h2>
-<pre id="result">
-</pre>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
@@ -65,13 +62,10 @@ Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlengt
                             "Content-Type": "application/json"
                         },
                         data : JSON.stringify(o)
-                    }).done(function(data) {
-
-                    });
-                    return false;
+                    })
                 }
             );
         }
-    )
+    );
 </script>
 </html>
