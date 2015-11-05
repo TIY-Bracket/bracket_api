@@ -1,0 +1,71 @@
+<html>
+<head>
+
+
+
+<style type="text/css">
+form {
+    line-height: 2em;
+}
+p {
+    margin: 5px 0;
+}
+h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold
+}
+#result {
+    margin: 10px;
+    background: #eee;
+    padding: 10px;
+    height: 40px;
+    overflow: auto;
+}
+</style>
+
+
+</head>
+<h2>Create a New Bracket</h2>
+<form action="" method="post">
+{% csrf_token %}
+Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
+Player 1:<input type="text" class="competitor-input" name="Competitor1" maxlength="36" size="12"/> <br/>
+Player 2:<input type="text" class="competitor-input" name="Competitor2" maxlength="36" size="12"/> <br/>
+Player 3:<input type="text" class="competitor-input" name="Competitor3" maxlength="36" size="12"/> <br/>
+Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlength="36" size="12"/> <br/>
+<p><input type="submit" /></p>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(
+        function(){
+            $("form").submit(
+                function(){
+                    var o = {};
+                    o["Title"] = $(".bracket-title").val();
+
+                    var a = [];
+                    $('.competitor-input').each(
+                        function(){
+                            a.push({"name": $(this).val()});
+                        }
+                    )
+
+                    o["Competitors"] = a;
+                    $.ajax({
+                        url : 'http://127.0.0.1:8000/new_bracket/',
+                        method: 'POST',
+                        headers: {
+                            "Authorization": "Basic " + btoa("admin:password"),
+                            "Content-Type": "application/json"
+                        },
+                        data : JSON.stringify(o)
+                    })
+                }
+            );
+        }
+    );
+</script>
+</html>

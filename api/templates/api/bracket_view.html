@@ -1,0 +1,121 @@
+{# {% extends "base.html" %}#}
+
+{% block content %}
+{% load staticfiles %}
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
+
+    <title>Bracket</title>
+
+
+
+</head>
+
+<body>
+
+  <h3>Bracket</h3>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+
+var input_data = [
+ {
+   "Position": 7,
+   "name": "UNC",
+   "Parent": "3"
+ },
+ {
+   "Position": 6,
+   "name": "WFU",
+   "Parent": "3"
+ },
+ {
+   "Position": 5,
+   "name": "Duke",
+   "Parent": "2"
+ },
+ {
+   "Position": 4,
+   "name": "NCSU",
+   "Parent": "2"
+ },
+ {
+   "Position": 3,
+   "name": "",
+   "Parent": "1"
+ },
+ {
+   "Position": 2,
+   "name": "",
+   "Parent": "1"
+ },
+ {
+   "Position": 1,
+   "name": "",
+   "Parent": "0"
+ }
+];
+
+
+var dataMap = input_data.reduce(function(map, node) {
+    map[node.Position] = node;
+    return map;
+}, {});
+
+
+var bracketConvert = [];
+input_data.forEach(function(node) {
+
+    var parent = dataMap[node.Parent];
+    if (parent) {
+
+        (parent.children || (parent.children = []))
+
+            .push(node);
+    } else {
+
+        bracketConvert.push(node);
+    }
+});
+
+
+var margin = {top: 10, right: 10, bottom: 10, left: 60}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
+
+var i = 0;
+
+var tree = d3.layout.tree().size([height, width]);
+
+ var elbow = function elbow(d, i) {return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;}
+
+var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = bracketConvert[0];
+
+update(root);
+
+function update(source) {var nodes = tree.nodes(root).reverse(),links = tree.links(nodes);
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeEnter.append("circle").attr("r", 5);
+
+  nodeEnter.append("text").attr("x", function(d) {return d.children || d._children ? -13 : 13; }).attr("dy", ".35em").attr("text-anchor", function(d) {return d.children || d._children ? "end" : "start"; }).text(function(d) { return d.name; });
+
+
+  var link = svg.selectAll("path.link").data(links, function(d) { return d.target.id; });
+
+  link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);}
+
+</script>
+
+</body>
+
+
+{% endblock %}
