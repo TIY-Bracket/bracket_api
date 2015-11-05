@@ -17,20 +17,20 @@
     {% block nav %}
       <header class="centered-navigation" role="banner">
         <div class="centered-navigation-wrapper">
-          <a href="javascript:void(0)" class="mobile-logo">
+          <!-- <a href="javascript:void(0)" class="mobile-logo">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
-          </a>
-          <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
+          </a> -->
+          <!-- <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a> -->
           <nav role="navigation">
             <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
-              <li class="nav-link"><a href="javascript:void(0)">App Name</a></li>
+              <li class="nav-link"><a href="javascript:void(0)">Create Bracket</a></li>
               <!-- <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
               <li class="nav-link"><a href="javascript:void(0)">Contact</a></li> -->
-              <li class="nav-link logo">
+              <!-- <li class="nav-link logo">
                 <a href="javascript:void(0)" class="logo">
                   <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
                 </a>
-              </li>
+              </li> -->
               <!-- <li class="nav-link"><a href="javascript:void(0)">Testimonials</a></li>
               <li class="nav-link more"><a href="javascript:void(0)">More</a>
                 <ul class="submenu">
@@ -50,19 +50,70 @@
                   </li>
                 </ul>
               </li> -->
-              <li class="nav-link"><a href="">Create a Bracket!</a></li>
+              <li class="nav-link"><a href="">Login</a></li>
             </ul>
           </nav>
         </div>
       </header>
-
-
       {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+      {% block description %}
+      <div class="hero">
+      	<div class="hero-inner">
+          <a href="" class="hero-logo"><img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png
+      " alt="Logo Image"></a>
+      		<div class="hero-copy">
+      			<h1>Use [App Name] Instead of a Paper Bracket!</h1>
+      			<!-- <p> Nothing's worse than being at a tailgate and having to wait
+              around for your turn, missing out on watching the game or grabbing a brat; with [App Name], you don't have to! Simply
+               enter or create a bracket, and when it's your turn, [App name] will
+                let you know!</p> -->
+      		</div>
+      	</div>
+      </div>
+      {% endblock %}
 
-        {% block extrascript %}{% endblock %}
+      {% block cards %}
+      <div class="cards">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+          </div>
+          <div class="card-header">
+            First Card
+          </div>
+          <div class="card-copy">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" alt="">
+          </div>
+          <div class="card-header">
+            Another Card
+          </div>
+          <div class="card-copy">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
+          </div>
+          <div class="card-header">
+            The Last Card
+          </div>
+          <div class="card-copy">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
+      {% block extrascript %}{% endblock %}
     </body>
 
 </div>
@@ -74,7 +125,7 @@
     <ul>
       <li><a href="javascript:void(0)">About</a></li>
       <li><a href="javascript:void(0)">Contact</a></li>
-      <li><a href="javascript:void(0)">Products</a></li>
+      <!-- <li><a href="javascript:void(0)">Products</a></li> -->
     </ul>
 
     <div class="footer-secondary-links">
