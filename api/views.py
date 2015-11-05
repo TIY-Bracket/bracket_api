@@ -2,11 +2,11 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from serializers import UserSerializer, GroupSerializer, BracketSerializer, \
+from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
 from django.shortcuts import render
 
-from models import Bracket, Competitor, Position
+from api.models import Bracket, Competitor, Position
 
 # Create your views here.
 
