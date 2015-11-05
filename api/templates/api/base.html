@@ -7,8 +7,6 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link rel="stylesheet" href="{% static 'main.css' %}" />
-      <script src="{% static "jquery-1.8.1-min.js" %}"></script>
-      <script src="{% static "slide-menu-jquery.js" %}"></script>
     </head>
     <body>
       <h1><span>Head2Head</span></h1>
@@ -27,8 +25,10 @@
     <div class="js-menu-screen sliding-panel-fade-screen"></div>
     {% block content %}
     {% endblock %}
-    </body>
+    <script src="{% static "jquery-1.8.1-min.js" %}"></script>
+    <script src="{% static "slide-menu-jquery.js" %}"></script>
     <footer>
       <h2><span>Head2Head &copy 2015</span></h2>
     </footer>
+    </body>
 </html>

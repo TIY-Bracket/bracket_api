@@ -5,8 +5,8 @@ from django.shortcuts import render
 
 #
 #
-def base_page(request):
-    return render(request, 'api/base.html')
+def index_page(request):
+    return render(request, 'api/index.html')
 
 #
 def bracket_view(request):
