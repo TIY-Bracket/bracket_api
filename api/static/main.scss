@@ -1,2 +1,8 @@
 @import "bourbon/bourbon";
+@import "base/grid-settings";
 @import "neat/neat";
+@import "base/base";
+
+// import in each .scss file per style element in order to compile to main.css//
+
+@import "_center-nav.scss"

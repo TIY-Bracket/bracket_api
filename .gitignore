@@ -76,3 +76,4 @@ moviedb/fixtures/*
 *.json
 *.dat
 *__pycache__/
+*/static/.sass-cache/*

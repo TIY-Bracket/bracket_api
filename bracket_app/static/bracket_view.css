@@ -25,7 +25,9 @@
 }
 
 
-/*.nav-bar { list-style:none; margin-top: 0px; }
+
+
+.nav-bar { list-style:none; margin-top: 0px; }
 .nav-bar li { display:inline; padding:0 50px; }
 
 .nav-bar li a {
@@ -37,4 +39,4 @@
 
 .nav-bar .nav-button-app-name a { background:url(); }
 
-.nav-bar .nav-button-create-bracket { background:url(); }*/
+.nav-bar .nav-button-create-bracket { background:url(); }
