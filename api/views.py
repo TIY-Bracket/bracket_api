@@ -51,6 +51,10 @@ class PositionViewSet(viewsets.ModelViewSet):
     serializer_class = PositionSerializer
 
 
+def index(request):
+    return render(request, 'api/index.html')
+
+
 def bracket_view(request):
     return render(request, 'api/bracket_view.html')
 
