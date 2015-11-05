@@ -1,6 +1,6 @@
 {# {% extends "base.html" %}#}
 
-{# {% block content %}#}
+{% block content %}
 {% load staticfiles %}
 
 <head>
@@ -21,83 +21,67 @@
 
 <script>
 
-var bracketJSON = [
-  {
-    "name": "",
-    "parent": "null",
-    "children": [
-      {
-        "name": "",
-        "parent": "1",
-        "children": [
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "NCSU",
-                "parent": "2"
-              },
-              {
-                "name": "WFU",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "Duke",
-                "parent": "2"
-              },
-              {
-                "name": "UNC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "",
-        "parent": "1",
 
-        "children": [
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "UVA",
-                "parent": "2"
-              },
-              {
-                "name": "Clem",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "FSU",
-                "parent": "2"
-              },
-              {
-                "name": "BC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+var input_data = [
+ {
+   "Position": 7,
+   "name": "UNC",
+   "Parent": "3"
+ },
+ {
+   "Position": 6,
+   "name": "WFU",
+   "Parent": "3"
+ },
+ {
+   "Position": 5,
+   "name": "Duke",
+   "Parent": "2"
+ },
+ {
+   "Position": 4,
+   "name": "NCSU",
+   "Parent": "2"
+ },
+ {
+   "Position": 3,
+   "name": "",
+   "Parent": "1"
+ },
+ {
+   "Position": 2,
+   "name": "",
+   "Parent": "1"
+ },
+ {
+   "Position": 1,
+   "name": "",
+   "Parent": "0"
+ }
 ];
+
+
+var dataMap = input_data.reduce(function(map, node) {
+    map[node.Position] = node;
+    return map;
+}, {});
+
+
+var bracketConvert = [];
+input_data.forEach(function(node) {
+
+    var parent = dataMap[node.Parent];
+    if (parent) {
+
+        (parent.children || (parent.children = []))
+
+            .push(node);
+    } else {
+
+        bracketConvert.push(node);
+    }
+});
+
 
 var margin = {top: 10, right: 10, bottom: 10, left: 60}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
 
@@ -109,7 +93,7 @@ var tree = d3.layout.tree().size([height, width]);
 
 var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-root = bracketJSON[0];
+root = bracketConvert[0];
 
 update(root);
 
@@ -134,4 +118,4 @@ function update(source) {var nodes = tree.nodes(root).reverse(),links = tree.lin
 </body>
 
 
-{# {% endblock %}#}
+{% endblock %}
