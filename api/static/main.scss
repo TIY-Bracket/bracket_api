@@ -6,8 +6,12 @@
 @import "base/base";
 
 // import in each .scss file per style element in order to compile to main.css//
-@import "_center-nav.scss";
-@import "_footer.scss";
-@import "_hero.scss";
-@import "_cards.scss"
+@import "_bracket_view.scss";
+@import "_slide-menu-panel.scss";
+@import "_title-with-lines.scss";
+
 // custom layout changes //
+
+body {
+  background-color: white;
+}
