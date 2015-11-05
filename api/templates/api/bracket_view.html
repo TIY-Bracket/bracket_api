@@ -1,10 +1,9 @@
 {% extends "api/base.html" %}
 
-
-
 {% block content %}
+{% load staticfiles %}
 
-
+<head>
   <div id="center">
 
     <h3></h3>
@@ -23,84 +22,6 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
-    var bracketJSON = [
-    {
-      "name": "",
-      "parent": "null",
-      "children": [
-        {
-          "name": "",
-          "parent": "1",
-          "children": [
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "NCSU",
-                  "parent": "2"
-                },
-                {
-                  "name": "WFU",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "2",
-              "children": [
-                {
-                  "name": "Duke",
-                  "parent": "2"
-                },
-                {
-                  "name": "UNC",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "",
-          "parent": "1",
-
-          "children": [
-            {
-              "name": "",
-              "parent": "3",
-              "children": [
-                {
-                  "name": "UVA",
-                  "parent": "2"
-                },
-                {
-                  "name": "Clem",
-                  "parent": "2"
-                }
-              ]
-            },
-            {
-              "name": "",
-              "parent": "3",
-              "children": [
-                {
-                  "name": "FSU",
-                  "parent": "2"
-                },
-                {
-                  "name": "BC",
-                  "parent": "2"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-    ];
-
     var margin = {top: 10, right: 10, bottom: 10, left: 100}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
 
     var i = 0;
