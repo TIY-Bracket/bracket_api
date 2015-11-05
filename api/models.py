@@ -12,11 +12,11 @@ class Bracket(models.Model):
 
 class Competitor(models.Model):
     title = models.CharField(max_length=255)
-    user = models.ForeignKey(User)
+    # user = models.ForeignKey(User, blank=True, null=True)
 
 
-class Positions(models.Model):
-    bracket_id = models.ForeignKey(Bracket)
-    competitor_id = models.ForeignKey(Competitor)
+class Position(models.Model):
+    bracket = models.ForeignKey(Bracket)
+    competitor = models.ForeignKey(Competitor, blank=True, null=True)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)
