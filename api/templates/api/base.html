@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="{% static 'main.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
+      <!-- <script src="{% static "jquery-1.8.1-min.js" %}"></script>
+      <script src="{% static "center-nav-jquery.js" %}"></script> -->
+      <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+          <div class="wrapper-for-content-outside-of-footer">
+    {% block nav %}
+      <header class="centered-navigation" role="banner">
+        <div class="centered-navigation-wrapper">
+          <a href="javascript:void(0)" class="mobile-logo">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
+          </a>
+          <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
+          <nav role="navigation">
+            <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
+              <li class="nav-link"><a href="javascript:void(0)">App Name</a></li>
+              <!-- <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
+              <li class="nav-link"><a href="javascript:void(0)">Contact</a></li> -->
+              <li class="nav-link logo">
+                <a href="javascript:void(0)" class="logo">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
+                </a>
+              </li>
+              <!-- <li class="nav-link"><a href="javascript:void(0)">Testimonials</a></li>
+              <li class="nav-link more"><a href="javascript:void(0)">More</a>
+                <ul class="submenu">
+                  <li><a href="javascript:void(0)">Submenu Item</a></li>
+                  <li><a href="javascript:void(0)">Another Item</a></li>
+                  <li class="more"><a href="javascript:void(0)">Item with submenu</a>
+                    <ul class="submenu">
+                      <li><a href="javascript:void(0)">Sub-submenu Item</a></li>
+                      <li><a href="javascript:void(0)">Another Item</a></li>
+                    </ul>
+                  </li>
+                  <li class="more"><a href="javascript:void(0)">Another submenu</a>
+                    <ul class="submenu">
+                      <li><a href="javascript:void(0)">Sub-submenu</a></li>
+                      <li><a href="javascript:void(0)">An Item</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li> -->
+              <li class="nav-link"><a href="">Create a Bracket!</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+
+      {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block extrascript %}{% endblock %}
+    </body>
+
+</div>
+
+<footer class="footer-2" role="contentinfo">
+  <div class="footer-logo">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
+  </div>
+    <ul>
+      <li><a href="javascript:void(0)">About</a></li>
+      <li><a href="javascript:void(0)">Contact</a></li>
+      <li><a href="javascript:void(0)">Products</a></li>
+    </ul>
+
+    <div class="footer-secondary-links">
+      <ul>
+        <li><a href="javascript:void(0)">Terms and Conditions</a></li>
+        <li><a href="javascript:void(0)">Privacy Policy</a></li>
+      </ul>
+
+      <ul class="footer-social">
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+          </a></li>
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
+        </a></li>
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+        </a></li>
+      </ul>
+    </div>
+</footer>
+
+</html>

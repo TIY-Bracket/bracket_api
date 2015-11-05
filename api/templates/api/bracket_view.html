@@ -1,137 +1,134 @@
-{# {% extends "base.html" %}#}
-
-{# {% block content %}#}
-{% load staticfiles %}
-
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
-
-    <title>Bracket</title>
+{% extends "api/base.html" %}
 
 
 
-</head>
+{% block content %}
 
-<body>
 
-  <h3>Bracket</h3>
+  <div id="center">
 
+    <h3></h3>
+
+  </div>
+
+  <div id="graph">
+
+    <svg id="thegraph"></svg>
+
+  </div>
+
+{% endblock %}
+
+{% block extrascript %}
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
+    var bracketJSON = [
+    {
+      "name": "",
+      "parent": "null",
+      "children": [
+        {
+          "name": "",
+          "parent": "1",
+          "children": [
+            {
+              "name": "",
+              "parent": "2",
+              "children": [
+                {
+                  "name": "NCSU",
+                  "parent": "2"
+                },
+                {
+                  "name": "WFU",
+                  "parent": "2"
+                }
+              ]
+            },
+            {
+              "name": "",
+              "parent": "2",
+              "children": [
+                {
+                  "name": "Duke",
+                  "parent": "2"
+                },
+                {
+                  "name": "UNC",
+                  "parent": "2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "parent": "1",
 
-var bracketJSON = [
-  {
-    "name": "",
-    "parent": "null",
-    "children": [
-      {
-        "name": "",
-        "parent": "1",
-        "children": [
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "NCSU",
-                "parent": "2"
-              },
-              {
-                "name": "WFU",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "2",
-            "children": [
-              {
-                "name": "Duke",
-                "parent": "2"
-              },
-              {
-                "name": "UNC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "",
-        "parent": "1",
+          "children": [
+            {
+              "name": "",
+              "parent": "3",
+              "children": [
+                {
+                  "name": "UVA",
+                  "parent": "2"
+                },
+                {
+                  "name": "Clem",
+                  "parent": "2"
+                }
+              ]
+            },
+            {
+              "name": "",
+              "parent": "3",
+              "children": [
+                {
+                  "name": "FSU",
+                  "parent": "2"
+                },
+                {
+                  "name": "BC",
+                  "parent": "2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    ];
 
-        "children": [
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "UVA",
-                "parent": "2"
-              },
-              {
-                "name": "Clem",
-                "parent": "2"
-              }
-            ]
-          },
-          {
-            "name": "",
-            "parent": "3",
-            "children": [
-              {
-                "name": "FSU",
-                "parent": "2"
-              },
-              {
-                "name": "BC",
-                "parent": "2"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-];
+    var margin = {top: 10, right: 10, bottom: 10, left: 100}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
 
-var margin = {top: 10, right: 10, bottom: 10, left: 60}, width = 960 - margin.right - margin.left, height = 500 - margin.top - margin.bottom;
+    var i = 0;
 
-var i = 0;
+    var tree = d3.layout.tree().size([height, width]);
 
-var tree = d3.layout.tree().size([height, width]);
+    var elbow = function elbow(d, i) {return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;}
 
- var elbow = function elbow(d, i) {return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;}
+    var svg = d3.select("#thegraph").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    root = bracketJSON[0];
 
-root = bracketJSON[0];
+    update(root);
 
-update(root);
+    function update(source) {var nodes = tree.nodes(root).reverse(),links = tree.links(nodes);
+    nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-function update(source) {var nodes = tree.nodes(root).reverse(),links = tree.links(nodes);
-  nodes.forEach(function(d) { d.y = d.depth * 180; });
+    var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-  var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
+    var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {return "translate(" + d.y + "," + d.x + ")"; });
 
-  var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {return "translate(" + d.y + "," + d.x + ")"; });
+    nodeEnter.append("circle").attr("r", 5);
 
-  nodeEnter.append("circle").attr("r", 5);
-
-  nodeEnter.append("text").attr("x", function(d) {return d.children || d._children ? -13 : 13; }).attr("dy", ".35em").attr("text-anchor", function(d) {return d.children || d._children ? "end" : "start"; }).text(function(d) { return d.name; });
-
-
-  var link = svg.selectAll("path.link").data(links, function(d) { return d.target.id; });
-
-  link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);}
-
-</script>
-
-</body>
+    nodeEnter.append("text").attr("x", function(d) {return d.children || d._children ? -13 : 13; }).attr("dy", ".35em").attr("text-anchor", function(d) {return d.children || d._children ? "end" : "start"; }).text(function(d) { return d.name; });
 
 
-{# {% endblock %}#}
+    var link = svg.selectAll("path.link").data(links, function(d) { return d.target.id; });
+
+    link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);}
+  </script>
+{% endblock %}
