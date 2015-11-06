@@ -4,12 +4,14 @@
   {% if user and not user.is_anonymous %}
     <a>Hello, {{ user.get_full_name }}!</a>
     <br>
-    
+
   {% endif %}
   <br>
 
 <div class="container">
-<a class="create-bracket-button"  href="bracket_create">Create a Bracket</a>
+
+<a class=" button create-bracket-button"  href="bracket_create"><button type="button">Create a Bracket</button></a>
+
 </div>
 
 <title>{% if request.user.is_authenticated %}Logged In{% else %}Not Logged In{% endif %}</title>
