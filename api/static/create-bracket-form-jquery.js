@@ -1,7 +1,9 @@
 $(document).ready(
     function(){
         $("form").submit(
-            function(){
+            function(event){
+                event.preventDefault();
+                console.log(event);
                 var o = {};
                 o["Title"] = $(".bracket-title").val();
 
@@ -10,7 +12,7 @@ $(document).ready(
                     function(){
                         a.push({"name": $(this).val()});
                     }
-                )
+                );
 
                 o["Competitors"] = a;
                 $.ajax({
@@ -21,7 +23,13 @@ $(document).ready(
                         "Content-Type": "application/json"
                     },
                     data : JSON.stringify(o)
-                })
+                }).then(
+                    function(d){
+                        var bracket_id = d['Bracket']
+                        console.log(d)
+                        window.location = "/view/" + bracket_id;
+                    }
+                );
             }
         );
     }
