@@ -41,7 +41,6 @@ fieldset {
 input,
 label,
 select {
-  display: block;
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1em; }
 
@@ -64,8 +63,7 @@ select[multiple=multiple] {
   font-size: 1em;
   margin-bottom: 0.75em;
   padding: 0.5em;
-  transition: border-color 150ms ease;
-  width: 100%; }
+  transition: border-color 150ms ease; }
   input[type="color"]:hover, input[type="date"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="email"]:hover, input[type="month"]:hover, input[type="number"]:hover, input[type="password"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="text"]:hover, input[type="time"]:hover, input[type="url"]:hover, input[type="week"]:hover, input:not([type]):hover, textarea:hover,
   select[multiple=multiple]:hover {
     border-color: #b1b1b1; }
@@ -180,6 +178,26 @@ img,
 picture {
   margin: 0;
   max-width: 100%; }
+
+header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4em; }
+
+.site-heading {
+  font-size: 40px; }
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4em; }
+
+.site-footer {
+  font-size: 40px; }
 
 #center {
   display: table;
@@ -314,5 +332,21 @@ h2:before {
 
 h2:before {
   left: 0; }
+
+.filter-box {
+  padding: 10px;
+  width: 100%; }
+
+.filter {
+  width: 33%;
+  box-sizing: border-box; }
+
+.search-box {
+  padding: 10px;
+  width: 100%; }
+
+.search-brackets {
+  width: 100%;
+  box-sizing: border-box; }
 
 /*# sourceMappingURL=main.css.map */

@@ -8,7 +8,7 @@ fieldset {
 input,
 label,
 select {
-  display: block;
+  // display: block;
   font-family: $base-font-family;
   font-size: $base-font-size;
 }
@@ -38,7 +38,7 @@ select[multiple=multiple] {
   margin-bottom: $small-spacing;
   padding: $base-spacing / 3;
   transition: border-color $base-duration $base-timing;
-  width: 100%;
+  
 
   &:hover {
     border-color: shade($base-border-color, 20%);

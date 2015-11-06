@@ -1,6 +1,5 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-
 from . import views as views
 
 router = routers.DefaultRouter()
@@ -12,11 +11,7 @@ router.register(r'position', views.PositionViewSet)
 
 
 urlpatterns = [
-<<<<<<< HEAD
-    # url(r'^home/', views.landing_page, name='landing_page'),
-    # url(r'^$', views.bracket_view, name='bracket_view'),
-    url(r'^$', views.index_page, name='index_page'),
-=======
+
     url(r'^$', views.index, name='index'),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -24,5 +19,4 @@ urlpatterns = [
     url(r'^new_bracket/', views.new_bracket, name="new_bracket"),
     url(r'^bracket/(?P<bracket_id>.+)', views.get_bracket, name="get_bracket"),
     url(r'^bracket_create/', views.bracket_create, name="bracket_create"),
->>>>>>> 0.1
 ]
