@@ -44,43 +44,43 @@
   var input_data;
 
 
-    d3.json("{% url "get_bracket" bracket_id %}", function(data) {
-      console.log("test");
-      console.log(data);
-      input_data = data
-      console.log(input_data);
+  d3.json("{% url "get_bracket" bracket_id %}", function(data) {
+    input_data = data
+    console.log("test");
+    console.log(input_data);
 
-        var dataMap = input_data.reduce(function(map, node) {
-          map[node.Position] = node;
-          return map;
-        }, {});
+      var dataMap = input_data.reduce(function(map, node) {
+        map[node.position] = node;
+        return map;
+      }, {});
 
+      var bracketConvert = [];
+      input_data.forEach(function(node) {
 
-        var bracketConvert = [];
-        input_data.forEach(function(node) {
+        var parent = dataMap[node.parent];
+        if (parent) {
 
-          var parent = dataMap[node.Parent];
-          if (parent) {
+          (parent.children || (parent.children = []))
 
-            (parent.children || (parent.children = []))
+          .push(node);
+        } else {
 
-            .push(node);
-          } else {
+          bracketConvert.push(node);
+        }
+      });
+      console.log("test 2");
+      console.log(bracketConvert);
+      console.log(bracketConvert[0]);
+      root = bracketConvert[0];
 
-            bracketConvert.push(node);
-          }
-        });
+      update(root);
 
+});
 
-        root = bracketConvert[0];
-
-        update(root);
-
-  });
 
 
   function update(source) {
-      var nodes = tree.nodes(root).reverse(),
+      var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
           nodes.forEach(function(d) {
             d.y = d.depth * 180;
