@@ -1,65 +1,65 @@
-{# {% extends "base.html" %}#}
-
+{% extends "api/base.html" %}
 {% block content %}
-{% load staticfiles %}
 
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
+  <div id="center">
 
-    <title>Bracket</title>
+    <h3></h3>
 
+  </div>
 
+  <div id="graph">
 
-</head>
+    <svg id="thegraph"></svg>
 
-<body>
-
-  <h3>Bracket</h3>
-
-<script src="http://d3js.org/d3.v3.min.js"></script>
-
-<script>
+  </div>
 
 
-var margin = {
-        top: 10,
-        right: 10,
-        bottom: 10,
-        left: 60
-      },
-      width = 960 - margin.right - margin.left,
-      height = 500 - margin.top - margin.bottom;
-
-var i = 0;
-
-var tree = d3.layout.tree().size([height, width]);
-
-var elbow = function elbow(d, i) {
-      return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
-    }
-
-var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  <h3>Bracket {{ bracket_id }}</h3>
 
 
-var input_data;
+  <script src="http://d3js.org/d3.v3.min.js"></script>
 
 
-  d3.json("{% url "get_bracket" bracket.pk %}", function(data) {
-    console.log("danai");
+  <script>
+
+
+  var margin = {
+          top: 10,
+          right: 10,
+          bottom: 10,
+          left: 60
+        },
+        width = 960 - margin.right - margin.left,
+        height = 500 - margin.top - margin.bottom;
+
+  var i = 0;
+
+  var tree = d3.layout.tree().size([height, width]);
+
+  var elbow = function elbow(d, i) {
+        return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
+      }
+
+  var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+  var input_data;
+
+
+  d3.json("{% url "get_bracket" bracket_id %}", function(data) {
     input_data = data
+    console.log("test");
     console.log(input_data);
 
       var dataMap = input_data.reduce(function(map, node) {
-        map[node.Position] = node;
+        map[node.position] = node;
         return map;
       }, {});
-
 
       var bracketConvert = [];
       input_data.forEach(function(node) {
 
-        var parent = dataMap[node.Parent];
+        var parent = dataMap[node.parent];
         if (parent) {
 
           (parent.children || (parent.children = []))
@@ -70,8 +70,9 @@ var input_data;
           bracketConvert.push(node);
         }
       });
-
-
+      console.log("test 2");
+      console.log(bracketConvert);
+      console.log(bracketConvert[0]);
       root = bracketConvert[0];
 
       update(root);
@@ -79,43 +80,42 @@ var input_data;
 });
 
 
-function update(source) {
-    var nodes = tree.nodes(root).reverse(),
-          links = tree.links(nodes);
-        nodes.forEach(function(d) {
-          d.y = d.depth * 180;
-        });
 
-    var node = svg.selectAll("g.node").data(nodes, function(d) {
-          return d.id || (d.id = ++i);
-        });
+  function update(source) {
+      var nodes = tree.nodes(root).reverse();
+            links = tree.links(nodes);
+          nodes.forEach(function(d) {
+            d.y = d.depth * 180;
+          });
 
-    var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
-          return "translate(" + d.y + "," + d.x + ")";
-        });
+      var node = svg.selectAll("g.node").data(nodes, function(d) {
+            return d.id || (d.id = ++i);
+          });
 
-        nodeEnter.append("circle").attr("r", 5);
+      var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
+            return "translate(" + d.y + "," + d.x + ")";
+          });
 
-        nodeEnter.append("text").attr("x", function(d) {
-          return d.children || d._children ? -13 : 13;
-        }).attr("dy", ".35em").attr("text-anchor", function(d) {
-          return d.children || d._children ? "end" : "start";
-        }).text(function(d) {
-          return d.name;
-        });
+          nodeEnter.append("circle").attr("r", 5);
 
-
-    var link = svg.selectAll("path.link").data(links, function(d) {
-          return d.target.id;
-        });
-
-        link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
-      }
+          nodeEnter.append("text").attr("x", function(d) {
+            return d.children || d._children ? -13 : 13;
+          }).attr("dy", ".35em").attr("text-anchor", function(d) {
+            return d.children || d._children ? "end" : "start";
+          }).text(function(d) {
+            return d.name;
+          });
 
 
-</script>
+      var link = svg.selectAll("path.link").data(links, function(d) {
+            return d.target.id;
+          });
 
-</body>
+          link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
+        }
+
+  </script>
+
 
 
 {% endblock %}

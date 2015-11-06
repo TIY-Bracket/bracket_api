@@ -1,0 +1,31 @@
+
+.container{
+  text-align:center;
+  margin:auto;
+
+}
+
+.filter-box{
+  padding: 10px;
+  width: 100%;
+}
+
+.filter {
+  width: 33%;
+  box-sizing: border-box;
+}
+
+.search-box {
+  padding: 10px;
+  width: 100%;
+}
+
+.search-brackets {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+span {
+  color: $base-background-color;
+
+}

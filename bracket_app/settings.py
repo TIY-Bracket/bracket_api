@@ -120,7 +120,11 @@ USE_TZ = True
 # Parse database configuration from $DATABASE_URL
 # ******comment out for local*******
 
-#DATABASES['default'] = dj_database_url.config()
+
+DATABASES['default'] = dj_database_url.config()
+
+# DATABASES['default'] = dj_database_url.config()
+
 
 # Enable Connection Pooling (if desired)
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
@@ -147,7 +151,7 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'PAGE_SIZE': 10
 }
 
