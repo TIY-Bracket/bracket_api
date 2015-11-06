@@ -4,12 +4,16 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout as auth_logout
+#from django.contrib.auth.decorators import login_required
 
 from api.models import Bracket, Competitor, Position
 
 # Create your views here.
 
+#
+#
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -55,12 +59,20 @@ def index(request):
     return render(request, 'api/index.html')
 
 
-def bracket_view(request):
-    return render(request, 'api/bracket_view.html')
+def bracket_view(request, bracket_id):
+    print(bracket_id)
+    return render(request, 'api/bracket_view.html',
+                  {"bracket_id": bracket_id},)
+
 
 
 def bracket_create(request):
     return render(request, 'api/bracket_create.html')
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
 
 
 @api_view(['POST'])
