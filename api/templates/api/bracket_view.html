@@ -1,25 +1,27 @@
-{# {% extends "base.html" %}#}
-
+{% extends "api/base.html" %}
 {% block content %}
-{% load staticfiles %}
 
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'bracket_view.css' %}"/>
+  <div id="center">
 
-    <title>Bracket</title>
+    <h3></h3>
 
+  </div>
 
+  <div id="graph">
 
-</head>
+    <svg id="thegraph"></svg>
 
-<body>
+  </div>
+
 
   <h3>Bracket {{ bracket_id }}</h3>
 
+
   <script src="http://d3js.org/d3.v3.min.js"></script>
 
+
   <script>
+
 
   var margin = {
           top: 10,
@@ -114,7 +116,6 @@
 
   </script>
 
-  </body>
 
 
-  {% endblock %}
+{% endblock %}

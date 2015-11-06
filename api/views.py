@@ -10,6 +10,8 @@ from api.models import Bracket, Competitor, Position
 
 # Create your views here.
 
+#
+#
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -59,6 +61,7 @@ def bracket_view(request, bracket_id):
     print(bracket_id)
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id},)
+
 
 
 def bracket_create(request):
