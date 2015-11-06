@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^bracket/(?P<bracket_id>.+)', views.get_bracket, name="get_bracket"),
     url(r'^view/(?P<bracket_id>.+)', views.bracket_view, name="bracket_view"),
     url(r'^bracket_create/', views.bracket_create, name="bracket_create"),
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
 ]
