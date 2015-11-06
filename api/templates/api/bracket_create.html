@@ -13,38 +13,5 @@ Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlengt
 <p><input type="submit" /></p>
 </form>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script>
-    $(document).ready(
-        function(){
-            $("form").submit(
-                function(){
-                    var o = {};
-                    o["Title"] = $(".bracket-title").val();
-
-                    var a = [];
-                    $('.competitor-input').each(
-                        function(){
-                            a.push({"name": $(this).val()});
-                        }
-                    )
-
-                    o["Competitors"] = a;
-                    $.ajax({
-                        url : '{% url "new_bracket" %}',
-                        method: 'POST',
-                        headers: {
-                            "Authorization": "Basic " + btoa("admin:password"),
-                            "Content-Type": "application/json"
-                        },
-                        data : JSON.stringify(o)
-                    })
-                }
-            );
-        }
-    );
-</script>
-</html>
-
 {% endblock %}
+
