@@ -19,8 +19,8 @@
 
     <nav class="js-menu sliding-panel-content">
       <ul>
-        <li><a href="javascript:void(0)">Twitter Login</a></li>
-        <li><a href="javascript:void(0)">Facebook Login</a></li>
+        <li><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter Login</a></li>
+        <li><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook Login</a></li>
         <li><a href="javascript:void(0)">Create a Bracket</a></li>
       </ul>
     </nav>
