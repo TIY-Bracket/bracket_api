@@ -7,9 +7,7 @@
     width: 80%;
     margin-left: 15%;
     margin-right: 5%;
-
 }
-
 
 .node circle {
   fill: #000;
@@ -17,8 +15,22 @@
 
 .node text { font: 20px sans-serif; }
 
+.node {
+ cursor: pointer;
+}
+
 .link {
   fill: none;
   stroke: #ccc;
   stroke-width: 4px;
+}
+
+.hyper {
+   color: black;
+   text-decoration: underline;
+}
+
+.hyper:hover {
+   color: blue;
+   text-decoration: none;
 }
