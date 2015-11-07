@@ -205,6 +205,9 @@ footer {
 .node circle {
   fill: #000; }
 
+.node {
+  cursor: pointer; }
+
 .node text {
   font: 20px sans-serif; }
 
