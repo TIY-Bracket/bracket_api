@@ -13,13 +13,13 @@
     <body>
       <h1 class="site-heading"><span>head2head</span></h1>
 
-      <button type="button" class="js-menu-trigger sliding-panel-button">
+      <a type="button" class="js-menu-trigger sliding-panel-button">
         Menu
-      </button>
+      </a>
 
     <nav class="js-menu sliding-panel-content">
       <ul>
-
+        <li><a href="{% url 'index' %}">Home</a></li>
         <li><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter Login</a></li>
         <li><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook Login</a></li>
         <li><a href="{% url "bracket_create" %}">Create a Bracket</a></li>
