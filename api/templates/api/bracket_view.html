@@ -3,7 +3,7 @@
 
   <div id="center">
 
-    <h3></h3>
+    <h3>Bracket {{ bracket_id }}</h3>
 
   </div>
 
@@ -14,7 +14,7 @@
   </div>
 
 
-  <h3>Bracket {{ bracket_id }}</h3>
+
 
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -104,7 +104,12 @@
             return d.children || d._children ? "end" : "start";
           }).text(function(d) {
             return d.name;
-          });
+          })
+          .attr("class", "hyper").on("click", clack);
+
+              function clack(d) {
+                  alert(d.name);
+          };
 
 
       var link = svg.selectAll("path.link").data(links, function(d) {
@@ -112,6 +117,17 @@
           });
 
           link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
+        }
+
+      function click(d) {
+        if (d.children) {
+         d._children = d.children;
+         d.children = null;
+          } else {
+         d.children = d._children;
+         d._children = null;
+          }
+          update(d);
         }
 
   </script>
