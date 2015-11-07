@@ -22,7 +22,7 @@
 
         <li><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter Login</a></li>
         <li><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook Login</a></li>
-        <li><a href="bracket_create">Create a Bracket</a></li>
+        <li><a href="{% url "bracket_create" %}">Create a Bracket</a></li>
 
       </ul>
     </nav>
@@ -37,7 +37,7 @@
     </footer>
 
     <script src="{% static "jquery-1.8.1-min.js" %}"></script>
-    <script src="{% static "slide-menu-jquery.js" %}"></script> 
+    <script src="{% static "slide-menu-jquery.js" %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{% static 'create-bracket-form-jquery.js' %}"></script>
 

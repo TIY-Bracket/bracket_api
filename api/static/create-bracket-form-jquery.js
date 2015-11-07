@@ -16,7 +16,7 @@ $(document).ready(
 
                 o["Competitors"] = a;
                 $.ajax({
-                    url : 'http://127.0.0.1:8000/new_bracket/',
+                    url : '/new_bracket/',
                     method: 'POST',
                     headers: {
                         "Authorization": "Basic " + btoa("admin:password"),
