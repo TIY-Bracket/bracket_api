@@ -99,7 +99,7 @@
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
           nodes.forEach(function(d) {
-            d.y = d.depth * 180;
+            d.y = d.depth * 100;
           });
 
       var node = svg.selectAll("g.node").data(nodes, function(d) {
