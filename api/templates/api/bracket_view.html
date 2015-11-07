@@ -126,7 +126,7 @@ var xhttp = new XMLHttpRequest();
                 console.log(d.name + " won")
                 var position_id = d['Position']
                 console.log(d)
-                xhttp.open("PUT", "api/position/" + d.position, true);
+                xhttp.open("GET", "/" + "api/position/" + d.position, true);
                 xhttp.send();
           };
 
