@@ -32,10 +32,11 @@
 
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
 
   <script>
-
+var xhttp = new XMLHttpRequest();
 
   var margin = {
           top: 10,
@@ -122,7 +123,11 @@
           .attr("class", "hyper").on("click", clack);
 
               function clack(d) {
-                  alert(d.name + " won!");
+                console.log(d.name + " won")
+                var position_id = d['Position']
+                console.log(d)
+                xhttp.open("PUT", "api/position/" + d.position, true);
+                xhttp.send();
           };
 
 
@@ -133,16 +138,6 @@
           link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
         }
 
-      function click(d) {
-        if (d.children) {
-         d._children = d.children;
-         d.children = null;
-          } else {
-         d.children = d._children;
-         d._children = null;
-          }
-          update(d);
-        }
 
   </script>
 
