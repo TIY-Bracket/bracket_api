@@ -133,13 +133,15 @@ var xhttp = new XMLHttpRequest();
                 console.log("position: " + d['parent']['position']);
                 console.log("parent: " + Math.floor((d['parent']['position'])/2));
                 console.log("comp id: " + d['competitor']);
-                parent = xhttp.open("GET", "/" + "api/position/" + parent_id, true);
-                xhttp.send({
-                  "id":parent_id,
-                  "position":d['parent']['position'],
-                  "parent":Math.floor((d['parent']['position'])/2),
-                  "competitor":d['competitor'],
-                });
+                $.ajax("/" + "api/position/" + parent_id,{
+                  method: 'GET',
+                  data: {
+                  "competitor":d['competitor']
+                }
+              })
+              .then(
+                function fail(data, status) {}
+              );
           };
 
 
