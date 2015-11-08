@@ -130,7 +130,9 @@ var xhttp = new XMLHttpRequest();
                   "competitor":d['competitor']
                 }
               })
-              .then();
+              .then(
+                  window.location = "/view/" + {{ bracket_id }}
+                );
           };
 
 
