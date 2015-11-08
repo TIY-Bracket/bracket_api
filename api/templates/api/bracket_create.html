@@ -4,13 +4,36 @@
 
 <p>Create a New Bracket</p>
 <form action="" method="post">
+
 {% csrf_token %}
 Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
-Player 1:<input type="text" class="competitor-input" value="Bye" name="Competitor1" maxlength="36" size="12"/> <br/>
-Player 2:<input type="text" class="competitor-input" value="Bye" name="Competitor2" maxlength="36" size="12"/> <br/>
-Player 3:<input type="text" class="competitor-input" value="Bye" name="Competitor3" maxlength="36" size="12"/> <br/>
-Player 4:<input type="text" class="competitor-input" value="Bye" name="Competitor4" maxlength="36" size="12"/> <br/>
+Player 1:<input type="text" class="competitor-input" value="bye" onfocus="clearField(this);"
+  onfocus="clearField(this);" onblur="fillField(this);"
+  name="Competitor1" maxlength="36" size="12"/> <br/>
+Player 2:<input type="text" class="competitor-input" value="bye" onfocus="clearField(this);"
+  onfocus="clearField(this);" onblur="fillField(this);"
+  name="Competitor2" maxlength="36" size="12"/> <br/>
+Player 3:<input type="text" class="competitor-input" value="bye" onfocus="clearField(this);"
+  onfocus="clearField(this);" onblur="fillField(this);"
+  name="Competitor3" maxlength="36" size="12"/> <br/>
+Player 4:<input type="text" class="competitor-input" value="bye" onfocus="clearField(this);"
+  onfocus="clearField(this);" onblur="fillField(this);"
+  name="Competitor4" maxlength="36" size="12"/> <br/>
 <p><input type="submit" /></p>
 </form>
+
+<script>
+function clearField(input) {
+  if(input.value=="bye") { //Only clear if value is "Name"
+    input.value = "";
+  }
+}
+function fillField(input) {
+    if(input.value=="") {
+        input.value = "bye";
+    }
+}
+</script>
+
 
 {% endblock %}
