@@ -130,17 +130,21 @@ var xhttp = new XMLHttpRequest();
                 var parent_id = d['parent']['id']
                 console.log("position test 2");
                 console.log("id: " + parent_id);
-                console.log("position: " + d['parent']['position']);
+                console.log("parent pos id: " + d['parent']['position_id']);
+                var parent_pos_id = d['parent']['position_id']
+                console.log("parent pos id: " + parent_pos_id);
                 console.log("parent: " + Math.floor((d['parent']['position'])/2));
                 console.log("comp id: " + d['competitor']);
-                $.ajax("/" + "api/position/" + parent_id,{
-                  method: 'GET',
+                $.ajax("/" + "api/position/" + parent_pos_id,{
+                  method: 'PATCH',
                   data: {
                   "competitor":d['competitor']
                 }
               })
               .then(
-                function fail(data, status) {}
+                function fail(data, status) {
+                    alert(status);
+                }
               );
           };
 

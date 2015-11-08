@@ -115,11 +115,13 @@ def get_bracket(request, bracket_id):
             bracket_structure.append({'name': competitor.title,
                                       'position': position.position,
                                       'parent': position.parent,
-                                      'competitor': competitor.id
+                                      'competitor': competitor.id,
+                                      'position_id': position.id
                                       })
         except:
             bracket_structure.append({'name': '',
                                       'position': position.position,
                                       'parent': position.parent,
+                                      'position_id': position.id
                                       })
     return Response(bracket_structure)
