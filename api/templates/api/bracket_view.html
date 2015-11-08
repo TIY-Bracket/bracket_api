@@ -4,17 +4,12 @@
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Anton">
 
 <style>
-
-
-
-
 .hyper {
   font-family: 'Anton', serif
     color: black;
     font-size: 20px;
     font-weight: bold;
 }
-
 .hyper:hover {
   font-family: 'Anton', serif
     color: blue;
@@ -22,7 +17,6 @@
     font-size: 24px;
     font-weight: bold;
 }
-
 </style>
 
   <div id="center">
@@ -43,11 +37,11 @@
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
+{% csrf_token %}
 
   <script>
-var xhttp = new XMLHttpRequest();
 
+var xhttp = new XMLHttpRequest();
   var margin = {
           top: 10,
           right: 10,
@@ -56,42 +50,28 @@ var xhttp = new XMLHttpRequest();
         },
         width = 960 - margin.right - margin.left,
         height = 500 - margin.top - margin.bottom;
-
   var i = 0;
-
   var tree = d3.layout.tree().size([height, width]);
-
   var elbow = function elbow(d, i) {
         return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
       }
-
   var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
   var input_data;
-
-
   d3.json("{% url "get_bracket" bracket_id %}", function(data) {
     input_data = data
     console.log("test");
     console.log(input_data);
-
       var dataMap = input_data.reduce(function(map, node) {
         map[node.position] = node;
         return map;
       }, {});
-
       var bracketConvert = [];
       input_data.forEach(function(node) {
-
         var parent = dataMap[node.parent];
         if (parent) {
-
           (parent.children || (parent.children = []))
-
           .push(node);
         } else {
-
           bracketConvert.push(node);
         }
       });
@@ -99,30 +79,21 @@ var xhttp = new XMLHttpRequest();
       console.log(bracketConvert);
       console.log(bracketConvert[0]);
       root = bracketConvert[0];
-
       update(root);
-
 });
-
-
-
   function update(source) {
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
           nodes.forEach(function(d) {
             d.y = d.depth * 100;
           });
-
       var node = svg.selectAll("g.node").data(nodes, function(d) {
             return d.id || (d.id = ++i);
           });
-
       var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
             return "translate(" + d.y + "," + d.x + ")";
           });
-
           nodeEnter.append("circle").attr("r", 5);
-
           nodeEnter.append("text").attr("x", function(d) {
             return d.children || d._children ? -13 : 13;
           }).attr("dy", ".35em").attr("text-anchor", function(d) {
@@ -131,29 +102,21 @@ var xhttp = new XMLHttpRequest();
             return d.name;
           })
           .attr("class", "hyper").on("click", clack);
-
               function clack(d) {
                 var parent_pos_id = d['parent']['position_id']
-                $.ajax("/" + "api/position/" + parent_pos_id,{
-                  method: 'PATCH',
-                  data: {
-                  "competitor":d['competitor']
-                }
-              })
-              .then(
+                var competitor_id = d['competitor']
+                $.ajax(
+                  "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id, {
+                  type: "PUT"
+              }).then(
                   window.location = "/view/" + {{ bracket_id }}
                 );
           };
-
-
       var link = svg.selectAll("path.link").data(links, function(d) {
             return d.target.id;
           });
-
           link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
         }
-
-
   </script>
 
 
