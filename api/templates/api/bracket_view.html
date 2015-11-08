@@ -5,10 +5,11 @@
 
     <h3>Bracket {{ bracket_id }}</h3>
   </div>
+  <div id="put-the-svg-here"></div>
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
 
-    <script>
+    <script classid="bracket-image/svg">
       var margin = {
               top: 10,
               right: 10,
@@ -26,7 +27,7 @@
             return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
           }
 
-      var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      var svg = d3.select("#put-the-svg-here").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
       var input_data;

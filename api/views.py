@@ -67,6 +67,7 @@ def bracket_view(request, bracket_id):
 
 
 def bracket_create(request):
+    print("THis is me!!!!!!!".center(100, '-'))
     return render(request, 'api/bracket_create.html')
 
 

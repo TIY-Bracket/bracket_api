@@ -264,6 +264,7 @@ picture {
     visibility: visible; }
 
 .sliding-panel-button {
+  float: left;
   padding: 10px 16px;
   display: inline-block;
   cursor: pointer;
