@@ -124,9 +124,12 @@ var xhttp = new XMLHttpRequest();
 
               function clack(d) {
                 console.log(d.name + " won")
-                var position_id = d['Position']
+                console.log("position test 1")
                 console.log(d)
-                xhttp.open("GET", "/" + "api/position/" + d.position, true);
+                var parent_id = d['parent']['id']
+                console.log("position test 2")
+                console.log(parent_id)
+                xhttp.open("GET", "/" + "api/position/" + parent_id, true);
                 xhttp.send();
           };
 
