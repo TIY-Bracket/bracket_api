@@ -123,14 +123,23 @@ var xhttp = new XMLHttpRequest();
           .attr("class", "hyper").on("click", clack);
 
               function clack(d) {
-                console.log(d.name + " won")
-                console.log("position test 1")
-                console.log(d)
+                console.log(d.name + " won");
+                console.log("position test 1");
+                console.log(d);
+                console.log("id: " + d['id']);
                 var parent_id = d['parent']['id']
-                console.log("position test 2")
-                console.log(parent_id)
-                xhttp.open("GET", "/" + "api/position/" + parent_id, true);
-                xhttp.send();
+                console.log("position test 2");
+                console.log("id: " + parent_id);
+                console.log("position: " + d['parent']['position']);
+                console.log("parent: " + Math.floor((d['parent']['position'])/2));
+                console.log("comp id: " + d['competitor']);
+                parent = xhttp.open("GET", "/" + "api/position/" + parent_id, true);
+                xhttp.send({
+                  "id":parent_id,
+                  "position":d['parent']['position'],
+                  "parent":Math.floor((d['parent']['position'])/2),
+                  "competitor":d['competitor'],
+                });
           };
 
 

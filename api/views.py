@@ -114,9 +114,12 @@ def get_bracket(request, bracket_id):
             competitor = Competitor.objects.get(pk=position.competitor_id)
             bracket_structure.append({'name': competitor.title,
                                       'position': position.position,
-                                      'parent': position.parent})
+                                      'parent': position.parent,
+                                      'competitor': competitor.id
+                                      })
         except:
             bracket_structure.append({'name': '',
                                       'position': position.position,
-                                      'parent': position.parent})
+                                      'parent': position.parent,
+                                      })
     return Response(bracket_structure)
