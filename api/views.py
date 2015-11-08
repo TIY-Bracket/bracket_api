@@ -120,8 +120,18 @@ def get_bracket(request, bracket_id):
                                       })
         except:
             bracket_structure.append({'name': '',
-                                      'position': position.position,
+                                         'position': position.position,
                                       'parent': position.parent,
                                       'position_id': position.id
                                       })
     return Response(bracket_structure)
+
+
+@api_view(['PUT'])
+def update_bracket(request, bracket_id, competitor_id):
+    current_player_record = Position.objects.filter(bracket_id=bracket_id,
+                                                    competitor_id=competitor_id)
+    Position.objects.filter(bracket_id=bracket_id,
+                            position=current_player_record.values()[0]['parent']).update(competitor_id=competitor_id)
+
+    return Response('hello')  # question for James. What should be returned?
