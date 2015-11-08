@@ -123,29 +123,14 @@ var xhttp = new XMLHttpRequest();
           .attr("class", "hyper").on("click", clack);
 
               function clack(d) {
-                console.log(d.name + " won");
-                console.log("position test 1");
-                console.log(d);
-                console.log("id: " + d['id']);
-                var parent_id = d['parent']['id']
-                console.log("position test 2");
-                console.log("id: " + parent_id);
-                console.log("parent pos id: " + d['parent']['position_id']);
                 var parent_pos_id = d['parent']['position_id']
-                console.log("parent pos id: " + parent_pos_id);
-                console.log("parent: " + Math.floor((d['parent']['position'])/2));
-                console.log("comp id: " + d['competitor']);
                 $.ajax("/" + "api/position/" + parent_pos_id,{
                   method: 'PATCH',
                   data: {
                   "competitor":d['competitor']
                 }
               })
-              .then(
-                function fail(data, status) {
-                    alert(status);
-                }
-              );
+              .then();
           };
 
 
