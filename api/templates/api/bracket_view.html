@@ -105,9 +105,12 @@ var xhttp = new XMLHttpRequest();
               function clack(d) {
                 var parent_pos_id = d['parent']['position_id']
                 var competitor_id = d['competitor']
-                $.ajax(
-                  "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id, {
-                  type: "PUT"
+                $.ajax({
+                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id,
+                  type: "PUT",
+                  headers: {
+                      "Authorization": "Basic " + btoa("admin:password")
+                  }
               }).then(
                   window.location = "/view/" + {{ bracket_id }}
                 );
