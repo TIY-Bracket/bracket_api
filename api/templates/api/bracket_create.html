@@ -3,15 +3,30 @@
 {% block content %}
 
 <p>Create a New Bracket</p>
+<div id="new_player" class="control-group inlineForm">
 <form action="" method="post">
 {% csrf_token %}
 Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
-Player 1:<input type="text" class="competitor-input" name="Competitor1" maxlength="36" size="12"/> <br/>
-Player 2:<input type="text" class="competitor-input" name="Competitor2" maxlength="36" size="12"/> <br/>
-Player 3:<input type="text" class="competitor-input" name="Competitor3" maxlength="36" size="12"/> <br/>
-Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlength="36" size="12"/> <br/>
-<p><input type="submit" /></p>
+<div id="dynamicInput">
+Player 1<br>
+<input type="text" class="competitor-input" name="Competitor1" maxlength="36" size="12"/> <br/>
+</div>
+<p>
+<input type="button" value="Add another player" onClick="addInput('dynamicInput');">
+<input type="submit" />
+</p>
 </form>
 
+<script>
+var counter = 1;
+    function addInput(divName){
+        var newdiv = document.createElement('div');
+        var competitor = "Competitor" + counter + 1;
+        newdiv.innerHTML = "Player " + (counter + 1) + " <br><input type=text class='competitor-input' name=Competitor" + (counter + 1) + " maxlength='36' size='12'/>";
+        document.getElementById(divName).appendChild(newdiv);
+        counter++;
+    }
+</script>
+</div>
 {% endblock %}
 
