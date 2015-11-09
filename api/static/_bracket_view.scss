@@ -12,8 +12,16 @@
   fill: #000;
 }
 
+<<<<<<< HEAD
 .node text { font: 20px 'Graduate', cursive; }
 
+=======
+.node {
+ cursor: pointer;
+}
+
+.node text { font: 20px sans-serif; }
+>>>>>>> 0.1
 
 .link {
   fill: none;

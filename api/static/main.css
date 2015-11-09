@@ -190,6 +190,9 @@ picture {
 .node circle {
   fill: #000; }
 
+.node {
+  cursor: pointer; }
+
 .node text {
   font: 20px 'Graduate', cursive; }
 
