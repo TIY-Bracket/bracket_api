@@ -3,15 +3,34 @@
 {% block content %}
 
 <p>Create a New Bracket</p>
+<div id="new_competitor" class="control-group inlineForm">
 <form action="" method="post">
-{% csrf_token %}
-Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
-Player 1:<input type="text" class="competitor-input" name="Competitor1" maxlength="36" size="12"/> <br/>
-Player 2:<input type="text" class="competitor-input" name="Competitor2" maxlength="36" size="12"/> <br/>
-Player 3:<input type="text" class="competitor-input" name="Competitor3" maxlength="36" size="12"/> <br/>
-Player 4:<input type="text" class="competitor-input" name="Competitor4" maxlength="36" size="12"/> <br/>
-<p><input type="submit" /></p>
+    {% csrf_token %}
+    Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
+
+    <div id="competitors">
+        Player 1<br>
+        <input type="text" class="competitor-input" name="Competitor1" size="12" autocomplete="off" /><input type="button" id="add_competitor()" onClick="addCompetitor()" value="+" />
+    </div>
+    <p>
+        <input type="submit" />
+    </p>
 </form>
+</div>
+<script type="text/javascript">
+var i = 1;
+function addCompetitor() {
+    console.log('here');
+    i++;
+    var div = document.createElement('div');
+    div.innerHTML = 'Player'+i+'<br><input type="text" class="competitor-input" name="Competitor"'+i+' size="12" autocomplete="off" /><input type="button" id="add_competitor()" onClick="addCompetitor()" value="+" /><input type="button" value="-" onClick="removeCompetitor(this)">';
+    document.getElementById('competitors').appendChild(div);
+}
+
+function removeCompetitor(div) {
+    document.getElementById('competitors').removeChild( div.parentNode );
+    i--;
+}
+</script>
 
 {% endblock %}
-
