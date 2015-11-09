@@ -1,7 +1,7 @@
 body {
   background: $base-background-color;
   color: $base-font-color;
-  font-family: $base-font-family;
+  font-family: 'Graduate', cursive;
   font-feature-settings: "kern", "liga", "pnum";
   font-size: $base-font-size;
   line-height: $base-line-height;
@@ -13,7 +13,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
+  font-family: 'Graduate', cursive;;
   font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;

@@ -5,8 +5,10 @@
 <p>Create a New Bracket</p>
 <div id="new_player" class="control-group inlineForm">
 <form action="" method="post">
+
 {% csrf_token %}
 Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
+
 <div id="dynamicInput">
 Player 1<br>
 <input type="text" class="competitor-input" name="Competitor1" maxlength="36" size="12"/> <br/>
@@ -29,4 +31,3 @@ var counter = 1;
 </script>
 </div>
 {% endblock %}
-
