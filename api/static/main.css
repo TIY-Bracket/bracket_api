@@ -183,7 +183,7 @@ picture {
   display: table;
   margin: auto; }
 
-#put-the-svg-here {
+#graph {
   width: 70%;
   margin-left: 30%; }
 
@@ -194,7 +194,7 @@ picture {
   cursor: pointer; }
 
 .node text {
-  font: 20px 'Graduate', cursive; }
+  font: 20px sans-serif; }
 
 .link {
   fill: none;

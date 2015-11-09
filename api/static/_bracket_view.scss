@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-#put-the-svg-here {
+#graph {
     width: 70%;
     margin-left: 30%;
 }
@@ -12,16 +12,13 @@
   fill: #000;
 }
 
-<<<<<<< HEAD
-.node text { font: 20px 'Graduate', cursive; }
 
-=======
 .node {
  cursor: pointer;
 }
 
 .node text { font: 20px sans-serif; }
->>>>>>> 0.1
+
 
 .link {
   fill: none;
