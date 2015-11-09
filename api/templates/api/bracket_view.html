@@ -29,11 +29,11 @@
 var xhttp = new XMLHttpRequest();
   var margin = {
           top: 10,
-          right: 10,
+          right: 200,
           bottom: 10,
-          left: 60
+          left: 10
         },
-        width = 960 - margin.right - margin.left,
+        width = 900 - margin.right - margin.left,
         height = 500 - margin.top - margin.bottom;
   var i = 0;
   var tree = d3.layout.tree().size([height, width]);
@@ -69,9 +69,7 @@ var xhttp = new XMLHttpRequest();
   function update(source) {
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
-          nodes.forEach(function(d) {
-            d.y = d.depth * 100;
-          });
+          nodes.forEach(function(d) { d.y = width - (d.depth * 100); });
       var node = svg.selectAll("g.node").data(nodes, function(d) {
             return d.id || (d.id = ++i);
           });
@@ -80,9 +78,9 @@ var xhttp = new XMLHttpRequest();
           });
           nodeEnter.append("circle").attr("r", 5);
           nodeEnter.append("text").attr("x", function(d) {
-            return d.children || d._children ? -13 : 13;
+            return d.children || d._children ? 13 : -13;
           }).attr("dy", ".35em").attr("text-anchor", function(d) {
-            return d.children || d._children ? "end" : "start";
+            return d.children || d._children ? "start" : "end";
           }).text(function(d) {
             return d.name;
           })
