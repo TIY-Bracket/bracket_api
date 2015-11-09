@@ -10,12 +10,13 @@
 
 <div class="container">
 
+
 <a class=" button create-bracket-button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a>
 
 </div>
 
 <title>{% if request.user.is_authenticated %}Logged In{% else %}Not Logged In{% endif %}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
 
 <a class="{% if request.user.is_authenticated %}logged-in{% else %}logged-out{% endif %}">
 
@@ -45,4 +46,5 @@
     {# <a href="/accounts/login/" class="pull-right">Login</a>#}
 
 {% endif %}
+
 {% endblock %}
