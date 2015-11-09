@@ -321,7 +321,7 @@ h2 span {
   z-index: 1; }
 
 h2:before {
-  background: #fff;
+  background: #ddd;
   content: "";
   display: block;
   height: 1px;
