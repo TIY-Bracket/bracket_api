@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^home/', aviews.index, name='index'),
     # url(r'^$', 'api.views.login'),
     # url(r'^home/$', 'api.views.home'),
-    url(r'^logout/$', aviews.logout),
+    url(r'^logout/$', aviews.logout, name='logout'),
 )
