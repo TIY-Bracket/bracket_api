@@ -5,8 +5,7 @@
 
 #graph {
     width: 70%;
-    margin-left: 30%;
-}
+    margin: auto; }
 
 .node circle {
   fill: #000;
@@ -17,7 +16,9 @@
  cursor: pointer;
 }
 
-.node text { font: 20px sans-serif; }
+.node text { font-family: 'Graduate', serif;
+  color: $black;
+  font-size: 20px; }
 
 
 .link {
@@ -36,7 +37,7 @@
     color: $black;
     /*text-decoration: underline;*/
     font-size: 26px;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .node {
