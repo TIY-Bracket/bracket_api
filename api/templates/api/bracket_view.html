@@ -72,7 +72,7 @@ var xhttp = new XMLHttpRequest();
   function update(source) {
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
-          nodes.forEach(function(d) { d.y = width - (d.depth * 180); });
+          nodes.forEach(function(d) { d.y = width - (d.depth * 100); });
       var node = svg.selectAll("g.node").data(nodes, function(d) {
             return d.id || (d.id = ++i);
           });
