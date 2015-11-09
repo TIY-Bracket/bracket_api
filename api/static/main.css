@@ -193,6 +193,7 @@ picture {
 .node {
   cursor: pointer; }
 
+
 .node text { font-family: 'Graduate', serif;
     color: $black;
     font-size: 20px; }
@@ -367,13 +368,6 @@ h2 {
   margin: 10px 0;
   font-size: 1.2em;
   font-weight: bold; }
-
-#result {
-  margin: 10px;
-  background: #eee;
-  padding: 10px;
-  height: 40px;
-  overflow: auto; }
 
 .wrapper-for-content-outside-of-footer {
   min-height: 100%;
