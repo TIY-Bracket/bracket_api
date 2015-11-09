@@ -38,12 +38,12 @@ h2 span {
 }
 
 h2:before {
-  background: #ddd;
+  background: $white;
   content: "";
   display: block;
   height: 1px;
   position: absolute;
-    top: 50%;
+  top: 50%;
   width: 100%;
 }
 
