@@ -13,7 +13,7 @@
 
   </div>
 
-  <div id="graph">
+  <div id="chartId">
 
 
 
@@ -32,12 +32,12 @@
 
   var margin = {
           top: 10,
-          right: ($(window).width()/3),
+          right: 10,
           bottom: 10,
           left: 10
         },
-        width = ($(window).height()*1.1),
-        height = $(window).height() - margin.top - margin.bottom;
+        width = 980 - margin.right - margin.left,
+        height = 800 - margin.top - margin.bottom;
 
   var i = 0;
   var rectSize = 30;
@@ -45,7 +45,17 @@
   var elbow = function elbow(d, i) {
         return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
       }
-  var svg = d3.select("#graph").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // var svg = d3.select("#graph").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("div#chartId")
+   .append("div")
+   .classed("svg-container", true) //container class to make it responsive
+   .append("svg")
+   //responsive SVG needs these 2 attributes and no width and height attr
+   .attr("preserveAspectRatio", "xMinYMin meet")
+   .attr("viewBox", "0 0 1200 800")
+   //class to make it responsive
+   .classed("svg-content-responsive", true);
+
   var input_data;
   d3.json("{% url "get_bracket" bracket_id %}", function(data) {
     input_data = data
