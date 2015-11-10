@@ -48,7 +48,10 @@ svg {
 
 .node text { font-family: 'Graduate', serif;
   color: $black;
-  font-size: 16px; }
+  font-size: 16px;
+  cursor: pointer;
+
+}
 
 
 .link {
