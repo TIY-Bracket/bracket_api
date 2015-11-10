@@ -4,11 +4,11 @@
 }
 
 #graph {
-    width: 70%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
    }
-
+.svg {
 .node circle {
   fill: #000;
 }
@@ -18,9 +18,9 @@
  cursor: pointer;
 }
 
-.node text { font-family: 'Graduate', serif;
+.node text { font-family: 'helvetica', serif;
   color: $black;
-  font-size: 20px; }
+  font-size: 1em; }
 
 
 .link {
@@ -29,19 +29,17 @@
   stroke-width: 4px;
 }
 .hyper {
-  font-family: 'Graduate', serif;
+  font-family: 'Anton', sans-serif;
     color: $black;
-    font-size: 20px;
+    font-size: 1.2em;
     font-weight: bold;
 }
 .hyper:hover {
-  font-family: 'Graduate', serif;
+  font-family: 'Anton', sans-serif;
     color: $black;
     /*text-decoration: underline;*/
-    font-size: 26px;
+    font-size: 1.5em;
     font-weight: bolder;
 }
 
-.node {
- cursor: pointer;
 }

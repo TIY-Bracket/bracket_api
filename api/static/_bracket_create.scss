@@ -1,12 +1,21 @@
+.control-group-inlineForm {
+
+}
 form {
-    text-align: center;
-    width: 600px;
+    text-align: left;
+    width: 300px;
     margin: auto;
 }
+
 p {
     width: 300px;
     margin:  0 auto;
     font-size: 1.2em;
+
+label {
+  display: table-cell;
+  text-align: right;
+}
 
 }
 h2 {
@@ -14,10 +23,18 @@ h2 {
     font-size: 1.2em;
     font-weight: bold
 }
-#result {
-    margin: 10px;
-    background: #eee;
-    padding: 10px;
-    height: 40px;
-    overflow: auto;
+
+
+body {
+background: blue;
 }
+
+@media (max-width: 600px) {
+body {
+background: green;
+}}
+
+@media (max-width: 300px) {
+body {
+background: red;
+}}

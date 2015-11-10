@@ -184,41 +184,33 @@ picture {
   margin: auto; }
 
 #graph {
-  width: 70%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto; }
 
-.node circle {
+.svg .node circle {
   fill: #000; }
-
-.node {
+.svg .node {
   cursor: pointer; }
-
-.node text {
-  font-family: 'Graduate', serif;
+.svg .node text {
+  font-family: 'helvetica', serif;
   color: #000;
-  font-size: 20px; }
-
-.link {
+  font-size: 1em; }
+.svg .link {
   fill: none;
   stroke: #ccc;
   stroke-width: 4px; }
-
-.hyper {
-  font-family: 'Graduate', serif;
+.svg .hyper {
+  font-family: 'Anton', sans-serif;
   color: #000;
-  font-size: 20px;
+  font-size: 1.2em;
   font-weight: bold; }
-
-.hyper:hover {
-  font-family: 'Graduate', serif;
+.svg .hyper:hover {
+  font-family: 'Anton', sans-serif;
   color: #000;
   /*text-decoration: underline;*/
-  font-size: 26px;
+  font-size: 1.5em;
   font-weight: bolder; }
-
-.node {
-  cursor: pointer; }
 
 .sliding-panel-content {
   position: fixed;
@@ -339,44 +331,33 @@ h2:before {
   text-align: center;
   margin: auto; }
 
-.filter-box {
-  padding: 10px;
-  width: 100%; }
-
-.filter {
-  width: 33%;
-  box-sizing: border-box; }
-
-.search-box {
-  padding: 10px;
-  width: 100%; }
-
-.search-brackets {
-  width: 100%;
-  box-sizing: border-box; }
-
 form {
-  text-align: center;
-  width: 600px;
+  text-align: left;
+  width: 300px;
   margin: auto; }
 
 p {
   width: 300px;
   margin: 0 auto;
   font-size: 1.2em; }
+  p label {
+    display: table-cell;
+    text-align: right; }
 
 h2 {
   margin: 10px 0;
   font-size: 1.2em;
   font-weight: bold; }
 
-#result {
-  margin: 10px;
-  background: #eee;
-  padding: 10px;
-  height: 40px;
-  overflow: auto; }
+body {
+  background: blue; }
 
+@media (max-width: 600px) {
+  body {
+    background: green; } }
+@media (max-width: 300px) {
+  body {
+    background: red; } }
 .wrapper-for-content-outside-of-footer {
   min-height: 100%;
   height: auto !important;
