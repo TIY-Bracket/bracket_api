@@ -185,7 +185,8 @@ picture {
 
 #graph {
   width: 70%;
-  margin: auto; }
+  margin: auto;
+}
 
 .node circle {
   fill: #000; }
@@ -201,7 +202,7 @@ picture {
 
 .node text { font-family: 'Graduate', serif;
     color: $black;
-    font-size: 20px; }
+    font-size: 16px; }
 
 .link {
   fill: none;
