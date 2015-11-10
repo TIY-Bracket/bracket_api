@@ -20,3 +20,4 @@ class Position(models.Model):
     competitor = models.ForeignKey(Competitor, blank=True, null=True)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)
+    user = models.ForeignKey(User, blank=True, null=True)
