@@ -84,13 +84,13 @@ var xhttp = new XMLHttpRequest();
           nodeEnter.append("rect")
           .attr("x", 0) //<-- x is taken care of by translate
           .attr("y", -rectSize/2) //<-- just use y to center the rect
-          .attr("width", rectSize*2)
+          .attr("width", rectSize*4)
           .attr("height", rectSize);
 
 
           // nodeEnter.append("circle").attr("r", 5);
           nodeEnter.append("text").attr("x", function(d) {
-            return d.children || d._children ? 13 : -13;
+            return d.children || d._children ? 100 : 140;
           }).attr("dy", ".35em").attr("text-anchor", function(d) {
             return d.children || d._children ? "start" : "end";
           }).text(function(d) {
