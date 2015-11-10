@@ -179,14 +179,25 @@ picture {
   margin: 0;
   max-width: 100%; }
 
+g {
+  margin-right: auto;
+  margin-left: auto;
+  overflow: auto;
+
+}
+
+svg {
+  overflow: scroll;
+
+}
+
 #center {
   display: table;
   margin: auto; }
 
 #graph {
-  width: 100%;
-  margin: auto;
   overflow: scroll;
+
 }
 
 .node circle {

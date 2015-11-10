@@ -34,10 +34,11 @@
           top: 10,
           right: ($(window).width()/3),
           bottom: 10,
-          left: 0
+          left: 10
         },
-        width = $(window).width() - margin.right - margin.left,
+        width = ($(window).height()*1.1),
         height = $(window).height() - margin.top - margin.bottom;
+
   var i = 0;
   var rectSize = 30;
   var tree = d3.layout.tree().size([height, width]);

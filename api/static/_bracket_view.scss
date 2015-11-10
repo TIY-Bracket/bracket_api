@@ -1,13 +1,24 @@
+g {
+  margin-right: auto;
+  margin-left: auto;
+  overflow: auto;
+}
+
+svg {
+  margin-right: auto;
+  margin-left: auto;
+  overflow: auto;
+}
+
 #center {
     display: table;
-    margin: auto;
+    margin: scroll;
 }
 
 #graph {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: scroll;
+    float: right;
+    overflow: auto;
    }
 
 .node circle {
@@ -34,6 +45,7 @@
   stroke: #ccc;
   stroke-width: 4px;
 }
+
 .hyper {
   font-family: 'Graduate', serif;
     color: $black;
@@ -46,8 +58,4 @@
     /*text-decoration: underline;*/
     font-size: 26px;
     font-weight: bolder;
-}
-
-.node {
- cursor: pointer;
 }
