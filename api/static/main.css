@@ -184,8 +184,9 @@ picture {
   margin: auto; }
 
 #graph {
-  width: 70%;
+  width: 100%;
   margin: auto;
+  overflow: scroll;
 }
 
 .node circle {
@@ -194,7 +195,7 @@ picture {
   .node rect {
     stroke: black;
       stroke-width: 1;
-    fill: #fff;
+    fill: #D0D0D0;
    }
 
 .node {

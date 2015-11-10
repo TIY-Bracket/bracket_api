@@ -32,9 +32,9 @@
 
   var margin = {
           top: 10,
-          right: ($(window).width()/2),
+          right: ($(window).width()/3),
           bottom: 10,
-          left: -100
+          left: 0
         },
         width = $(window).width() - margin.right - margin.left,
         height = $(window).height() - margin.top - margin.bottom;
@@ -82,8 +82,8 @@
           });
 
           nodeEnter.append("rect")
-          .attr("x", 0) //<-- x is taken care of by translate
-          .attr("y", -rectSize/2) //<-- just use y to center the rect
+          .attr("x", 0)
+          .attr("y", -rectSize/2)
           .attr("width", rectSize*4)
           .attr("height", rectSize);
 
