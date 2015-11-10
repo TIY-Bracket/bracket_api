@@ -39,6 +39,7 @@ var xhttp = new XMLHttpRequest();
         width = 900 - margin.right - margin.left,
         height = 500 - margin.top - margin.bottom;
   var i = 0;
+  var rectSize = 40;
   var tree = d3.layout.tree().size([height, width]);
   var elbow = function elbow(d, i) {
         return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
@@ -72,14 +73,22 @@ var xhttp = new XMLHttpRequest();
   function update(source) {
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
-          nodes.forEach(function(d) { d.y = width - (d.depth * 100); });
+          nodes.forEach(function(d) { d.y = width - (d.depth * 140); });
       var node = svg.selectAll("g.node").data(nodes, function(d) {
             return d.id || (d.id = ++i);
           });
       var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
             return "translate(" + d.y + "," + d.x + ")";
           });
-          nodeEnter.append("circle").attr("r", 5);
+
+          nodeEnter.append("rect")
+          .attr("x", 0) //<-- x is taken care of by translate
+          .attr("y", -rectSize/2) //<-- just use y to center the rect
+          .attr("width", rectSize*2)
+          .attr("height", rectSize);
+
+
+          // nodeEnter.append("circle").attr("r", 5);
           nodeEnter.append("text").attr("x", function(d) {
             return d.children || d._children ? 13 : -13;
           }).attr("dy", ".35em").attr("text-anchor", function(d) {

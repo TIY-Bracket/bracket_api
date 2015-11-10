@@ -190,6 +190,12 @@ picture {
 .node circle {
   fill: #000; }
 
+  .node rect {
+    stroke: black;
+      stroke-width: 1;
+    fill: #fff;
+   }
+
 .node {
   cursor: pointer; }
 
