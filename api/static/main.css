@@ -185,7 +185,8 @@ picture {
 
 #graph {
   width: 70%;
-  margin: auto; }
+  margin-left: auto;
+  margin-right: auto; }
 
 .node circle {
   fill: #000; }
@@ -193,9 +194,10 @@ picture {
 .node {
   cursor: pointer; }
 
-.node text { font-family: 'Graduate', serif;
-    color: $black;
-    font-size: 20px; }
+.node text {
+  font-family: 'Graduate', serif;
+  color: #000;
+  font-size: 20px; }
 
 .link {
   fill: none;
@@ -206,14 +208,14 @@ picture {
   font-family: 'Graduate', serif;
   color: #000;
   font-size: 20px;
-  font-weight: bolder; }
+  font-weight: bold; }
 
 .hyper:hover {
   font-family: 'Graduate', serif;
   color: #000;
   /*text-decoration: underline;*/
   font-size: 26px;
-  font-weight: bold; }
+  font-weight: bolder; }
 
 .node {
   cursor: pointer; }

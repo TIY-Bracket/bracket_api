@@ -6,10 +6,10 @@
 @import "base/base";
 
 // import in each .scss file per style element in order to compile to main.css//
-@import "_bracket_view.scss";
-@import "_slide-menu-panel.scss";
-@import "_title-with-lines.scss";
-@import "_index.scss";
-@import "_bracket_create.scss";
-@import "_footer.scss";
+@import "bracket_view.scss";
+@import "slide-menu-panel.scss";
+@import "title-with-lines.scss";
+@import "index.scss";
+@import "bracket_create.scss";
+@import "footer.scss";
 // custom layout changes //
