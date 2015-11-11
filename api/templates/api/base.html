@@ -14,21 +14,31 @@
 
     <body>
 
+    <header class="navigation" role="banner">
+      <div class="navigation-wrapper">
+        <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">&#9776;</a>
+        <nav class="navigation">
+          <ul id="js-navigation-menu" class="navigation-menu show">
+            <li class="nav-link"><a href="{% url 'index' %}">Home</a></li>
+            <li class="nav-link"><a href="{% url 'bracket_create' %}">Create a Bracket</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-link"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>
+            <li class="nav-link"><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter Login</a></li>
+            <li class="nav-link"><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook Login</a></li>
+            {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
       <a type="button" class="js-menu-trigger sliding-panel-button">
         &#9776;
       </a>
-        <nav class="js-menu sliding-panel-content">
-          <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'bracket_create' %}">Create a Bracket</a></li>
-            {% if request.user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-            <li><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter Login</a></li>
-            <li><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook Login</a></li>
-            {% endif %}
-          </ul>
-        </nav>
+
         {% block content %}
         {% endblock %}
     <div class="js-menu-screen sliding-panel-fade-screen"></div>
