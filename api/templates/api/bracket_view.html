@@ -13,6 +13,21 @@
 
   </div>
 
+
+  <div class="modal">
+    <label for="modal-1">
+      <div class="modal-trigger">Click for Modal</div>
+    </label>
+    <input class="modal-state" id="modal-1" type="checkbox" />
+    <div class="modal-fade-screen">
+      <div class="modal-inner">
+        <div class="modal-close" for="modal-1"></div>
+      <div><p class="modal-intro">Modal test</p></div>
+      <div><p class="modal-content">Modal test</p></div>
+      </div>
+    </div>
+  </div>
+
   <div id="chartId">
 
 
@@ -32,11 +47,11 @@
 
   var margin = {
           top: 10,
-          right: 10,
+          right: ($(window).width()/5),
           bottom: 10,
           left: 10
         },
-        width = 980 - margin.right - margin.left,
+        width = 1300 - margin.right - margin.left,
         height = 800 - margin.top - margin.bottom;
 
   var i = 0;
@@ -52,7 +67,7 @@ var svg = d3.select("div#chartId")
    .append("svg")
    //responsive SVG needs these 2 attributes and no width and height attr
    .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox", "0 0 1200 800")
+   .attr("viewBox", "0 0 1300 800")
    //class to make it responsive
    .classed("svg-content-responsive", true);
 
@@ -126,6 +141,27 @@ var svg = d3.select("div#chartId")
           });
           link.enter().insert("path", "g").attr("class", "link").attr("d", elbow);
         }
+
+// Modal
+
+$(function() {
+  $("#modal-1").on("change", function() {
+    if ($(this).is(":checked")) {
+      $("body").addClass("modal-open");
+    } else {
+      $("body").removeClass("modal-open");
+    }
+  });
+
+  $(".modal-fade-screen, .modal-close").on("click", function() {
+    $(".modal-state:checked").prop("checked", false).change();
+  });
+
+  $(".modal-inner").on("click", function(e) {
+    e.stopPropagation();
+  });
+});
+
   </script>
 
 
