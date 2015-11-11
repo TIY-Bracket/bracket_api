@@ -179,23 +179,59 @@ picture {
   margin: 0;
   max-width: 100%; }
 
+g {
+  margin-right: auto;
+  margin-left: auto;
+  overflow: auto;
+
+}
+
+svg {
+  overflow: scroll;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+
+
 #center {
   display: table;
   margin: auto; }
 
 #graph {
-  width: 70%;
-  margin: auto; }
+  overflow: scroll;
+  text-align: center;
+}
 
 .node circle {
   fill: #000; }
 
-.node {
-  cursor: pointer; }
+  .node rect {
+    stroke: black;
+      stroke-width: 1;
+    fill: #D0D0D0;
+   }
+
 
 .node text { font-family: 'Graduate', serif;
     color: $black;
-    font-size: 20px; }
+    font-size: 16px;
+    cursor: pointer;
+
+  }
 
 .link {
   fill: none;
@@ -215,8 +251,7 @@ picture {
   font-size: 26px;
   font-weight: bold; }
 
-.node {
-  cursor: pointer; }
+
 
 .sliding-panel-content {
   position: fixed;
