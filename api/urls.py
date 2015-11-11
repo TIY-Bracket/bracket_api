@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^view/(?P<bracket_id>.+)', views.bracket_view, name="bracket_view"),
     url(r'^bracket_create/', views.bracket_create, name="bracket_create"),
     url(r'^update_bracket/(?P<bracket_id>.+)/(?P<competitor_id>.+)', views.update_bracket, name="update_bracket"),
+    url(r'^assign_competitor/(?P<competitor_id>.+)/(?P<user_id>.+)', views.assign_competitor, name="assign_competitor"),
     url('', include('social.apps.django_app.urls', namespace='social')),
-
 ]

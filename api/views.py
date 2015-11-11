@@ -1,21 +1,17 @@
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User, Group
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout as auth_logout
-#from django.contrib.auth.decorators import login_required
-
 from api.models import Bracket, Competitor, Position
 
-# Create your views here.
-
-#
-#
 
 class UserViewSet(viewsets.ModelViewSet):
+
     """
     API endpoint that allows users to be viewed or edited.
     """
@@ -24,6 +20,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class GroupViewSet(viewsets.ModelViewSet):
+
     """
     API endpoint that allows groups to be viewed or edited.
     """
@@ -32,6 +29,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class BracketViewSet(viewsets.ModelViewSet):
+
     """
     API endpoint that allows brackets to be created, viewed and edited.
     """
@@ -40,6 +38,7 @@ class BracketViewSet(viewsets.ModelViewSet):
 
 
 class CompetitorViewSet(viewsets.ModelViewSet):
+
     """
     API endpoint that allows competitors to be created, viewed and edited.
     """
@@ -48,6 +47,7 @@ class CompetitorViewSet(viewsets.ModelViewSet):
 
 
 class PositionViewSet(viewsets.ModelViewSet):
+
     """
     API endpoint that allows bracket positions to be created, viewed and edited.
     """
@@ -60,16 +60,13 @@ def index(request):
 
 
 def bracket_view(request, bracket_id):
-    print(bracket_id)
     bracket = Bracket.objects.get(pk=bracket_id)
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
-                   "bracket": bracket,},)
-
+                   "bracket": bracket},)
 
 
 def bracket_create(request):
-    print("THis is me!!!!!!!".center(100, '-'))
     return render(request, 'api/bracket_create.html')
 
 
@@ -123,7 +120,7 @@ def get_bracket(request, bracket_id):
                                       })
         except:
             bracket_structure.append({'name': '',
-                                         'position': position.position,
+                                      'position': position.position,
                                       'parent': position.parent,
                                       'position_id': position.id
                                       })
@@ -138,3 +135,12 @@ def update_bracket(request, bracket_id, competitor_id):
                             position=current_player_record.values()[0]['parent']).update(competitor_id=competitor_id)
 
     return Response('hello')  # question for James. What should be returned?
+
+
+@api_view(['PUT'])
+def assign_competitor(request, competitor_id, user_id):
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.user_id = user_id
+    competitor.save()
+
+    return Response('hello')
