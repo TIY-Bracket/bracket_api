@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "wwo47(p3-*6ufaqhks65r4=dz*)*&*0h#ktr#)n0y-6rzjlr84"
-
+MAILGUN_KEY = os.environ.get("MAILGUN_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'social.apps.django_app.default',
+    'mailer',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -60,6 +61,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+EMAIL_BACKEND = 'mailer.backend.DbBackend'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,7 +123,7 @@ USE_TZ = True
 # Parse database configuration from $DATABASE_URL
 # ******comment out for local*******
 
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 
 # Enable Connection Pooling (if desired)
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
