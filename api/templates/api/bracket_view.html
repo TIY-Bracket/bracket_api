@@ -208,9 +208,10 @@ var test_text = "test"
           // Modal
 
           nodeEnter.filter(function(d) { return d.competitor; })
+          .append("a")
+          attr("onclick")
           .append("circle").attr("r", 5)
-          .attr("class", "hyper")
-          .on("click", overlay());
+          .attr("class", "hyper");
 
           nodeEnter.append("div")
           .attr("overlay")
