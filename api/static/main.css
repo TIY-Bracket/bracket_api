@@ -213,7 +213,8 @@ svg {
   overflow: auto; }
 
 .node circle {
-  fill: #000; }
+  fill: #000;
+  cursor: pointer; }
 
 .node rect {
   stroke: black;
