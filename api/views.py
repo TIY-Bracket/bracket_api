@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import logout as auth_logout
 #from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -181,3 +181,24 @@ def send_email(email_address, subject, text):
 
 def contact(request):
     return render(request, 'api/contact.html')
+
+
+def matchup(request, bracket_id, parent_id):
+    competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
+    competitor_a = competitors[0]
+    competitor_b = competitors[1]
+
+    try:
+        competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
+        competitor_a = competitor.title
+    except:
+        competitor_a = 'TBD'
+
+    try:
+        competitor = Competitor.objects.get(pk=competitor_b.competitor_id)
+        competitor_b = competitor.title
+        print(competitor.id)
+    except:
+        competitor_b = 'TBD'
+
+    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b})
