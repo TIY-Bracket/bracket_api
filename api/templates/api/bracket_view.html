@@ -125,34 +125,6 @@ function update(source) {
         .attr("height", rectSize);
 
 
-    //           nodeEnter.filter(function(d) { return d.competitor; })
-    //           .append("image")
-    //           .attr("xlink:href", "https://cdn1.iconfinder.com/data/icons/simple-icons/4096/email-4096-black.png")
-    //           .attr("x", -40)
-    //           .attr("y", -20)
-    //           .attr("width", 40)
-    //           .attr("height", 40)
-    //           .attr("class", "hyper").on("click", modal_click);
-    //
-    //
-    //
-    // var test_text = "test"
-    //
-    //     function modal_click(d) {
-    //    alert("Email sent to: " + d.name);
-    // };
-
-
-    // <a href='#' onclick='overlay()'>Click here to show the overlay</a>
-
-    // <div id="overlay">
-    //  <div>
-
-    // [<a href='#' onclick='overlay()'>X</a>]
-    //  </div>
-    // </div>
-
-
 
     // nodeEnter.append("circle").attr("r", 5);
     nodeEnter.append("text").attr("x", function(d) {
@@ -165,38 +137,6 @@ function update(source) {
         .attr("class", "hyper").on("click", clack);
 
 
-// function clack(d) {
-//
-//   var page = "/";
-//
-// var $dialog = $('<div></div>')
-//                .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
-//                .dialog({
-//                    autoOpen: false,
-//                    modal: true,
-//                    height: 625,
-//                    width: 500,
-//                    title: "Some title"
-//                });
-// $dialog.dialog('open');
-//
-//
-// }
-
-
-
-//   var competitor_id = d['competitor']
-// $.ajax({
-//     url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id,
-//     type: "PUT",
-//     headers: {
-//         "Authorization": "Basic " + btoa("admin:password")
-//     }
-// }).then(
-//   window.location = "/view/" + {{ bracket_id }}
-// );
-// };
-
 
 
 
@@ -208,16 +148,6 @@ function update(source) {
 
 
 
-
-//
-// <a href='#' onclick='overlay()'>Click here to show the overlay</a>
-
-// <div id="overlay">
-//  <div>
-
-// [<a href='#' onclick='overlay()'>X</a>]
-//  </div>
-// </div>
 
 }
 
