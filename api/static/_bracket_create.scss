@@ -1,5 +1,5 @@
 form {
-    text-align: left;
+    text-align: center;
     width: 600px;
     margin: auto;
     padding-top: 10em;
@@ -25,4 +25,10 @@ h2 {
     padding: 10px;
     height: 40px;
     overflow: auto;
+}
+
+.divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
 }
