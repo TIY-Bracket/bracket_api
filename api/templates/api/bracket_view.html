@@ -5,6 +5,29 @@
 
 <style>
 
+#modal {
+    position:fixed;
+    left:150px;
+    top:20px;
+    z-index:1;
+    background: white;
+    border: 1px black solid;
+    box-shadow: 10px 10px 5px #888888;
+    display: none;
+}
+
+#content {
+    max-height: 400px;
+    overflow: auto;
+}
+
+#modalClose {
+    position: absolute;
+    top: -0px;
+    right: -0px;
+    z-index: 1;
+}
+
 </style>
 
   <div id="center">
@@ -14,21 +37,12 @@
   </div>
 
 
-  <div class="modal">
-    <label for="modal-1">
-      <div class="modal-trigger">Click for Modal</div>
-    </label>
-    <input class="modal-state" id="modal-1" type="checkbox" />
-    <div class="modal-fade-screen">
-      <div class="modal-inner">
-        <div class="modal-close" for="modal-1"></div>
-      <div><p class="modal-intro">Modal test</p></div>
-      <div><p class="modal-content">Modal test</p></div>
-      </div>
-    </div>
-  </div>
+
 
   <div id="chartId">
+
+
+
 
 
 
@@ -40,11 +54,11 @@
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
 {% csrf_token %}
 
   <script>
-
-
   var margin = {
           top: 10,
           right: ($(window).width()/5),
@@ -53,7 +67,6 @@
         },
         width = 1300 - margin.right - margin.left,
         height = 800 - margin.top - margin.bottom;
-
   var i = 0;
   var rectSize = 30;
   var tree = d3.layout.tree().size([height, width]);
@@ -70,7 +83,6 @@ var svg = d3.select("div#chartId")
    .attr("viewBox", "0 0 1300 800")
    //class to make it responsive
    .classed("svg-content-responsive", true);
-
   var input_data;
   d3.json("{% url "get_bracket" bracket_id %}", function(data) {
     input_data = data
@@ -106,12 +118,25 @@ var svg = d3.select("div#chartId")
       var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
             return "translate(" + d.y + "," + d.x + ")";
           });
-
           nodeEnter.append("rect")
           .attr("x", 0)
           .attr("y", -rectSize/2)
           .attr("width", rectSize*4)
           .attr("height", rectSize);
+          nodeEnter.filter(function(d) { return d.competitor; })
+          .append("image")
+          .attr("xlink:href", "https://cdn1.iconfinder.com/data/icons/simple-icons/4096/email-4096-black.png")
+          .attr("x", -40)
+          .attr("y", -20)
+          .attr("width", 40)
+          .attr("height", 40)
+          .attr("class", "hyper").on("click", modal_click);
+
+var test_text = "test"
+
+    function modal_click(d) {
+   alert("Email sent to: " + d.name);
+};
 
 
           // nodeEnter.append("circle").attr("r", 5);
@@ -143,24 +168,6 @@ var svg = d3.select("div#chartId")
         }
 
 // Modal
-
-$(function() {
-  $("#modal-1").on("change", function() {
-    if ($(this).is(":checked")) {
-      $("body").addClass("modal-open");
-    } else {
-      $("body").removeClass("modal-open");
-    }
-  });
-
-  $(".modal-fade-screen, .modal-close").on("click", function() {
-    $(".modal-state:checked").prop("checked", false).change();
-  });
-
-  $(".modal-inner").on("click", function(e) {
-    e.stopPropagation();
-  });
-});
 
   </script>
 
