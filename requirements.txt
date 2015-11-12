@@ -1,4 +1,4 @@
-ddefusedxml==0.4.1
+defusedxml==0.4.1
 dj-database-url==0.3.0
 Django==1.8.1
 django-oauth2-provider==0.2.6.1
