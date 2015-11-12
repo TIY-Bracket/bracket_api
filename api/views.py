@@ -142,17 +142,18 @@ def update_bracket(request, bracket_id, competitor_id):
 
 import requests
 from django.http import HttpResponseRedirect
-def send_email(request):
+def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
+
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
         auth=("api", MAILGUN_KEY),
         data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
               # need a valid email
-              "to": ["email@email.com"],
-              "subject": "Your Versus.live matchup starts in 5 minutes.",
-              "text": "Your matchup starts in 5 minutes!"})
-    print('ARRRR')
+              "to": email_address,
+              "subject": subject,
+              "text": text})
+
     print(results)
     print(results.text)
     return HttpResponseRedirect("/contacts")
@@ -178,5 +179,5 @@ def send_email(request):
 #     })
 
 
-def contacts(request):
-    return render(request, 'api/contacts.html')
+def contact(request):
+    return render(request, 'api/contact.html')
