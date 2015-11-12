@@ -1,26 +1,24 @@
 
 .container{
-  text-align:center;
+  padding-top: 20em;
+  text-align: center;
   margin:auto;
 
+  h1, p, input, label, {
+    font-family: 'Lato', sans-serif;
+    font-size: 3em;
+  }
+
 }
 
-.filter-box{
-  padding: 10px;
-  width: 100%;
+.logo {
+  font-family: 'Graduate', cursive;
 }
 
-.filter {
-  width: 33%;
-  box-sizing: border-box;
+.nav-btn {
+
 }
 
-.search-box {
-  padding: 10px;
-  width: 100%;
-}
-
-.search-brackets {
-  width: 100%;
-  box-sizing: border-box;
-}
+// .divider {
+//
+// }
