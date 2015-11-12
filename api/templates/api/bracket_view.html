@@ -122,7 +122,8 @@ function update(source) {
         .attr("x", 0)
         .attr("y", -rectSize / 2)
         .attr("width", rectSize * 4)
-        .attr("height", rectSize);
+        .attr("height", rectSize)
+        .attr("class", "hyper").on("click", clack);;
 
 
 
@@ -133,10 +134,7 @@ function update(source) {
             return d.children || d._children ? "start" : "end";
         }).text(function(d) {
             return d.name;
-        })
-        .attr("class", "hyper").on("click", clack);
-
-
+        });
 
 
 
