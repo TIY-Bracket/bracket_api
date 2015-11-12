@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "wwo47(p3-*6ufaqhks65r4=dz*)*&*0h#ktr#)n0y-6rzjlr84"
-
+MAILGUN_KEY = os.environ.get("MAILGUN_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'social.apps.django_app.default',
+    'mailer',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -60,6 +61,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+EMAIL_BACKEND = 'mailer.backend.DbBackend'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -152,11 +155,11 @@ REST_FRAMEWORK = {
 }
 
 
-SOCIAL_AUTH_TWITTER_KEY = '0N20oYXidmd6LGJPVVaVXqABT'
-SOCIAL_AUTH_TWITTER_SECRET = 'Jo6B9myqtKIyuITG9A0JBKVSiYb6Pqu4NGB3RnCauhICQ5PUyS'
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY")
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET")
 
-SOCIAL_AUTH_FACEBOOK_KEY = '780903975368705'
-SOCIAL_AUTH_FACEBOOK_SECRET = '662e850a8f72551d4998d20d85c0a740'
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY")
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET")
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_LOGIN_URL = '/'
