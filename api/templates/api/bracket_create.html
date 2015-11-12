@@ -3,14 +3,13 @@
 {% block content %}
 
 <p>Create a New Bracket</p>
-<div id="new_competitor" class="control-group inlineForm">
+<div id="new_competitor" class="bracket-create-form">
 <form action="" method="post">
     {% csrf_token %}
     Title: <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
 
     <div id="competitors">
-        Player 1<br>
-        <input type="text" class="competitor-input" name="Competitor1" size="12" autocomplete="off" /><input type="button" id="add_competitor()" onClick="addCompetitor()" value="+" />
+        Player 1: <input type="text" class="competitor-input" name="Competitor1" size="12" autocomplete="off" /><input type="button" id="add_competitor()" onClick="addCompetitor()" value="+" />
     </div>
     <p>
         <input type="submit" />

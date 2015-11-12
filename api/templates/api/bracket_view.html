@@ -1,28 +1,11 @@
 {% extends "api/base.html" %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Anton">
-
-<style>
-
-</style>
-
   <div id="center">
-
     <h3>{{ bracket.title }}</h3>
-
   </div>
-
   <div id="chartId">
-
-
-
   </div>
-
-
-
-
-
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 {% csrf_token %}
@@ -32,7 +15,7 @@
 
   var margin = {
           top: 10,
-          right: 10,
+          right: 100,
           bottom: 10,
           left: 10
         },
@@ -129,5 +112,5 @@ var svg = d3.select("div#chartId")
   </script>
 
 
-
+</div>
 {% endblock %}
