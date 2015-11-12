@@ -1,4 +1,4 @@
-defusedxml==0.4.1
+ddefusedxml==0.4.1
 dj-database-url==0.3.0
 Django==1.8.1
 django-oauth2-provider==0.2.6.1
@@ -6,6 +6,7 @@ django-postgrespool==0.3.0
 django-rest-swagger==0.3.4
 djangorestframework==3.3.0
 gunicorn==19.3.0
+mailer==0.8.1
 oauthlib==1.0.3
 psycopg2==2.6
 PyJWT==1.4.0

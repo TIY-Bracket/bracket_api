@@ -7,7 +7,7 @@ from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, 
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 #from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
 from api.models import Bracket, Competitor, Position
 
 # Create your views here.
@@ -123,7 +123,7 @@ def get_bracket(request, bracket_id):
                                       })
         except:
             bracket_structure.append({'name': '',
-                                         'position': position.position,
+                                      'position': position.position,
                                       'parent': position.parent,
                                       'position_id': position.id
                                       })
@@ -138,3 +138,46 @@ def update_bracket(request, bracket_id, competitor_id):
                             position=current_player_record.values()[0]['parent']).update(competitor_id=competitor_id)
 
     return Response('hello')  # question for James. What should be returned?
+
+
+import requests
+from django.http import HttpResponseRedirect
+def send_email(email_address, subject, text):
+    MAILGUN_KEY = settings.MAILGUN_KEY
+
+    results = requests.post(
+        "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
+        auth=("api", MAILGUN_KEY),
+        data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
+              # need a valid email
+              "to": email_address,
+              "subject": subject,
+              "text": text})
+
+    print(results)
+    print(results.text)
+    return HttpResponseRedirect("/contacts")
+    # return Response('hello')
+
+
+# def send_notification(request):
+#     username = request.data['username']
+#     user = User.objects.filter(username=username)
+#     if len(user) == 0:
+#         return HttpResponse('That username is not in the database. ')
+#
+#
+#     recipient = user[0].email
+#     key = 'key-''
+#     sandbox = 'sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org'
+#     request_url = 'https://api.mailgun.net/v3/{}/messages'.format(sandbox)
+#     request = requests.post(request_url, auth=('api', key), data={
+#         'from': 'Mailgun Sandbox <postmaster@sandbox014f80db3f0b441e94e5a6faff21f392.mailgun.org>',
+#         'to': recipient,
+#         'subject': 'versus.live notification',
+#         'text': 'You go head to head in 5 mins'
+#     })
+
+
+def contact(request):
+    return render(request, 'api/contact.html')
