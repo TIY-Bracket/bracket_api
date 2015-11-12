@@ -214,8 +214,10 @@ svg {
   font-color: #333;
   margin: scroll;
   padding-top: 3em;
-  font-family: 'Graduate', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1.5em; }
+  #center h3 {
+    font-family: 'Lato', sans-serif; }
 
 .node circle {
   fill: #000; }
