@@ -9,9 +9,11 @@ svg {
 }
 
 .svg-container {
-    display: inline-block;
+    background-color: #eee;
+    display: flex;
     position: relative;
     width: 100%;
+    margin-top: 5em;
     padding-bottom: 100%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
@@ -24,16 +26,13 @@ svg {
 }
 
 
+
 #center {
     display: table;
     margin: scroll;
+    font-color: $dark-gray;
 }
 
-#graph {
-    width: 100%;
-    float: right;
-    overflow: auto;
-   }
 
 .node circle {
   fill: #000;
@@ -46,7 +45,8 @@ svg {
  }
 
 
-.node text { font-family: 'Graduate', serif;
+.node text {
+  font-family: 'Lato', sans-serif;
   color: $black;
   font-size: 16px;
   cursor: pointer;
@@ -61,15 +61,12 @@ svg {
 }
 
 .hyper {
-  font-family: 'Graduate', serif;
     color: $black;
     font-size: 20px;
     font-weight: bold;
 }
 .hyper:hover {
-  font-family: 'Graduate', serif;
     color: $black;
     /*text-decoration: underline;*/
     font-size: 26px;
-    font-weight: bolder;
 }

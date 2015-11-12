@@ -1,50 +1,10 @@
 {% extends "api/base.html" %}
 {% block content %}
 
-  {% if user and not user.is_anonymous %}
-    <a>Hello, {{ user.get_full_name }}!</a>
-    <br>
-
-  {% endif %}
-  <br>
-
 <div class="container">
-
-
+  <h1>No Fuss Brackets</h1>
 <a class=" button create-bracket-button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a>
-
 </div>
 
-<title>{% if request.user.is_authenticated %}Logged In{% else %}Not Logged In{% endif %}</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-
-<a class="{% if request.user.is_authenticated %}logged-in{% else %}logged-out{% endif %}">
-
-{% if request.user.is_authenticated %}
-    <a href="/accounts/logout/" class="pull-right">Logout</a>
-    {% if request.user.first_name or request.user.last_name %}
-        {{ request.user.first_name }} {{ request.user.last_name }}
-    {% else %}
-        {{ request.user.username }}
-    {% endif %}
-    {% if request.user.profile.account_verified %} (verified) {% else %} (unverified) {% endif %} </a>
-
-    <div class="container">
-
-      <div class="filter-box">
-       <input class="filter"></input>
-       <input class="filter"></input>
-       <input class="filter"></input>
-    </div>
-
-      <div class="search-box">
-       <input class="search-brackets"></input>
-      </div>
-    </div>
-
-{% else %}
-    {# <a href="/accounts/login/" class="pull-right">Login</a>#}
-
-{% endif %}
 
 {% endblock %}

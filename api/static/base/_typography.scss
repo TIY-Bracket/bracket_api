@@ -1,11 +1,16 @@
 body {
   background: $base-background-color;
   color: $base-font-color;
-  font-family: 'Graduate', cursive;
+  font-family: 'Lato', sans-serif;
   font-feature-settings: "kern", "liga", "pnum";
   font-size: $base-font-size;
   line-height: $base-line-height;
+  padding: 0;
 }
+  html, body {
+      margin: 0;
+      padding: 0;
+  }
 
 h1,
 h2,
