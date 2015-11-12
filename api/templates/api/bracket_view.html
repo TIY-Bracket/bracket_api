@@ -174,8 +174,9 @@ function opendialog(page) {
 
 
 function clack(d) {
-    var parent_pos_id = d['parent']['position_id'];
-    opendialog("/matchup/" + bracket_id + "/" + parent_pos_id);
+  console.log(d)
+    var parent_pos = Math.floor(d['position']/2);
+    opendialog("/matchup/" + bracket_id + "/" + parent_pos);
 }
 
 
