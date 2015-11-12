@@ -25,5 +25,5 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^send_email/', views.send_email, name="send_email"),
     url(r'^contact/$', views.contact, name='contact'),
-
+    url(r'^matchup/(?P<bracket_id>.+)/(?P<parent_id>.+)', views.matchup, name="matchup"),
 ]
