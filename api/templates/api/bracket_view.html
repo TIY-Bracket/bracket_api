@@ -20,7 +20,6 @@
      height:100%;
      text-align:center;
      z-index: 1000;
-     background-image:url(background-trans.png);
 }
 
 #overlay div {
@@ -46,13 +45,14 @@
   <div id="chartId">
 
 
-{# <a href='#' onclick='overlay()'>Click here</a>#}
 
-    {# <div id="overlay">#}
-         {# <div>#}
 
-               {# [<a href='#' onclick='overlay()'>X</a>]#}
-         {# </div>#}
+    <div id="overlay">
+      
+         <div>
+
+               [<a href='#' onclick='overlay()'>X</a>]
+         </div>
     </div>
 
 
@@ -70,11 +70,6 @@
 
   <script>
 
-
-  function overlay() {
-  	el = document.getElementById("overlay");
-  	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-  }
 
 
 
@@ -181,19 +176,40 @@ var test_text = "test"
           }).text(function(d) {
             return d.name;
           })
-          .attr("class", "hyper").on("click", clack);
+          .attr("class", "hyper").on("click", overlay);
+
+
+
+
+
+          function overlay(d) {
+            el = document.getElementById("overlay");
+            el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+
+          }
+
+
+
+
+
+
               function clack(d) {
                 var parent_pos_id = d['parent']['position_id']
                 var competitor_id = d['competitor']
-                $.ajax({
-                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id,
-                  type: "PUT",
-                  headers: {
-                      "Authorization": "Basic " + btoa("admin:password")
-                  }
-              }).then(
-                  window.location = "/view/" + {{ bracket_id }}
-                );
+                // $.ajax({
+              //     url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + competitor_id,
+              //     type: "PUT",
+              //     headers: {
+              //         "Authorization": "Basic " + btoa("admin:password")
+              //     }
+              // }).then(
+                //   window.location = "/view/" + {{ bracket_id }}
+                // );
+
+
+
+
+
           };
 
 
@@ -209,7 +225,8 @@ var test_text = "test"
 
           nodeEnter.filter(function(d) { return d.competitor; })
           .append("a")
-          attr("onclick")
+          .attr("href", '#')
+          .attr("onclick")
           .append("circle").attr("r", 5)
           .attr("class", "hyper");
 
