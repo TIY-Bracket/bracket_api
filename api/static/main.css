@@ -198,7 +198,6 @@ svg {
   display: flex;
   position: relative;
   width: 100%;
-  margin-top: 5em;
   padding-bottom: 100%;
   /* aspect ratio */
   vertical-align: top;
@@ -211,9 +210,12 @@ svg {
   left: 0; }
 
 #center {
-  display: table;
+  text-align: center;
+  font-color: #333;
   margin: scroll;
-  font-color: #333; }
+  padding-top: 3em;
+  font-family: 'Graduate', sans-serif;
+  font-size: 1.5em; }
 
 .node circle {
   fill: #000; }
