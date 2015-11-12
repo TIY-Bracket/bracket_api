@@ -1,49 +1,44 @@
 {% extends "api/base.html" %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Anton">
-
-<style>
-
-</style>
-
   <div id="center">
-
-    <h3>Bracket {{ bracket_id }}</h3>
-
+    <h3>{{ bracket.title }}</h3>
   </div>
-
-  <div id="graph">
-
-
-
+  <div id="chartId">
   </div>
-
-
-
-
-
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 {% csrf_token %}
 
   <script>
 
-var xhttp = new XMLHttpRequest();
+
   var margin = {
           top: 10,
-          right: 200,
+          right: 100,
           bottom: 10,
           left: 10
         },
-        width = 900 - margin.right - margin.left,
-        height = 500 - margin.top - margin.bottom;
+        width = 980 - margin.right - margin.left,
+        height = 800 - margin.top - margin.bottom;
+
   var i = 0;
+  var rectSize = 30;
   var tree = d3.layout.tree().size([height, width]);
   var elbow = function elbow(d, i) {
         return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
       }
-  var svg = d3.select("#graph").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // var svg = d3.select("#graph").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("div#chartId")
+   .append("div")
+   .classed("svg-container", true) //container class to make it responsive
+   .append("svg")
+   //responsive SVG needs these 2 attributes and no width and height attr
+   .attr("preserveAspectRatio", "xMinYMin meet")
+   .attr("viewBox", "0 0 1200 800")
+   //class to make it responsive
+   .classed("svg-content-responsive", true);
+
   var input_data;
   d3.json("{% url "get_bracket" bracket_id %}", function(data) {
     input_data = data
@@ -72,16 +67,24 @@ var xhttp = new XMLHttpRequest();
   function update(source) {
       var nodes = tree.nodes(root).reverse();
             links = tree.links(nodes);
-          nodes.forEach(function(d) { d.y = width - (d.depth * 100); });
+          nodes.forEach(function(d) { d.y = width - (d.depth * 180); });
       var node = svg.selectAll("g.node").data(nodes, function(d) {
             return d.id || (d.id = ++i);
           });
       var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) {
             return "translate(" + d.y + "," + d.x + ")";
           });
-          nodeEnter.append("circle").attr("r", 5);
+
+          nodeEnter.append("rect")
+          .attr("x", 0)
+          .attr("y", -rectSize/2)
+          .attr("width", rectSize*4)
+          .attr("height", rectSize);
+
+
+          // nodeEnter.append("circle").attr("r", 5);
           nodeEnter.append("text").attr("x", function(d) {
-            return d.children || d._children ? 13 : -13;
+            return d.children || d._children ? 5 : 115;
           }).attr("dy", ".35em").attr("text-anchor", function(d) {
             return d.children || d._children ? "start" : "end";
           }).text(function(d) {
@@ -109,5 +112,5 @@ var xhttp = new XMLHttpRequest();
   </script>
 
 
-
+</div>
 {% endblock %}

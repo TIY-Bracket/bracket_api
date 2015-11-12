@@ -2,6 +2,7 @@ form {
     text-align: center;
     width: 600px;
     margin: auto;
+    padding-top: 10em;
 }
 p {
     width: 300px;
@@ -14,10 +15,20 @@ h2 {
     font-size: 1.2em;
     font-weight: bold
 }
+
+
+
+
 #result {
     margin: 10px;
     background: #eee;
     padding: 10px;
     height: 40px;
     overflow: auto;
+}
+
+.divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
 }

@@ -1,26 +1,57 @@
-#center {
-    display: table;
-    margin: auto;
+g {
+  margin-right: auto;
+  margin-left: auto;
+  overflow: auto;
 }
 
-#graph {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-   }
+svg {
+  overflow: auto;
+}
+
+.svg-container {
+    background-color: #eee;
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 5em;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+
+
+#center {
+    display: table;
+    margin: scroll;
+    font-color: $dark-gray;
+}
+
 
 .node circle {
   fill: #000;
 }
 
+.node rect {
+  stroke: black;
+    stroke-width: 1;
+  fill: #D0D0D0;
+ }
 
-.node {
- cursor: pointer;
-}
 
-.node text { font-family: 'Graduate', serif;
+.node text {
+  font-family: 'Lato', sans-serif;
   color: $black;
-  font-size: 20px; }
+  font-size: 16px;
+  cursor: pointer;
+
+}
 
 
 .link {
@@ -28,20 +59,14 @@
   stroke: #ccc;
   stroke-width: 4px;
 }
+
 .hyper {
-  font-family: 'Graduate', serif;
     color: $black;
     font-size: 20px;
     font-weight: bold;
 }
 .hyper:hover {
-  font-family: 'Graduate', serif;
     color: $black;
     /*text-decoration: underline;*/
     font-size: 26px;
-    font-weight: bolder;
-}
-
-.node {
- cursor: pointer;
 }
