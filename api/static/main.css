@@ -434,7 +434,7 @@ header.navigation {
         float: right; } }
 
 .container {
-  padding-top: 20em;
+  padding-top: 10em;
   text-align: center;
   margin: auto; }
   .container h1, .container p, .container input, .container label {
@@ -459,13 +459,6 @@ h2 {
   margin: 10px 0;
   font-size: 1.2em;
   font-weight: bold; }
-
-#result {
-  margin: 10px;
-  background: #eee;
-  padding: 10px;
-  height: 40px;
-  overflow: auto; }
 
 .divider {
   width: 10px;
