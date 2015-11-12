@@ -185,6 +185,9 @@ picture {
   margin: 0;
   max-width: 100%; }
 
+body {
+  background-color: #eee; }
+
 g {
   margin-right: auto;
   margin-left: auto;
