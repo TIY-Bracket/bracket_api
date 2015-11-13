@@ -34,10 +34,13 @@ header.navigation {
   }
 
   .logo {
+    color: $navigation-color;
+    display: block;
     float: left;
-    max-height: $navigation-height;
-    padding-left: $navigation-padding;
-    padding-right: 2em;
+    line-height: $navigation-height;
+    text-decoration: none;
+    text-transform: uppercase;
+
 
     img {
       max-height: $navigation-height;
@@ -75,7 +78,7 @@ header.navigation {
     z-index: 9999999;
 
     @include media ($horizontal-bar-mode) {
-      float: left;
+      float: right;
     }
   }
 
@@ -96,7 +99,8 @@ header.navigation {
 
     @include media ($horizontal-bar-mode) {
       display: inline;
-      margin-left: 800px;
+      // text-align: right;
+      // margin-left: 800px;
       padding: 0;
     }
   }

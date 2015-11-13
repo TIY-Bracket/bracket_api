@@ -6,10 +6,11 @@
 <div id="new_competitor" class="bracket-create-form">
 <form action="" method="post">
     {% csrf_token %}
-    Title<br/>
+    <label for="Title">Title</label>
+
     <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
     <br/>
-    Competitors<br/>
+      <label for="Competitor1">Competitors</label>
     <div id="competitors">
         <input type="text" class="competitor-input" name="Competitor1" size="12" autocomplete="off" /><div class="divider"></div>
     </div>

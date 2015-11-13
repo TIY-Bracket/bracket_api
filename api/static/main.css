@@ -190,6 +190,9 @@ g {
   margin-left: auto;
   overflow: auto; }
 
+label {
+  display: block; }
+
 svg {
   overflow: auto; }
 
@@ -274,10 +277,12 @@ header.navigation {
       content: "";
       display: table; }
   header.navigation .logo {
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
     float: left;
-    max-height: 60px;
-    padding-left: 1em;
-    padding-right: 2em; }
+    line-height: 60px;
+    text-decoration: none;
+    text-transform: uppercase; }
     header.navigation .logo img {
       max-height: 60px;
       padding: 0.8em 0; }
@@ -301,7 +306,7 @@ header.navigation {
     z-index: 9999999; }
     @media screen and (min-width: 53.75em) {
       header.navigation nav {
-        float: left; } }
+        float: right; } }
   header.navigation ul.navigation-menu {
     clear: both;
     display: none;
@@ -314,7 +319,6 @@ header.navigation {
     @media screen and (min-width: 53.75em) {
       header.navigation ul.navigation-menu {
         display: inline;
-        margin-left: 800px;
         padding: 0; } }
   header.navigation ul li.nav-link {
     background: #333;
@@ -447,12 +451,8 @@ form {
   text-align: center;
   width: 600px;
   margin: auto;
-  padding-top: 10em; }
-
-p {
-  width: 300px;
-  margin: 0 auto;
-  font-size: 1.2em; }
+  padding-top: 10em;
+  font-size: 1.15em; }
 
 h2 {
   margin: 10px 0;
