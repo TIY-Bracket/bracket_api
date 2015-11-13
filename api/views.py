@@ -161,7 +161,7 @@ def send_email(email_address, subject, text):
     return Response('hello')
 
 
-def five_min_email(competitor_id):
+def five_min_email(request, competitor_id):
     MAILGUN_KEY = settings.MAILGUN_KEY
     competitor = Competitor.objects.get(pk=competitor_id)
     email_address = competitor.email
@@ -175,7 +175,8 @@ def five_min_email(competitor_id):
               'text': 'Your matchup starts in 5 minutes! Good luck!'})
 
     print(results)
-    return HttpResponseRedirect("/contacts")
+    print(results.text)
+    return HttpResponseRedirect("/")
 
 
 def contact(request):
