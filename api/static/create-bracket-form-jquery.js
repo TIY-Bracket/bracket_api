@@ -8,9 +8,13 @@ $(document).ready(
                 o["Title"] = $(".bracket-title").val();
 
                 var a = [];
-                $('.competitor-input').each(
+                $('.new_competitor').each(
                     function(){
-                        a.push({"name": $(this).val()});
+                      console.log($(this).val())
+                        // a.push({"name": $(this).val(),
+                                // "email":
+                      // }
+                    // );
                     }
                 );
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class Bracket(models.Model):
 class Competitor(models.Model):
     title = models.CharField(max_length=255)
     email = models.EmailField(blank=True, null=True)
+    phone = PhoneNumberField(blank=True, null=True)
     # user = models.ForeignKey(User, blank=True, null=True)
 
 
