@@ -19,8 +19,8 @@
     {{ b }} </h3>
   </div>
 
-<button onclick="a_win()">{{ a }} wins!</button>
-<button onclick="b_win()">{{ b }} wins!</button>
+<button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+<button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
      <br><br>
 <a href="{% url 'send_email' %}"><button>Email {{ a }}</i></button></a>
 <a href="{% url 'send_email' %}"><button>Email {{ b }}</button></a>
@@ -34,30 +34,18 @@
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <script>
 
-function a_win() {
+function a_b_win(winner) {
                 $.ajax({
-                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + {{ a_id }},
+                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
                   type: "PUT",
                   headers: {
                       "Authorization": "Basic " + btoa("admin:password")
                   }
-              }).then(
+                }).then(
                   window.location = "/view/" + {{ bracket_id }}
                 );
-          };
-
-
-function b_win() {
-            $.ajax({
-                    url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + {{ b_id }},
-                    type: "PUT",
-                    headers: {
-                        "Authorization": "Basic " + btoa("admin:password")
-                            }
-            }).then(
-                    window.location = "/view/" + {{ bracket_id }}
-                    );
             };
+
 
 </script>
 
