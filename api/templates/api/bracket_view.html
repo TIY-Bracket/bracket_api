@@ -66,7 +66,7 @@ d3.json("{% url "get_bracket" bracket_id %}",
         var dataMap = input_data.reduce(function(map, node) {
             map[node.position] = node;
             return map;
-        }, {});
+        },{});
         var bracketConvert = [];
         input_data.forEach(function(node) {
             var parent = dataMap[node.parent];
@@ -83,6 +83,39 @@ d3.json("{% url "get_bracket" bracket_id %}",
         root = bracketConvert[0];
         update(root);
     });
+
+var inter = setInterval(function() {
+                data_again();
+                console.log('test');
+        }, 2000);
+
+function data_again(){
+    d3.json("{% url "get_bracket" bracket_id %}",
+    function(data) {
+        input_data = data
+        console.log("test");
+        console.log(input_data);
+        var dataMap = input_data.reduce(function(map, node) {
+            map[node.position] = node;
+            return map;
+        },{});
+        var bracketConvert = [];
+        input_data.forEach(function(node) {
+            var parent = dataMap[node.parent];
+            if (parent) {
+                (parent.children || (parent.children = []))
+                .push(node);
+            } else {
+                bracketConvert.push(node);
+            }
+        });
+        console.log("test 2");
+        console.log(bracketConvert);
+        console.log(bracketConvert[0]);
+        root = bracketConvert[0];
+        update(root);
+    });
+};
 
 function update(source) {
     var nodes = tree.nodes(root).reverse();
