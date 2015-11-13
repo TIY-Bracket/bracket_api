@@ -477,4 +477,9 @@ h2 {
   font-color: #333;
   font-size: 2em; }
 
+.ui-widget-overlay {
+  opacity: .70 !important;
+  filter: Alpha(Opacity=70) !important;
+  background: #323232 !important; }
+
 /*# sourceMappingURL=main.css.map */
