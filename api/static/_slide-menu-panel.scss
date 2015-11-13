@@ -70,7 +70,7 @@ header.navigation {
   // Nav menu
 
   nav {
-    float: none;
+    float: right;
     min-height: $navigation-height;
     z-index: 9999999;
 
@@ -82,7 +82,9 @@ header.navigation {
   ul.navigation-menu {
     clear: both;
     display: none;
-    margin: 0 auto;
+    // margin-left: 800px;
+    // float:right;
+
     overflow: visible;
     padding: 0;
     width: 100%;
@@ -94,7 +96,7 @@ header.navigation {
 
     @include media ($horizontal-bar-mode) {
       display: inline;
-      margin: 0;
+      margin-left: 800px;
       padding: 0;
     }
   }
