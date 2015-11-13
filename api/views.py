@@ -143,6 +143,19 @@ def update_bracket(request, bracket_id, competitor_id):
     return Response('hello')  # question for James. What should be returned?
 
 
+@api_view(['PUT'])
+def winner_update(request):
+    bracket_id = request.data["bracket_id"]
+    position = request.data["position"]
+    if request.data["competitor_id"] == "":
+        competitor_id = None
+    else:
+        competitor_id = request.data["competitor_id"]
+    position = Position.objects.filter(bracket_id=bracket_id, position=position)
+    position.competitor_id = competitor_id
+    position.update(competitor_id=competitor_id)
+    return Response(request.data)
+
 
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
