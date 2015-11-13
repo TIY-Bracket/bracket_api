@@ -9,6 +9,7 @@ from django.contrib.auth import logout as auth_logout
 #from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from api.models import Bracket, Competitor, Position
+from twilio.rest import TwilioRestClient
 import requests
 from django.http import HttpResponseRedirect
 
@@ -197,6 +198,29 @@ def five_min_email(email_address):
 
 def contact(request):
     return render(request, 'api/contact.html')
+
+
+def send_text(phone_number, body):
+    account_sid = settings.ACCOUNT_SID
+    auth_token = settings.AUTH_TOKEN
+
+    # Your Account Sid and Auth Token from twilio.com/user/account
+    client = TwilioRestClient(account_sid, auth_token)
+
+    message = client.messages.create(body="hello world",
+                                     to= phone_number,    # Replace with your phone number
+                                     from_="+19196959988",)  # Replace with your Twilio number
+    print(message.sid)
+
+
+def caller_validate(phone_number):
+    # To find these visit https://www.twilio.com/user/account
+    account_sid = settings.ACCOUNT_SID
+    auth_token = settings.AUTH_TOKEN
+
+    client = TwilioRestClient(account_sid, auth_token)
+    response = client.caller_ids.validate(phone_number)
+    print(response)
 
 
 def matchup(request, bracket_id, parent_id):
