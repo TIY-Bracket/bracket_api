@@ -9,6 +9,8 @@ from django.contrib.auth import logout as auth_logout
 #from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from api.models import Bracket, Competitor, Position
+import requests
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -140,8 +142,7 @@ def update_bracket(request, bracket_id, competitor_id):
     return Response('hello')  # question for James. What should be returned?
 
 
-import requests
-from django.http import HttpResponseRedirect
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
@@ -157,8 +158,23 @@ def send_email(email_address, subject, text):
     print(results)
     print(results.text)
     return HttpResponseRedirect("/contacts")
-    # return Response('hello')
+    return Response('hello')
 
+
+def five_min_email(email_address):
+    MAILGUN_KEY = settings.MAILGUN_KEY
+
+    results = requests.post(
+        "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
+        auth=("api", MAILGUN_KEY),
+        data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
+              # need a valid email
+              "to": email_address,
+              'subject': 'versus.live: Your matchup starts in 5 mins',
+              'text': 'Your matchup starts in 5 minutes! Good luck!'})
+
+    print(results)
+    return HttpResponseRedirect("/contacts")
 
 # def send_notification(request):
 #     username = request.data['username']
@@ -186,7 +202,9 @@ def contact(request):
 def matchup(request, bracket_id, parent_id):
     competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
     competitor_a = competitors[0]
+    competitor_a_id = competitor_a.competitor_id
     competitor_b = competitors[1]
+    competitor_b_id = competitor_b.competitor_id
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -201,4 +219,6 @@ def matchup(request, bracket_id, parent_id):
     except:
         competitor_b = 'TBD'
 
-    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b})
+    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
+                                                'a_id': competitor_a_id, 'b_id': competitor_b_id,
+                                                'bracket_id': bracket_id})
