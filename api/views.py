@@ -186,7 +186,9 @@ def contact(request):
 def matchup(request, bracket_id, parent_id):
     competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
     competitor_a = competitors[0]
+    competitor_a_id = competitor_a.competitor_id
     competitor_b = competitors[1]
+    competitor_b_id = competitor_b.competitor_id
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -201,4 +203,6 @@ def matchup(request, bracket_id, parent_id):
     except:
         competitor_b = 'TBD'
 
-    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b})
+    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
+                                                'a_id': competitor_a_id, 'b_id': competitor_b_id,
+                                                'bracket_id': bracket_id})
