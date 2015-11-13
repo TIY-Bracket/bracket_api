@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from api.models import Bracket, Competitor, Position
+# from api.models import Bracket, Competitor, Position
 from swampdragon.serializers.model_serializer import ModelSerializer
 
 
@@ -19,24 +19,24 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class BracketSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bracket
+        model = 'api.models.Bracket'
         fields = ('id', 'title', 'start_dt', 'end_dt')
 
 
 class CompetitorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Competitor
+        model = 'api.models.Competitor'
         fields = ('id', 'title',)
 
 
 class PositionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Position
+        model = 'api.models.Position'
         fields = ('id', 'position', 'parent', 'bracket', 'competitor')
 
 
 class ChatSerializer(ModelSerializer):
     class Meta:
-        model = 'bracket_api.Chat'
+        model = 'api.models.Chat'
         publish_fields = ('text', )
         update_fields = ('text', )

@@ -67,7 +67,7 @@ def bracket_view(request, bracket_id):
     bracket = Bracket.objects.get(pk=bracket_id)
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
-                   "bracket": bracket,},)
+                   "bracket": bracket, },)
 
 
 
