@@ -3,18 +3,29 @@ $(document).ready(
         $("form").submit(
             function(event){
                 event.preventDefault();
-                console.log(event);
                 var o = {};
                 o["Title"] = $(".bracket-title").val();
 
                 var a = [];
-                $('.competitor-input').each(
+                $('.new_competitor').each(
                     function(){
-                        a.push({"name": $(this).val()});
+                      // var name = document.getElementById("comp_name").value;
+                      // var email = document.getElementById("comp_email").value;
+                      // var phone = document.getElementById("comp_phone").value;
+                      var name = $(".comp_name",this).val();
+                      var email = $(".comp_email",this).val();
+                      var phone = $(".comp_phone",this).val();
+                      a.push({"name": name,
+                              "email": email,
+                              "phone": phone
+                      }
+                    );
                     }
                 );
 
                 o["Competitors"] = a;
+                console.log("hereeeee; " + o);
+                console.log(JSON.stringify(o))
                 $.ajax({
                     url : '/new_bracket/',
                     method: 'POST',
@@ -26,7 +37,6 @@ $(document).ready(
                 }).then(
                     function(d){
                         var bracket_id = d['Bracket']
-                        console.log(d)
                         window.location = "/view/" + bracket_id;
                     }
                 );

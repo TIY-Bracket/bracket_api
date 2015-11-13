@@ -14,26 +14,35 @@
   </head>
   <body>
 
-a parent {{ parent_id }}
-a postion {{ a.position }}
-{{ a.position }}
-
 <div id="win_center">
     <h3> {{ a }}
     vs.
     {{ b }} </h3>
   </div>
-
+<div>
 <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
 <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-     <br><br>
+</div>
+     <br>
+<div>
 {% if a_email %}
 <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+{% else %}
+<input type="button" id="add_email()" onClick="addEmail()" value="Add Email" />
+
+
+
 {% endif %}
 {% if b_email %}
 <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
-{% endif %}
+{% else %}
+<input type="button" id="add_email()" onClick="addEmail()" value="Add Email" />
+<div id="email_input"></div>
 
+
+
+{% endif %}
+</div>
   </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -52,6 +61,14 @@ function a_b_win(winner) {
                 );
             };
 
+
+function addEmail() {
+                console.log('here');
+
+                var div = document.createElement('div');
+                div.innerHTML = '<input type="text" class="competitor-input" size="12" autocomplete="off" /><div class="divider"></div><input type="submit"/>';
+                document.getElementById('email_input').appendChild(div);
+            }
 
 </script>
 
