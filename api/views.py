@@ -234,4 +234,4 @@ def matchup(request, bracket_id, parent_id):
     return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
                                                 'a_id': competitor_a_id, 'b_id': competitor_b_id,
                                                 'bracket_id': bracket_id, 'a_email': competitor_a_email,
-                                                'b_email': competitor_b_email})
+                                                'b_email': competitor_b_email, 'parent_id': parent_id})

@@ -13,6 +13,11 @@
     <script src="script.js"></script>
   </head>
   <body>
+
+a parent {{ parent_id }}
+a postion {{ a.position }}
+{{ a.position }}
+
 <div id="win_center">
     <h3> {{ a }}
     vs.
@@ -43,7 +48,7 @@ function a_b_win(winner) {
                       "Authorization": "Basic " + btoa("admin:password")
                   }
                 }).then(
-                  window.location = "/view/" + {{ bracket_id }}
+                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                 );
             };
 
