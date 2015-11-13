@@ -12,6 +12,7 @@ class Bracket(models.Model):
 
 class Competitor(models.Model):
     title = models.CharField(max_length=255)
+    email = models.EmailField(blank=True, null=True)
     # user = models.ForeignKey(User, blank=True, null=True)
 
 

@@ -162,38 +162,22 @@ def send_email(email_address, subject, text):
     return Response('hello')
 
 
-def five_min_email(email_address):
+def five_min_email(request, competitor_id):
     MAILGUN_KEY = settings.MAILGUN_KEY
+    competitor = Competitor.objects.get(pk=competitor_id)
+    email_address = competitor.email
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
         auth=("api", MAILGUN_KEY),
         data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
-              # need a valid email
               "to": email_address,
               'subject': 'versus.live: Your matchup starts in 5 mins',
               'text': 'Your matchup starts in 5 minutes! Good luck!'})
 
     print(results)
-    return HttpResponseRedirect("/contacts")
-
-# def send_notification(request):
-#     username = request.data['username']
-#     user = User.objects.filter(username=username)
-#     if len(user) == 0:
-#         return HttpResponse('That username is not in the database. ')
-#
-#
-#     recipient = user[0].email
-#     key = 'key-''
-#     sandbox = 'sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org'
-#     request_url = 'https://api.mailgun.net/v3/{}/messages'.format(sandbox)
-#     request = requests.post(request_url, auth=('api', key), data={
-#         'from': 'Mailgun Sandbox <postmaster@sandbox014f80db3f0b441e94e5a6faff21f392.mailgun.org>',
-#         'to': recipient,
-#         'subject': 'versus.live notification',
-#         'text': 'You go head to head in 5 mins'
-#     })
+    print(results.text)
+    return HttpResponseRedirect("/")
 
 
 def contact(request):
