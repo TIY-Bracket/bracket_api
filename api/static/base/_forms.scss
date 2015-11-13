@@ -9,6 +9,7 @@ input,
 label,
 select {
   // display: block;
+
   font-family: $base-font-family;
   font-size: $base-font-size;
 }
@@ -28,7 +29,7 @@ label {
 
 #{$all-text-inputs},
 select[multiple=multiple] {
-  background-color: #eee;
+  background-color: $white;
   border: $base-border;
   border-radius: $base-border-radius;
   box-shadow: $form-box-shadow;

@@ -7,7 +7,7 @@ html {
 
 button, input[type="button"], input[type="reset"], input[type="submit"] {
   appearance: none;
-  background-color: #333;
+  background-color: #00493D;
   border: 0;
   border-radius: 3px;
   color: #fff;
@@ -55,7 +55,7 @@ label {
 
 input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], input:not([type]), textarea,
 select[multiple=multiple] {
-  background-color: #eee;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -75,7 +75,7 @@ select[multiple=multiple] {
     outline: none; }
   input[type="color"]:disabled, input[type="date"]:disabled, input[type="datetime"]:disabled, input[type="datetime-local"]:disabled, input[type="email"]:disabled, input[type="month"]:disabled, input[type="number"]:disabled, input[type="password"]:disabled, input[type="search"]:disabled, input[type="tel"]:disabled, input[type="text"]:disabled, input[type="time"]:disabled, input[type="url"]:disabled, input[type="week"]:disabled, input:not([type]):disabled, textarea:disabled,
   select[multiple=multiple]:disabled {
-    background-color: #f2f2f2;
+    background-color: #e2e2e2;
     cursor: not-allowed; }
     input[type="color"]:disabled:hover, input[type="date"]:disabled:hover, input[type="datetime"]:disabled:hover, input[type="datetime-local"]:disabled:hover, input[type="email"]:disabled:hover, input[type="month"]:disabled:hover, input[type="number"]:disabled:hover, input[type="password"]:disabled:hover, input[type="search"]:disabled:hover, input[type="tel"]:disabled:hover, input[type="text"]:disabled:hover, input[type="time"]:disabled:hover, input[type="url"]:disabled:hover, input[type="week"]:disabled:hover, input:not([type]):disabled:hover, textarea:disabled:hover,
     select[multiple=multiple]:disabled:hover {
@@ -140,7 +140,7 @@ th {
   vertical-align: middle; }
 
 body {
-  background: #fff;
+  background: #eee;
   color: #000;
   font-family: 'Lato', sans-serif;
   font-feature-settings: "kern", "liga", "pnum";
@@ -257,8 +257,8 @@ svg {
 
 header.navigation {
   position: fixed;
-  background-color: #333;
-  border-bottom: 1px solid #1a1a1a;
+  background-color: #00493D;
+  border-bottom: 1px solid #001612;
   min-height: 60px;
   width: 100%;
   z-index: 999; }
@@ -277,7 +277,7 @@ header.navigation {
       content: "";
       display: table; }
   header.navigation .logo {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
     line-height: 60px;
@@ -287,7 +287,7 @@ header.navigation {
       max-height: 60px;
       padding: 0.8em 0; }
   header.navigation .navigation-menu-button {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
     line-height: 60px;
@@ -321,7 +321,7 @@ header.navigation {
         display: inline;
         padding: 0; } }
   header.navigation ul li.nav-link {
-    background: #333;
+    background: #00493D;
     display: block;
     line-height: 60px;
     overflow: hidden;
@@ -337,7 +337,7 @@ header.navigation {
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.9);
       display: inline-block;
       text-decoration: none; }
       @media screen and (min-width: 53.75em) {
@@ -366,7 +366,7 @@ header.navigation {
       bottom: auto;
       left: auto;
       content: '\25BE';
-      color: rgba(255, 255, 255, 0.7); }
+      color: rgba(255, 255, 255, 0.9); }
   header.navigation li.more {
     overflow: visible;
     padding-right: 0; }
@@ -415,13 +415,13 @@ header.navigation {
             border-bottom-right-radius: 3px;
             padding-bottom: 0.7em; } }
       header.navigation ul.submenu li a {
-        background-color: #2b2b2b;
+        background-color: #003a30;
         display: inline-block;
         text-align: right;
         width: 100%; }
         @media screen and (min-width: 53.75em) {
           header.navigation ul.submenu li a {
-            background-color: #333;
+            background-color: #00493D;
             padding-left: 1em;
             text-align: left;
             width: 12em; } }
@@ -437,7 +437,7 @@ header.navigation {
         float: right; } }
 
 .container {
-  padding-top: 20em;
+  padding-top: 5em;
   text-align: center;
   margin: auto; }
   .container h1, .container p, .container input, .container label {
