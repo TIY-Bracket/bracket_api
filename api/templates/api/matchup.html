@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>matchup</title>
+
+
+      <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'main.css' %}"/>
+
+    <script src="script.js"></script>
+  </head>
+  <body>
+<div id="win_center">
+    <h3> {{ a }}
+    vs.
+    {{ b }} </h3>
+  </div>
+
+<button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+<button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+     <br><br>
+<a href="{% url 'send_email' %}"><button>Email {{ a }}</i></button></a>
+<a href="{% url 'send_email' %}"><button>Email {{ b }}</button></a>
+
+
+
+
+  </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script>
+
+function a_b_win(winner) {
+                $.ajax({
+                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
+                  type: "PUT",
+                  headers: {
+                      "Authorization": "Basic " + btoa("admin:password")
+                  }
+                }).then(
+                  window.location = "/view/" + {{ bracket_id }}
+                );
+            };
+
+
+</script>
+
+</html>

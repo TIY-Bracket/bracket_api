@@ -1,3 +1,5 @@
+body {
+}
 g {
   margin-right: auto;
   margin-left: auto;
@@ -13,37 +15,45 @@ svg {
     display: flex;
     position: relative;
     width: 100%;
-    margin-top: 5em;
-    padding-bottom: 100%; /* aspect ratio */
+    padding-bottom: 65%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
 }
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 0;
+    overflow: auto;
 }
 
 
 
 #center {
-    display: table;
-    margin: scroll;
-    font-color: $dark-gray;
+  text-align: center;
+  font-color: $dark-gray;
+  margin: scroll;
+  padding-top: 3em;
+  font-family: 'Graduate', sans-serif;
+  font-size: 1.5em;
 }
 
 
 .node circle {
   fill: #000;
+  cursor: pointer;
 }
 
 .node rect {
   stroke: black;
     stroke-width: 1;
   fill: #D0D0D0;
+  cursor: pointer;
  }
 
+.node image {
+  cursor: pointer;
+}
 
 .node text {
   font-family: 'Lato', sans-serif;

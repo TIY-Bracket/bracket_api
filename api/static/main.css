@@ -198,8 +198,7 @@ svg {
   display: flex;
   position: relative;
   width: 100%;
-  margin-top: 5em;
-  padding-bottom: 100%;
+  padding-bottom: 65%;
   /* aspect ratio */
   vertical-align: top;
   overflow: hidden; }
@@ -207,21 +206,30 @@ svg {
 .svg-content-responsive {
   display: inline-block;
   position: absolute;
-  top: 10px;
-  left: 0; }
+  top: 0px;
+  left: 0;
+  overflow: auto; }
 
 #center {
-  display: table;
+  text-align: center;
+  font-color: #333;
   margin: scroll;
-  font-color: #333; }
+  padding-top: 3em;
+  font-family: 'Graduate', sans-serif;
+  font-size: 1.5em; }
 
 .node circle {
-  fill: #000; }
+  fill: #000;
+  cursor: pointer; }
 
 .node rect {
   stroke: black;
   stroke-width: 1;
-  fill: #D0D0D0; }
+  fill: #D0D0D0;
+  cursor: pointer; }
+
+.node image {
+  cursor: pointer; }
 
 .node text {
   font-family: 'Lato', sans-serif;
@@ -437,7 +445,7 @@ header.navigation {
   font-family: 'Graduate', cursive; }
 
 form {
-  text-align: left;
+  text-align: center;
   width: 600px;
   margin: auto;
   padding-top: 10em; }
@@ -458,5 +466,20 @@ h2 {
   padding: 10px;
   height: 40px;
   overflow: auto; }
+
+.divider {
+  width: 10px;
+  height: auto;
+  display: inline-block; }
+
+#win_center {
+  text-align: center;
+  font-color: #333;
+  font-size: 2em; }
+
+.ui-widget-overlay {
+  opacity: .70 !important;
+  filter: Alpha(Opacity=70) !important;
+  background: #323232 !important; }
 
 /*# sourceMappingURL=main.css.map */
