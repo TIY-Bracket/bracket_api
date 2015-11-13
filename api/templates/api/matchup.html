@@ -22,10 +22,8 @@
 <button onclick="a_win()">{{ a }} wins!</button>
 <button onclick="b_win()">{{ b }} wins!</button>
      <br><br>
-<a href="{% url 'send_email' %}"><button>Email {{ a }}</i></button></a>
-<a href="{% url 'send_email' %}"><button>Email {{ b }}</button></a>
-
-
+<a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+<a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
 
 
   </body>
