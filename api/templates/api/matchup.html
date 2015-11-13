@@ -22,9 +22,12 @@
 <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
 <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
      <br><br>
+{% if a_email %}
 <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+{% endif %}
+{% if b_email %}
 <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
-
+{% endif %}
 
   </body>
 

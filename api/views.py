@@ -211,8 +211,12 @@ def matchup(request, bracket_id, parent_id):
     competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
     competitor_a = competitors[0]
     competitor_a_id = competitor_a.competitor_id
+    comp_a = Competitor.objects.get(pk=competitor_a_id)
+    competitor_a_email = comp_a.email
     competitor_b = competitors[1]
     competitor_b_id = competitor_b.competitor_id
+    comp_b = Competitor.objects.get(pk=competitor_b_id)
+    competitor_b_email = comp_b.email
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -229,4 +233,5 @@ def matchup(request, bracket_id, parent_id):
 
     return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
                                                 'a_id': competitor_a_id, 'b_id': competitor_b_id,
-                                                'bracket_id': bracket_id})
+                                                'bracket_id': bracket_id, 'a_email': competitor_a_email,
+                                                'b_email': competitor_b_email})
