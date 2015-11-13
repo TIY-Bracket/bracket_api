@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+# from django.contrib.auth.models import User
+from swampdragon.models import SelfPublishModel
+from .serializers import ChatSerializer
 # Create your models here.
 
 
@@ -21,3 +22,8 @@ class Position(models.Model):
     competitor = models.ForeignKey(Competitor, blank=True, null=True)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)
+
+
+class Chat(SelfPublishModel, models.Model):
+    serializer_class = ChatSerializer
+    text = models.CharField(max_length=255)

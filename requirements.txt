@@ -1,3 +1,4 @@
+backports-abc==0.4
 defusedxml==0.4.1
 dj-database-url==0.3.0
 Django==1.8.1
@@ -12,16 +13,22 @@ oauthlib==1.0.3
 psycopg2==2.6
 PyJWT==1.4.0
 PySocks==1.5.6
+python-dateutil==2.4.2
 python-openid==2.2.5
 python-social-auth==0.2.1
 python3-openid==3.0.7
 pytz==2015.7
 PyYAML==3.11
+redis==2.10.5
 requests==2.8.1
 requests-oauthlib==0.3.1
 shortuuid==0.4.2
 six==1.10.0
+sockjs-tornado==1.0.2
 SQLAlchemy==1.0.4
+SwampDragon==0.4.2.2
+tornado==4.3
+tornado-redis==2.4.18
 twilio==4.9.0
 wheel==0.24.0
 whitenoise==2.0.2

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework_swagger',
     'social.apps.django_app.default',
     'mailer',
+    'swampdragon',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -155,6 +156,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+# Keys and Secrets
 
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY")
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET")
@@ -167,3 +169,7 @@ SOCIAL_AUTH_LOGIN_URL = '/'
 
 ACCOUNT_SID = os.environ.get("account_sid")
 AUTH_TOKEN = os.environ.get("auth_token")
+
+# SwampDragon settings
+SWAMP_DRAGON_CONNECTION = (
+    'swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
