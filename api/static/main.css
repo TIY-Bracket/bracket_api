@@ -472,4 +472,9 @@ h2 {
   height: auto;
   display: inline-block; }
 
+#win_center {
+  text-align: center;
+  font-color: #333;
+  font-size: 2em; }
+
 /*# sourceMappingURL=main.css.map */

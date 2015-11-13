@@ -12,20 +12,21 @@
 
     <script src="script.js"></script>
   </head>
-<div id="center">
   <body>
+<div id="win_center">
     <h1>Matchup</h1>
     <h3> {{ a }}
     vs.
     {{ b }} </h3>
   </div>
 
-  <p><button onclick="a_win()">{{ a }} wins!</button>
-     <button onclick="b_win()">{{ b }} wins!</button>
-  </p>
+<button onclick="a_win()">{{ a }} wins!</button>
+<button onclick="b_win()">{{ b }} wins!</button>
+     <br><br>
+<a href="{% url 'send_email' %}"><button>Email {{ a }}</i></button></a>
+<a href="{% url 'send_email' %}"><button>Email {{ b }}</button></a>
 
-{{ a_id }}
-{{ b_id }}
+
 
 
   </body>
