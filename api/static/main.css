@@ -238,6 +238,7 @@ svg {
   font-family: 'Lato', sans-serif;
   color: #000;
   font-size: 16px;
+  font-weight: lighter;
   cursor: pointer; }
 
 .link {
@@ -253,7 +254,7 @@ svg {
 .hyper:hover {
   color: #000;
   /*text-decoration: underline;*/
-  font-size: 26px; }
+  font-size: base-font-size; }
 
 header.navigation {
   position: fixed;
@@ -473,8 +474,11 @@ h2 {
 
 #win_center {
   text-align: center;
+  font-family: 'Lato', sans-serif;
   font-color: #333;
   font-size: 2em; }
+  #win_center h3 {
+    font-family: 'Lato', sans-serif; }
 
 .ui-widget-overlay {
   opacity: .70 !important;

@@ -63,6 +63,7 @@ svg {
   font-family: 'Lato', sans-serif;
   color: $black;
   font-size: 16px;
+  font-weight: lighter;
   cursor: pointer;
 
 }
@@ -82,5 +83,5 @@ svg {
 .hyper:hover {
     color: $black;
     /*text-decoration: underline;*/
-    font-size: 26px;
+    font-size: base-font-size;
 }
