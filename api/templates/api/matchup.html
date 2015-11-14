@@ -78,6 +78,7 @@ function add_contact(competitor){
   $("form").submit(
     $.ajax(
           {
+            async: false,
             url: "/add_contact_email/" + competitor,
             type: "PUT",
             headers: {
@@ -86,7 +87,7 @@ function add_contact(competitor){
             data: {
                   "email": email
                   }
-            })).then(
+            })).success(
                     // setTimeout(donothing,1000);
                     window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                     );
