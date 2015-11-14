@@ -179,6 +179,12 @@ def five_min_email(request, competitor_id):
     MAILGUN_KEY = settings.MAILGUN_KEY
     competitor = Competitor.objects.get(pk=competitor_id)
     email_address = competitor.email
+    position_data = Position.objects.filter(competitor_id=competitor_id)
+    position = position_data[0]
+    print("here")
+    print(position.bracket_id)
+    bracket_id = str(position.bracket_id)
+    position = str(position.position)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -190,7 +196,7 @@ def five_min_email(request, competitor_id):
 
     print(results)
     print(results.text)
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
 
 
 def contact(request):
