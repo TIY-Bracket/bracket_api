@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^matchup/(?P<bracket_id>.+)/(?P<parent_id>.+)', views.matchup, name="matchup"),
     url(r'^add_contact_email/(?P<competitor_id>.+)', views.add_contact_email, name="add_contact_email"),
+    url(r'^add_contact_phone/(?P<competitor_id>.+)', views.add_contact_phone, name="add_contact_phone"),
 ]
