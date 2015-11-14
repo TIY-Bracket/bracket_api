@@ -455,13 +455,16 @@ form {
   text-align: center;
   width: 600px;
   margin: auto;
-  padding-top: 10em;
-  font-size: 1.15em; }
+  padding-top: 5em;
+  font-size: 1.15em;
+  padding-right: 1em; }
 
 h2 {
-  margin: 10px 0;
   font-size: 1.2em;
   font-weight: bold; }
+
+.new_competitor {
+  padding-right: 2.65em; }
 
 #result {
   margin: 10px;
@@ -531,7 +534,7 @@ h2 {
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
-  color: #333;
+  color: #000;
   letter-spacing: 0.05em;
   opacity: 0.8; }
 
