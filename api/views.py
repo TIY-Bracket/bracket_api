@@ -157,6 +157,24 @@ def winner_update(request):
     return Response(request.data)
 
 
+@api_view(['PUT'])
+def add_contact_email(request, competitor_id):
+    email = request.data["email"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.email = email
+    competitor.save()
+    return Response(request.data)
+
+
+@api_view(['PUT'])
+def add_contact_phone(request, competitor_id):
+    phone = request.data["phone"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.phone = phone
+    competitor.save()
+    return Response(request.data)
+
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
@@ -232,10 +250,12 @@ def matchup(request, bracket_id, parent_id):
     competitor_a_id = competitor_a.competitor_id
     comp_a = Competitor.objects.get(pk=competitor_a_id)
     competitor_a_email = comp_a.email
+    competitor_a_phone = comp_a.phone
     competitor_b = competitors[1]
     competitor_b_id = competitor_b.competitor_id
     comp_b = Competitor.objects.get(pk=competitor_b_id)
     competitor_b_email = comp_b.email
+    competitor_b_phone = comp_b.phone
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -253,4 +273,6 @@ def matchup(request, bracket_id, parent_id):
     return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
                                                 'a_id': competitor_a_id, 'b_id': competitor_b_id,
                                                 'bracket_id': bracket_id, 'a_email': competitor_a_email,
-                                                'b_email': competitor_b_email, 'parent_id': parent_id})
+                                                'b_email': competitor_b_email, 'parent_id': parent_id,
+                                                'b_phone': competitor_b_phone, 'a_phone': competitor_a_phone
+                                                })
