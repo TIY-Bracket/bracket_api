@@ -143,6 +143,37 @@ def update_bracket(request, bracket_id, competitor_id):
     return Response('hello')  # question for James. What should be returned?
 
 
+@api_view(['PUT'])
+def winner_update(request):
+    bracket_id = request.data["bracket_id"]
+    position = request.data["position"]
+    if request.data["competitor_id"] == "":
+        competitor_id = None
+    else:
+        competitor_id = request.data["competitor_id"]
+    position = Position.objects.filter(bracket_id=bracket_id, position=position)
+    position.competitor_id = competitor_id
+    position.update(competitor_id=competitor_id)
+    return Response(request.data)
+
+
+@api_view(['PUT'])
+def add_contact_email(request, competitor_id):
+    email = request.data["email"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.email = email
+    competitor.save()
+    return Response(request.data)
+
+
+@api_view(['PUT'])
+def add_contact_phone(request, competitor_id):
+    phone = request.data["phone"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.phone = phone
+    competitor.save()
+    return Response(request.data)
+
 
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
@@ -166,6 +197,12 @@ def five_min_email(request, competitor_id):
     MAILGUN_KEY = settings.MAILGUN_KEY
     competitor = Competitor.objects.get(pk=competitor_id)
     email_address = competitor.email
+    position_data = Position.objects.filter(competitor_id=competitor_id)
+    position = position_data[0]
+    print("here")
+    print(position.bracket_id)
+    bracket_id = str(position.bracket_id)
+    position = str(position.position)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -177,7 +214,7 @@ def five_min_email(request, competitor_id):
 
     print(results)
     print(results.text)
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
 
 
 def contact(request):
@@ -213,10 +250,12 @@ def matchup(request, bracket_id, parent_id):
     competitor_a_id = competitor_a.competitor_id
     comp_a = Competitor.objects.get(pk=competitor_a_id)
     competitor_a_email = comp_a.email
+    competitor_a_phone = comp_a.phone
     competitor_b = competitors[1]
     competitor_b_id = competitor_b.competitor_id
     comp_b = Competitor.objects.get(pk=competitor_b_id)
     competitor_b_email = comp_b.email
+    competitor_b_phone = comp_b.phone
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -234,4 +273,6 @@ def matchup(request, bracket_id, parent_id):
     return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
                                                 'a_id': competitor_a_id, 'b_id': competitor_b_id,
                                                 'bracket_id': bracket_id, 'a_email': competitor_a_email,
-                                                'b_email': competitor_b_email, 'parent_id': parent_id})
+                                                'b_email': competitor_b_email, 'parent_id': parent_id,
+                                                'b_phone': competitor_b_phone, 'a_phone': competitor_a_phone
+                                                })

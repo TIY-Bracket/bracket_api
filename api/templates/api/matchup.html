@@ -10,30 +10,54 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
 
-    <script src="script.js"></script>
   </head>
   <body>
-
-a parent {{ parent_id }}
-a postion {{ a.position }}
-{{ a.position }}
 
 <div id="win_center">
     <h3> {{ a }}
     vs.
     {{ b }} </h3>
   </div>
-
+<div>
 <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
 <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-     <br><br>
+</div>
+     <br>
+<div>
 {% if a_email %}
 <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
-{% endif %}
-{% if b_email %}
-<a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
+
+{% elif a_phone %}
+
+<a href="#"><button>Text {{ a }}</i></button></a>
+
+{% else %}
+
+<input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Contact Info" />
+<form action="" method="put">
+    {% csrf_token %}
+<div id="email_input"></div>
+</form>
+
 {% endif %}
 
+{% if b_email %}
+<a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
+
+{% elif b_phone %}
+
+<a href="#"><button>Text {{ b }}</i></button></a>
+
+{% else %}
+<input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />
+<form action="" method="put">
+    {% csrf_token %}
+<div id="email_input"></div>
+</form>
+
+
+{% endif %}
+</div>
   </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -51,6 +75,57 @@ function a_b_win(winner) {
                   window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                 );
             };
+
+
+function addEmail(competitor) {
+                var div = document.createElement('div');
+                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" name="phone" size="12" autocomplete="off" placeholder="Phone Number"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
+                document.getElementById('email_input').appendChild(div);
+            }
+
+function add_contact_email(competitor){
+  var email = $(".comp_email").val();
+  console.log("email : " + email)
+  $("form").submit(
+    $.ajax(
+          {
+            async: false,
+            url: "/add_contact_email/" + competitor,
+            type: "PUT",
+            headers: {
+                    "Authorization": "Basic " + btoa("admin:password")
+                     },
+            data: {
+                  "email": email
+                  }
+            })).success(
+                    // setTimeout(donothing,1000);
+                    window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                    );
+                };
+
+
+function add_contact_phone(competitor){
+      var phone = $(".comp_phone").val();
+      console.log("phone : " + phone)
+      $("form").submit(
+        $.ajax(
+              {
+                async: false,
+                url: "/add_contact_phone/" + competitor,
+                type: "PUT",
+                headers: {
+                        "Authorization": "Basic " + btoa("admin:password")
+                          },
+                  data: {
+                          "phone": phone
+                                  }
+                          })).success(
+                                    // setTimeout(donothing,1000);
+                          window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                                );
+                          };
+
 
 
 </script>
