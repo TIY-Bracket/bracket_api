@@ -10,7 +10,6 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
 
-    <script src="script.js"></script>
   </head>
   <body>
 
@@ -28,17 +27,22 @@
 {% if a_email %}
 <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
 {% else %}
-<input type="button" id="add_email()" onClick="addEmail()" value="Add Email" />
-
+<form action="" method="put">
+    {% csrf_token %}
+<input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Email" />
+<div id="email_input"></div>
+</form>
 
 
 {% endif %}
 {% if b_email %}
 <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
 {% else %}
-<input type="button" id="add_email()" onClick="addEmail()" value="Add Email" />
+<form action="" method="put">
+    {% csrf_token %}
+<input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Email" />
 <div id="email_input"></div>
-
+</form>
 
 
 {% endif %}
@@ -62,13 +66,52 @@ function a_b_win(winner) {
             };
 
 
-function addEmail() {
-                console.log('here');
-
+function addEmail(competitor) {
                 var div = document.createElement('div');
-                div.innerHTML = '<input type="text" class="competitor-input" size="12" autocomplete="off" /><div class="divider"></div><input type="submit"/>';
+                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact('+competitor+')" type="submit"/>';
                 document.getElementById('email_input').appendChild(div);
             }
+
+function add_contact(competitor){
+  var email = $(".comp_email").val();
+  console.log("email : " + email)
+  $("form").submit(
+    $.ajax(
+          {
+            url: "/add_contact_email/" + competitor,
+            type: "PUT",
+            headers: {
+                    "Authorization": "Basic " + btoa("admin:password")
+                     },
+            data: {
+                  "email": email
+                  }
+            })).then(
+                    // setTimeout(donothing,1000);
+                    window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                    );
+                };
+
+
+
+function add_contact_email(competitor) {
+          var email = $(".comp_email").val();
+          console.log(competitor)
+          $("form").submit(
+                  $.ajax(
+                        {
+                          url: "/add_contact/" + competitor,
+                          type: "PUT",
+                          headers: {
+                                  "Authorization": "Basic " + btoa("admin:password")
+                                   },
+                          data: {
+                                "email": email
+                                }
+                          })).then(
+                                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                                  );
+                              };
 
 </script>
 

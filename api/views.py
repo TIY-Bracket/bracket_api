@@ -157,6 +157,15 @@ def winner_update(request):
     return Response(request.data)
 
 
+@api_view(['PUT'])
+def add_contact_email(request, competitor_id):
+    email = request.data["email"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.email = email
+    competitor.save()
+    return Response(request.data)
+
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
