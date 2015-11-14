@@ -12,6 +12,7 @@ from api.models import Bracket, Competitor, Position
 from twilio.rest import TwilioRestClient
 import requests
 from django.http import HttpResponseRedirect
+import phonenumbers
 
 # Create your views here.
 
@@ -170,7 +171,7 @@ def add_contact_email(request, competitor_id):
 def add_contact_phone(request, competitor_id):
     phone = request.data["phone"]
     competitor = Competitor.objects.get(pk=competitor_id)
-    competitor.phone = phone
+    competitor.phone = "+1" + phone
     competitor.save()
     return Response(request.data)
 
@@ -202,7 +203,7 @@ def five_min_email(request, competitor_id):
     print("here")
     print(position.bracket_id)
     bracket_id = str(position.bracket_id)
-    position = str(position.position)
+    comp_position = str(position.position)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -214,7 +215,7 @@ def five_min_email(request, competitor_id):
 
     print(results)
     print(results.text)
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + comp_position)
 
 
 def contact(request):
@@ -224,23 +225,24 @@ def contact(request):
 def five_min_text(request, competitor_id):
     account_sid = settings.ACCOUNT_SID
     auth_token = settings.AUTH_TOKEN
-    competitor = Competitor.objects.get(pk=competitor_id)
-    phone_number = competitor.phone
     position_data = Position.objects.filter(competitor_id=competitor_id)
+    competitor = Competitor.objects.get(pk=competitor_id)
+    phone_number = str(competitor.phone)
+    print(phone_number)
     position = position_data[0]
     print("here")
-    print(position.bracket_id)
+    print(position.position)
     bracket_id = str(position.bracket_id)
-    position = str(position.position)
+    comp_position = str(position.position)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
 
     message = client.messages.create(body="Your matchup starts in 5 minutes! Good luck!",
                                      to= phone_number,    # Replace with your phone number
-                                     from_="+19196959988",)  # Replace with your Twilio number
+                                     from_="+19196959988")  # Replace with your Twilio number
     print(message.sid)
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + comp_position)
 
 
 def caller_validate(phone_number):

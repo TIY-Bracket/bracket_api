@@ -62,7 +62,26 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script src="jquery.maskedinput.js" type="text/javascript"></script>
 <script>
+
+$("#phone").mask("(99) 9999-9999?9");
+
+
+$("#phone").on("blur", function() {
+    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+
+    if( last.length == 5 ) {
+        var move = $(this).val().substr( $(this).val().indexOf("-") + 1, 1 );
+
+        var lastfour = last.substr(1,4);
+
+        var first = $(this).val().substr( 0, 9 );
+
+        $(this).val( first + move + '-' + lastfour );
+    }
+});
+
 
 function a_b_win(winner) {
                 $.ajax({
@@ -79,7 +98,7 @@ function a_b_win(winner) {
 
 function addEmail(competitor) {
                 var div = document.createElement('div');
-                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" name="phone" size="12" autocomplete="off" placeholder="Phone Number"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
+                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
                 document.getElementById('email_input').appendChild(div);
             }
 
