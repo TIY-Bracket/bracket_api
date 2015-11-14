@@ -29,7 +29,7 @@
 
 {% elif a_phone %}
 
-<a href="#"><button>Text {{ a }}</i></button></a>
+<a href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
 
 {% else %}
 
@@ -46,7 +46,7 @@
 
 {% elif b_phone %}
 
-<a href="#"><button>Text {{ b }}</i></button></a>
+<a href="{% url 'send_text' b_id %}"><button>Text {{ b }}</i></button></a>
 
 {% else %}
 <input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />

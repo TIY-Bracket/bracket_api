@@ -221,17 +221,26 @@ def contact(request):
     return render(request, 'api/contact.html')
 
 
-def send_text(phone_number, body):
+def five_min_text(request, competitor_id):
     account_sid = settings.ACCOUNT_SID
     auth_token = settings.AUTH_TOKEN
+    competitor = Competitor.objects.get(pk=competitor_id)
+    phone_number = competitor.phone
+    position_data = Position.objects.filter(competitor_id=competitor_id)
+    position = position_data[0]
+    print("here")
+    print(position.bracket_id)
+    bracket_id = str(position.bracket_id)
+    position = str(position.position)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
 
-    message = client.messages.create(body="hello world",
+    message = client.messages.create(body="Your matchup starts in 5 minutes! Good luck!",
                                      to= phone_number,    # Replace with your phone number
                                      from_="+19196959988",)  # Replace with your Twilio number
     print(message.sid)
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
 
 
 def caller_validate(phone_number):
