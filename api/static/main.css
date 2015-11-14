@@ -448,6 +448,9 @@ header.navigation {
 .logo {
   font-family: 'Graduate', cursive; }
 
+.all-the-buttons {
+  padding-top: 1.2em; }
+
 form {
   text-align: center;
   width: 600px;
@@ -515,10 +518,11 @@ h2 {
 
 /* This is the main heading that appears on the gallery section */
 .splash-head {
-  font-size: 20px;
+  font-size: 21px;
+  font-family: 'Graduate', cursive;
   font-weight: bold;
   color: #333;
-  border: 3px solid black;
+  border: 3px solid #333;
   border-width: thick;
   padding: 1em 1.6em;
   font-weight: 100;
