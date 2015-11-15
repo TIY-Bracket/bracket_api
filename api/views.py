@@ -65,7 +65,11 @@ def new_bracket(request):
         json_obj = request.data
         num_positions = int(len(json_obj['Competitors']) * 2 - 1)
         new_competitors = []
-        bracket = Bracket(title=json_obj['Title'])
+        if request.user.id == 1:
+            user_id = None
+        else:
+            user_id = request.user.id
+        bracket = Bracket(title=json_obj['Title'], owner_id=user_id)
         bracket.save()
         for value in json_obj['Competitors']:
             competitor = Competitor(title=value['name'])
