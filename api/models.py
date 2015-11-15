@@ -10,6 +10,7 @@ class Bracket(models.Model):
     start_dt = models.DateTimeField(blank=True, null=True)
     end_dt = models.DateTimeField(blank=True, null=True)
     owner = models.ForeignKey(User, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Competitor(models.Model):

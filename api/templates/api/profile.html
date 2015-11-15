@@ -1,0 +1,23 @@
+{% extends "api/base.html" %}
+{% block content %}
+
+<br><br><br><br>
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Timestamp</th>
+<th></th>
+
+</tr>
+{% for bracket in brackets %}
+  <tr>
+    <td><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
+    <td><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td><a href="{% url 'bracket_view' bracket.id %}"><i class="fa fa-link"></i></a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+
+{% endblock %}
