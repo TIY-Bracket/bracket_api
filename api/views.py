@@ -42,17 +42,15 @@ class PositionViewSet(viewsets.ModelViewSet):
 
 class ChampListView(generic.ListView):
     template_name = 'api/champ.html'
-    context_object_name = 'competitors'
+    context_object_name = 'positions'
     paginate_by = 25
+
 
     def get_queryset(self):
         self.bracket = get_object_or_404(Bracket, pk=self.kwargs['pk'])
-        return self.bracket.competitor_set.all().order_by('position')
+        self.champ = self.bracket.position_set.all().filter(position=1)
+        return self.champ
 
-
-class ChampDetailView(generic.DetailView):
-    model = Bracket
-    template = 'api/champ.html'
 
 def index(request):
     return render(request, 'api/index.html')

@@ -14,4 +14,19 @@
   </head>
   <body>
 
+{% for position in positions %}
+
+
+<div id="champ_center">
+  <h2>
+    The Champion
+    <br><br>
+    {{ position.competitor.title }}
+  </h2>
+  </div>
+  {% endfor %}
+
+
+
+</body>
 </html>

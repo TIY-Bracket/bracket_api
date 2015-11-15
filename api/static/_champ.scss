@@ -1,24 +1,5 @@
-
-.container{
-  padding-top: 20em;
+#champ_center {
   text-align: center;
-  margin:auto;
-
-  h1, p, input, label, {
-    font-family: 'Lato', sans-serif;
-    font-size: 3em;
-  }
-
+  font-color: $dark-gray;
+  font-size: 2em;
 }
-
-.logo {
-  font-family: 'Graduate', cursive;
-}
-
-.nav-btn {
-
-}
-
-// .divider {
-//
-// }
