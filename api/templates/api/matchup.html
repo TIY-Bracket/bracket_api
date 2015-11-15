@@ -9,6 +9,8 @@
       <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'main.css' %}"/>
 
   </head>
   <body>
@@ -18,10 +20,24 @@
     vs.
     {{ b }} </h3>
   </div>
+
+  {% if winner = a_id %}
+<div>
+    <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+</div>
+{% elif winner = b_id %}
+<div>
+    <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+</div>
+{% else %}
 <div>
 <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
 <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
 </div>
+{% endif %}
+
      <br>
 <div>
 {% if a_email %}
@@ -62,11 +78,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script src="jquery.maskedinput.js" type="text/javascript"></script>
 <script>
-
-$("#phone").mask("(99) 9999-9999?9");
-
 
 $("#phone").on("blur", function() {
     var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
@@ -83,14 +95,17 @@ $("#phone").on("blur", function() {
 });
 
 
+
+
 function a_b_win(winner) {
                 $.ajax({
+                  async: false,
                   url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
                   type: "PUT",
                   headers: {
                       "Authorization": "Basic " + btoa("admin:password")
                   }
-                }).then(
+                }).success(
                   window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                 );
             };
@@ -102,23 +117,22 @@ function addEmail(competitor) {
                 document.getElementById('email_input').appendChild(div);
             }
 
-function add_contact_email(competitor){
-  var email = $(".comp_email").val();
-  console.log("email : " + email)
-  $("form").submit(
+function update_winner(bracket_id, parent_id){
+    var winner_id = "";
     $.ajax(
           {
             async: false,
-            url: "/add_contact_email/" + competitor,
+            url: "/winner/",
             type: "PUT",
             headers: {
                     "Authorization": "Basic " + btoa("admin:password")
                      },
             data: {
-                  "email": email
+                  "competitor_id": winner_id,
+                  "bracket_id": bracket_id,
+                  "position": parent_id
                   }
-            })).success(
-                    // setTimeout(donothing,1000);
+            }).success(
                     window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                     );
                 };
