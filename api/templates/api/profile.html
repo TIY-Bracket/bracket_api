@@ -3,6 +3,7 @@
 
 <div id="center"><h2>{{ view.user.username }}</h2></div>
 {% if user == view.user %}
+{% if brackets %}
 <br>
 <table class="table">
 <tr>
@@ -20,6 +21,15 @@
   {% endfor %}
 </table>
 
+
+{% else %}
+<br><br>
+<div id="no_brack"> <h6>You don't have any brackets yet.</h6></div>
+<br>
+<div id="no_brack"><a class=" button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a></div>
+<br>
 {% endif %}
+{% endif %}
+
 
 {% endblock %}
