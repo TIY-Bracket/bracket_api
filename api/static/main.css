@@ -261,7 +261,7 @@ header.navigation {
   position: fixed;
   background-color: #333;
   border-bottom: 1px solid #1a1a1a;
-  min-height: 60px;
+  min-height: 100px;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -282,17 +282,17 @@ header.navigation {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
-    line-height: 60px;
+    line-height: 100px;
     text-decoration: none;
     text-transform: uppercase; }
     header.navigation .logo img {
-      max-height: 60px;
+      max-height: 100px;
       padding: 0.8em 0; }
   header.navigation .navigation-menu-button {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
-    line-height: 60px;
+    line-height: 100px;
     margin: 0;
     padding-right: 1em;
     text-decoration: none;
@@ -304,7 +304,7 @@ header.navigation {
       color: white; }
   header.navigation nav {
     float: right;
-    min-height: 60px;
+    min-height: 100px;
     z-index: 9999999; }
     @media screen and (min-width: 53.75em) {
       header.navigation nav {
@@ -314,7 +314,7 @@ header.navigation {
     display: none;
     overflow: visible;
     padding: 0;
-    width: 100%;
+    width: 80%;
     z-index: 9999; }
     header.navigation ul.navigation-menu.show {
       display: block; }
@@ -325,7 +325,7 @@ header.navigation {
   header.navigation ul li.nav-link {
     background: #333;
     display: block;
-    line-height: 60px;
+    line-height: 100px;
     overflow: hidden;
     padding-right: 0.8em;
     text-align: right;
@@ -335,7 +335,7 @@ header.navigation {
       header.navigation ul li.nav-link {
         background: transparent;
         display: inline;
-        line-height: 60px;
+        line-height: 100px;
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
@@ -375,7 +375,7 @@ header.navigation {
     header.navigation li.more a {
       padding-right: 0.8em; }
     header.navigation li.more > a {
-      padding-right: 1.6em;
+      padding-right: 1.2em;
       position: relative; }
       @media screen and (min-width: 53.75em) {
         header.navigation li.more > a {
@@ -408,7 +408,7 @@ header.navigation {
       padding-right: 0; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul.submenu li {
-          line-height: 46.15385px; }
+          line-height: 76.92308px; }
           header.navigation ul.submenu li:first-child > a {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px; }
@@ -431,7 +431,7 @@ header.navigation {
     background: #505050;
     clear: both;
     display: block;
-    height: 60px; }
+    height: 100px; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
         background: transparent;
@@ -446,7 +446,11 @@ header.navigation {
     font-family: 'Lato', sans-serif; }
 
 .logo {
-  font-family: 'Graduate', cursive; }
+  font-family: 'Graduate', cursive;
+  font-size: 2em; }
+
+.nav-btn {
+  font-size: 1.2em; }
 
 .all-the-buttons {
   padding-top: 1.2em; }
@@ -482,7 +486,12 @@ h2 {
   text-align: center;
   font-family: 'Lato', sans-serif;
   font-color: #333;
-  font-size: 2em; }
+  font-size: 1em; }
+  #win_center button {
+    margin: 0;
+    padding: 0; }
+  #win_center .email-form {
+    padding: 0; }
   #win_center h3 {
     font-family: 'Lato', sans-serif; }
 

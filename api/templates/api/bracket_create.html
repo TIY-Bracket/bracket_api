@@ -7,13 +7,12 @@
 <form action="" method="post">
     {% csrf_token %}
     <label for="Title">Title</label>
-
-    <input type="text" class="bracket-title" name="Title" maxlength="36" size="15" placeholder="Bracket Title"/> <br/>
+    <input type="text" class="bracket-title" name="Title" maxlength="36" size="17" placeholder="Bracket Title"/> <br/>
     <br/>
       <label for="Competitor1">Competitors</label>
     <div id="competitors">
       <div class="new_competitor">
-        <input type="text" class="comp_name" name="Competitor1" size="12" autocomplete="off" placeholder="Competitor"/>
+        <input type="text" class="comp_name" name="Competitor1" size="12" autocomplete="off" placeholder="Name"/>
         <input type="text" class="comp_email" name="Competitor_email1" size="12" autocomplete="off" placeholder="Email"/>
         <input type="text" class="comp_phone" name="Competitor_phone1" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div>
       </div>
@@ -30,7 +29,7 @@ function addCompetitor() {
     console.log('here');
     i++;
     var div = document.createElement('div');
-    div.innerHTML = '<div class="new_competitor"><input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Competitor"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)"></div>';
+    div.innerHTML = '<div class="new_competitor"><input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)"></div>';
     document.getElementById('competitors').appendChild(div);
 }
 
