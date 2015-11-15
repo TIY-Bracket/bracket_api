@@ -11,6 +11,7 @@ from api.models import Bracket, Competitor, Position
 from twilio.rest import TwilioRestClient
 import requests
 from django.http import HttpResponseRedirect
+import phonenumbers
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -134,6 +135,24 @@ def winner_update(request):
     return Response(request.data)
 
 
+@api_view(['PUT'])
+def add_contact_email(request, competitor_id):
+    email = request.data["email"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.email = email
+    competitor.save()
+    return Response(request.data)
+
+
+@api_view(['PUT'])
+def add_contact_phone(request, competitor_id):
+    phone = request.data["phone"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.phone = "+1" + phone
+    competitor.save()
+    return Response(request.data)
+
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
@@ -157,7 +176,7 @@ def five_min_email(request, competitor_id):
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
     bracket_id = str(position.bracket_id)
-    position = str(position.position)
+    comp_position = str(position.position)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -174,9 +193,18 @@ def contact(request):
     return render(request, 'api/contact.html')
 
 
-def send_text(phone_number, body):
+def five_min_text(request, competitor_id):
     account_sid = settings.ACCOUNT_SID
     auth_token = settings.AUTH_TOKEN
+    position_data = Position.objects.filter(competitor_id=competitor_id)
+    competitor = Competitor.objects.get(pk=competitor_id)
+    phone_number = str(competitor.phone)
+    print(phone_number)
+    position = position_data[0]
+    print("here")
+    print(position.position)
+    bracket_id = str(position.bracket_id)
+    comp_position = str(position.position)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
@@ -201,10 +229,12 @@ def matchup(request, bracket_id, parent_id):
     competitor_a_id = competitor_a.competitor_id
     comp_a = Competitor.objects.get(pk=competitor_a_id)
     competitor_a_email = comp_a.email
+    competitor_a_phone = comp_a.phone
     competitor_b = competitors[1]
     competitor_b_id = competitor_b.competitor_id
     comp_b = Competitor.objects.get(pk=competitor_b_id)
     competitor_b_email = comp_b.email
+    competitor_b_phone = comp_b.phone
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
