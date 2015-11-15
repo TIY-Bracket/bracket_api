@@ -6,7 +6,6 @@ from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, 
     CompetitorSerializer, PositionSerializer
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import logout as auth_logout
-#from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from api.models import Bracket, Competitor, Position
 from twilio.rest import TwilioRestClient
@@ -14,47 +13,28 @@ import requests
 from django.http import HttpResponseRedirect
 import phonenumbers
 
-# Create your views here.
-
-#
-#
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
 
 class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
 class BracketViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows brackets to be created, viewed and edited.
-    """
     queryset = Bracket.objects.all()
     serializer_class = BracketSerializer
 
 
 class CompetitorViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows competitors to be created, viewed and edited.
-    """
     queryset = Competitor.objects.all()
     serializer_class = CompetitorSerializer
 
 
 class PositionViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows bracket positions to be created, viewed and edited.
-    """
     queryset = Position.objects.all()
     serializer_class = PositionSerializer
 
@@ -64,16 +44,13 @@ def index(request):
 
 
 def bracket_view(request, bracket_id):
-    print(bracket_id)
     bracket = Bracket.objects.get(pk=bracket_id)
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
-                   "bracket": bracket,},)
-
+                   "bracket": bracket},)
 
 
 def bracket_create(request):
-    print("THis is me!!!!!!!".center(100, '-'))
     return render(request, 'api/bracket_create.html')
 
 
@@ -188,8 +165,6 @@ def send_email(email_address, subject, text):
               "subject": subject,
               "text": text})
 
-    print(results)
-    print(results.text)
     return HttpResponseRedirect("/contacts")
     return Response('hello')
 
@@ -200,8 +175,6 @@ def five_min_email(request, competitor_id):
     email_address = competitor.email
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
-    print("here")
-    print(position.bracket_id)
     bracket_id = str(position.bracket_id)
     comp_position = str(position.position)
 
@@ -213,9 +186,7 @@ def five_min_email(request, competitor_id):
               'subject': 'versus.live: Your matchup starts in 5 mins',
               'text': 'Your matchup starts in 5 minutes! Good luck!'})
 
-    print(results)
-    print(results.text)
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + comp_position)
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
 
 
 def contact(request):
@@ -238,11 +209,9 @@ def five_min_text(request, competitor_id):
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
 
-    message = client.messages.create(body="Your matchup starts in 5 minutes! Good luck!",
-                                     to= phone_number,    # Replace with your phone number
-                                     from_="+19196959988")  # Replace with your Twilio number
-    print(message.sid)
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + comp_position)
+    message = client.messages.create(body="hello world",
+                                     to=phone_number,
+                                     from_="+19196959988",)
 
 
 def caller_validate(phone_number):
@@ -252,7 +221,6 @@ def caller_validate(phone_number):
 
     client = TwilioRestClient(account_sid, auth_token)
     response = client.caller_ids.validate(phone_number)
-    print(response)
 
 
 def matchup(request, bracket_id, parent_id):
@@ -280,7 +248,6 @@ def matchup(request, bracket_id, parent_id):
     try:
         competitor = Competitor.objects.get(pk=competitor_b.competitor_id)
         competitor_b = competitor.title
-        print(competitor.id)
     except:
         competitor_b = 'TBD'
 
