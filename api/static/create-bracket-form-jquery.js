@@ -47,7 +47,7 @@ $(document).ready(
                              // Only send the token to relative URLs i.e. locally.
                              xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
                          }
-                     } 
+                     }
                 });
                 $.ajax({
                     url : '/new_bracket/',
