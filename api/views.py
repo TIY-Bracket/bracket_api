@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.contrib.auth import logout as auth_logout
 from django.conf import settings
+from django.views import generic
 from api.models import Bracket, Competitor, Position
 from twilio.rest import TwilioRestClient
 import requests
@@ -37,6 +38,16 @@ class CompetitorViewSet(viewsets.ModelViewSet):
 class PositionViewSet(viewsets.ModelViewSet):
     queryset = Position.objects.all()
     serializer_class = PositionSerializer
+
+
+class UserListView(generic.ListView):
+    template_name = 'api/profile.html'
+    context_object_name = 'brackets'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.bracket_set.all().order_by('-timestamp')
 
 
 def index(request):

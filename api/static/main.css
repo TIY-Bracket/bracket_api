@@ -482,4 +482,12 @@ h2 {
   filter: Alpha(Opacity=70) !important;
   background: #323232 !important; }
 
+.table {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto; }
+
+#no_brack {
+  text-align: center; }
+
 /*# sourceMappingURL=main.css.map */
