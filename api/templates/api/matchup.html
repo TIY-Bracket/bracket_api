@@ -20,11 +20,24 @@
     vs.
     {{ b }} </h3>
   </div>
+
+  {% if winner = a_id %}
+<div>
+    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+    <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+</div>
+{% elif winner = b_id %}
+<div>
+    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+    <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+</div>
+{% else %}
 <div>
 <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-<i class="update_winner fa fa-trash-o fa-2x" onClick="update_winner({{ bracket_id }}, {{ parent_id }})"></i>
 <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
 </div>
+{% endif %}
+
      <br>
 <div>
 {% if a_email %}
@@ -86,12 +99,13 @@ $("#phone").on("blur", function() {
 
 function a_b_win(winner) {
                 $.ajax({
+                  async: false,
                   url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
                   type: "PUT",
                   headers: {
                       "Authorization": "Basic " + btoa("admin:password")
                   }
-                }).then(
+                }).success(
                   window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                 );
             };
@@ -107,7 +121,7 @@ function update_winner(bracket_id, parent_id){
     var winner_id = "";
     $.ajax(
           {
-            // async: false,
+            async: false,
             url: "/winner/",
             type: "PUT",
             headers: {
@@ -118,7 +132,7 @@ function update_winner(bracket_id, parent_id){
                   "bracket_id": bracket_id,
                   "position": parent_id
                   }
-            }).then(
+            }).success(
                     window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                     );
                 };
