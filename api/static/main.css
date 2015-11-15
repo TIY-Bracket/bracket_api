@@ -482,4 +482,15 @@ h2 {
   filter: Alpha(Opacity=70) !important;
   background: #323232 !important; }
 
+.container {
+  padding-top: 20em;
+  text-align: center;
+  margin: auto; }
+  .container h1, .container p, .container input, .container label {
+    font-family: 'Lato', sans-serif;
+    font-size: 3em; }
+
+.logo {
+  font-family: 'Graduate', cursive; }
+
 /*# sourceMappingURL=main.css.map */
