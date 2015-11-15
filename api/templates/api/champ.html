@@ -7,9 +7,7 @@
 
 
       <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   </head>
   <body>
@@ -21,7 +19,11 @@
   <h2>
     The Champion
     <br><br>
+    {% if position.competitor.title %}
     {{ position.competitor.title }}
+    {% else %}
+  TBD
+    {% endif %}
   </h2>
   </div>
   {% endfor %}
