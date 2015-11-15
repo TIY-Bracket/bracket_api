@@ -482,6 +482,11 @@ h2 {
   filter: Alpha(Opacity=70) !important;
   background: #323232 !important; }
 
+#champ_center {
+  text-align: center;
+  font-color: #333;
+  font-size: 2em; }
+
 .table {
   width: 95%;
   margin-left: auto;

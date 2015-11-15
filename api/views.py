@@ -40,6 +40,18 @@ class PositionViewSet(viewsets.ModelViewSet):
     serializer_class = PositionSerializer
 
 
+class ChampListView(generic.ListView):
+    template_name = 'api/champ.html'
+    context_object_name = 'positions'
+    paginate_by = 25
+
+
+    def get_queryset(self):
+        self.bracket = get_object_or_404(Bracket, pk=self.kwargs['pk'])
+        self.champ = self.bracket.position_set.all().filter(position=1)
+        return self.champ
+
+
 class UserListView(generic.ListView):
     template_name = 'api/profile.html'
     context_object_name = 'brackets'
