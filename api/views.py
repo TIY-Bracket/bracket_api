@@ -52,6 +52,16 @@ class ChampListView(generic.ListView):
         return self.champ
 
 
+class UserListView(generic.ListView):
+    template_name = 'api/profile.html'
+    context_object_name = 'brackets'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.bracket_set.all().order_by('-timestamp')
+
+
 def index(request):
     return render(request, 'api/index.html')
 
