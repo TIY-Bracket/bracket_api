@@ -97,6 +97,16 @@ class UserListView(generic.ListView):
         return self.user.bracket_set.all().order_by('-timestamp')
 
 
+class CompListView(generic.ListView):
+    template_name = 'api/competitor_list.html'
+    context_object_name = 'competitors'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.competitor_set.all().order_by('-timestamp')
+
+
 def index(request):
     return render(request, 'api/index.html')
 
@@ -214,6 +224,15 @@ def add_contact_phone(request, competitor_id):
     phone = request.data["phone"]
     competitor = Competitor.objects.get(pk=competitor_id)
     competitor.phone = phone
+    competitor.save()
+    return Response(request.data)
+
+
+@api_view(['PUT'])
+def claim_competitor(request, competitor_id):
+    user_id = request.data["user_id"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.user_id = user_id
     competitor.save()
     return Response(request.data)
 
