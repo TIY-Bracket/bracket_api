@@ -298,6 +298,8 @@ def five_min_text(request, competitor_id):
                                      to=phone_number,
                                      from_="+19196959988",)
 
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
+
 
 def caller_validate(phone_number):
     # To find these visit https://www.twilio.com/user/account
