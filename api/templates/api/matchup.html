@@ -86,6 +86,29 @@
 <script>
 
 function a_b_win(winner) {
+                  $.ajaxSetup({ 
+                     beforeSend: function(xhr, settings) {
+                         function getCookie(name) {
+                             var cookieValue = null;
+                             if (document.cookie && document.cookie != '') {
+                                 var cookies = document.cookie.split(';');
+                                 for (var i = 0; i < cookies.length; i++) {
+                                     var cookie = jQuery.trim(cookies[i]);
+                                     // Does this cookie string begin with the name we want?
+                                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                         break;
+                                     }
+                                 }
+                             }
+                             return cookieValue;
+                         }
+                         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                             // Only send the token to relative URLs i.e. locally.
+                             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                         }
+                     } 
+                });
                 $.ajax({
                   async: false,
                   url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
@@ -101,6 +124,29 @@ function a_b_win(winner) {
 
 function claim_competitor(competitor) {
               var user_id = {{ user.id }}
+                $.ajaxSetup({
+                   beforeSend: function(xhr, settings) {
+                       function getCookie(name) {
+                           var cookieValue = null;
+                           if (document.cookie && document.cookie != '') {
+                               var cookies = document.cookie.split(';');
+                               for (var i = 0; i < cookies.length; i++) {
+                                   var cookie = jQuery.trim(cookies[i]);
+                                   // Does this cookie string begin with the name we want?
+                                   if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                       cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                       break;
+                                   }
+                               }
+                           }
+                           return cookieValue;
+                       }
+                       if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                           // Only send the token to relative URLs i.e. locally.
+                           xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                       }
+                   }
+              });
               $.ajax({
                 async: false,
                 url: "/" + "claim_competitor/" + competitor,
@@ -126,6 +172,29 @@ function addEmail(competitor) {
 
 function update_winner(bracket_id, parent_id){
     var winner_id = "";
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
     $.ajax(
           {
             async: false,
@@ -139,55 +208,94 @@ function update_winner(bracket_id, parent_id){
                   "bracket_id": bracket_id,
                   "position": parent_id
                   }
-            }).success(
-                    window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-                    );
-                };
+          }).success(
+                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+            );
+    };
 
 
 function add_contact_email(competitor){
         var email = $(".comp_email").val();
-        console.log("email : " + email)
-        $("form").submit(
-              $.ajax(
-                    {
-                     async: false,
-                     url: "/add_contact_email/" + competitor,
-                     type: "PUT",
-                     headers: {
-                               "Authorization": "Basic " + btoa("admin:password")
-                                     },
-                    data: {
-                              "email": email
-                                  }
-                      })).success(
-                                window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-                              );
-                  };
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+    $.ajax(
+          {
+            async: false,
+            url: "/add_contact_email/" + competitor,
+            type: "PUT",
+            headers: {
+                    "Authorization": "Basic " + btoa("admin:password")
+                     },
+            data: {
+                  "email": email
+                  }
+          }).success(
+                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+            );
+    };
 
 
 function add_contact_phone(competitor){
       var phone = $(".comp_phone").val();
-      console.log("phone : " + phone)
-      $("form").submit(
-        $.ajax(
-              {
-                async: false,
-                url: "/add_contact_phone/" + competitor,
-                type: "PUT",
-                headers: {
-                        "Authorization": "Basic " + btoa("admin:password")
-                          },
-                  data: {
-                          "phone": phone
-                                  }
-                          })).success(
-                                    // setTimeout(donothing,1000);
-                          window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-                                );
-                          };
-
-
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+    $.ajax(
+          {
+            async: false,
+            url: "/add_contact_phone/" + competitor,
+            type: "PUT",
+            headers: {
+                    "Authorization": "Basic " + btoa("admin:password")
+                     },
+            data: {
+                  "phone": phone
+                  }
+          }).success(
+                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+            );
+    };
 
 </script>
 
