@@ -129,9 +129,7 @@ def new_bracket(request):
         bracket = Bracket(title=json_obj['Title'], owner_id=user_id)
         bracket.save()
         for value in json_obj['Competitors']:
-            base_phone = value['phone']
-            phone = "+1"+base_phone
-            competitor = Competitor(title=value['name'], email=value['email'], phone=phone)
+            competitor = Competitor(title=value['name'], email=value['email'], phone=value['phone'])
             competitor.save()
             new_competitors.append(competitor)
         for new_competitor in new_competitors:
@@ -211,7 +209,7 @@ def add_contact_email(request, competitor_id):
 def add_contact_phone(request, competitor_id):
     phone = request.data["phone"]
     competitor = Competitor.objects.get(pk=competitor_id)
-    competitor.phone = "+1" + phone
+    competitor.phone = phone
     competitor.save()
     return Response(request.data)
 
@@ -261,7 +259,8 @@ def five_min_text(request, competitor_id):
     auth_token = settings.AUTH_TOKEN
     position_data = Position.objects.filter(competitor_id=competitor_id)
     competitor = Competitor.objects.get(pk=competitor_id)
-    phone_number = str(competitor.phone)
+    number = str(competitor.phone)
+    phone_number = "+1"+number
     print(phone_number)
     position = position_data[0]
     print("here")
