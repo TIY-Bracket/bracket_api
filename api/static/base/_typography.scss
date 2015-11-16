@@ -10,6 +10,7 @@ body {
   html, body {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
   }
 
 h1,
@@ -18,7 +19,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Graduate', cursive;;
+  font-family: 'Graduate';
   font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;

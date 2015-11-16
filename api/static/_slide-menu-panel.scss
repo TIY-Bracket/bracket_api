@@ -2,14 +2,14 @@ header.navigation {
   position: fixed;
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
-  $action-color: #477DCA !default;
+  $action-color: $gallery !default;
   $dark-gray: #333 !default;
   $large-screen: em(860) !default;
-  $navigation-padding: 1em;
+  // $navigation-padding: 2em;
   $navigation-background: $dark-gray;
-  $navigation-color: transparentize(white, 0.3);
+  $navigation-color: transparentize(white, 0.1);
   $navigation-color-hover: white;
-  $navigation-height: 60px;
+  $navigation-height: 100px;
   $navigation-nav-button-background: $action-color;
   $navigation-nav-button-background-hover: lighten($navigation-background, 10%);
   $navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20%);
@@ -34,10 +34,13 @@ header.navigation {
   }
 
   .logo {
+    color: $navigation-color;
+    display: block;
     float: left;
-    max-height: $navigation-height;
-    padding-left: $navigation-padding;
-    padding-right: 2em;
+    line-height: $navigation-height;
+    text-decoration: none;
+    text-transform: uppercase;
+
 
     img {
       max-height: $navigation-height;
@@ -70,22 +73,24 @@ header.navigation {
   // Nav menu
 
   nav {
-    float: none;
+    float: right;
     min-height: $navigation-height;
     z-index: 9999999;
 
     @include media ($horizontal-bar-mode) {
-      float: left;
+      float: right;
     }
   }
 
   ul.navigation-menu {
     clear: both;
     display: none;
-    margin: 0 auto;
+    // margin-left: 800px;
+    // float:right;
+
     overflow: visible;
     padding: 0;
-    width: 100%;
+    width: 80%;
     z-index: 9999;
 
     &.show {
@@ -94,7 +99,8 @@ header.navigation {
 
     @include media ($horizontal-bar-mode) {
       display: inline;
-      margin: 0;
+      // text-align: right;
+      // margin-left: 800px;
       padding: 0;
     }
   }
@@ -177,7 +183,7 @@ header.navigation {
     }
 
     > a {
-      padding-right: 1.6em;
+      padding-right: 1.2em;
       position: relative;
 
       @include media($horizontal-bar-mode) {

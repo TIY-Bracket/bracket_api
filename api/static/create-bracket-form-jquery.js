@@ -3,18 +3,50 @@ $(document).ready(
         $("form").submit(
             function(event){
                 event.preventDefault();
-                console.log(event);
                 var o = {};
                 o["Title"] = $(".bracket-title").val();
 
                 var a = [];
-                $('.competitor-input').each(
+                $('.new_competitor').each(
                     function(){
-                        a.push({"name": $(this).val()});
+                      // var name = document.getElementById("comp_name").value;
+                      // var email = document.getElementById("comp_email").value;
+                      // var phone = document.getElementById("comp_phone").value;
+                      var name = $(".comp_name",this).val();
+                      var email = $(".comp_email",this).val();
+                      var phone = $(".comp_phone",this).val();
+                      a.push({"name": name,
+                              "email": email,
+                              "phone": phone
+                      }
+                    );
                     }
                 );
 
                 o["Competitors"] = a;
+                $.ajaxSetup({
+                     beforeSend: function(xhr, settings) {
+                         function getCookie(name) {
+                             var cookieValue = null;
+                             if (document.cookie && document.cookie != '') {
+                                 var cookies = document.cookie.split(';');
+                                 for (var i = 0; i < cookies.length; i++) {
+                                     var cookie = jQuery.trim(cookies[i]);
+                                     // Does this cookie string begin with the name we want?
+                                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                         break;
+                                     }
+                                 }
+                             }
+                             return cookieValue;
+                         }
+                         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                             // Only send the token to relative URLs i.e. locally.
+                             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                         }
+                     }
+                });
                 $.ajax({
                     url : '/new_bracket/',
                     method: 'POST',
@@ -26,7 +58,6 @@ $(document).ready(
                 }).then(
                     function(d){
                         var bracket_id = d['Bracket']
-                        console.log(d)
                         window.location = "/view/" + bracket_id;
                     }
                 );

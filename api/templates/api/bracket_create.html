@@ -2,30 +2,43 @@
 
 {% block content %}
 
-<p>Create a New Bracket</p>
+<p class="instructions">Name bracket, add in competitor details, <br> and you're ready to play.</p>
 <div id="new_competitor" class="bracket-create-form">
 <form action="" method="post">
     {% csrf_token %}
-    Title<br/>
-    <input type="text" class="bracket-title" name="Title" maxlength="36" size="12"/> <br/>
+    <label for="Title">Title</label>
+    <input type="text" class="bracket-title" name="Title" maxlength="36" size="17" placeholder="Bracket Title"/> <br/>
     <br/>
-    Competitors<br/>
     <div id="competitors">
-        <input type="text" class="competitor-input" name="Competitor1" size="12" autocomplete="off" /><div class="divider"></div>
+      <div class="new_competitor">
+        <input type="text" class="comp_name" name="Competitor1" size="12" autocomplete="off" placeholder="Name"/>
+        <input type="text" class="comp_email" name="Competitor_email1" size="12" autocomplete="off" placeholder="Email"/>
+        <input type="text" class="comp_phone detectTab" name="Competitor_phone1" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div>
+      </div>
     </div>
     <p><input type="button" id="add_competitor()" onClick="addCompetitor()" value="Add Competitor" /></p>
     <br/>
     <p><input type="submit" /></p>
 </form>
 </div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    $(document).on('keydown', 'input.detectTab', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == 9) {
+      addCompetitor();
+    }
+  });
+</script>
 
 <script type="text/javascript">
+
 var i = 1;
 function addCompetitor() {
-    console.log('here');
     i++;
     var div = document.createElement('div');
-    div.innerHTML = '<input type="text" class="competitor-input" name="Competitor"'+i+' size="12" autocomplete="off" /><div class="divider"></div><i class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)">';
+    div.className = "new_competitor"
+    div.innerHTML = '<input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone detectTab" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i id="trash" class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)">';
     document.getElementById('competitors').appendChild(div);
 }
 

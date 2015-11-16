@@ -1,31 +1,39 @@
-form {
-    text-align: center;
-    width: 600px;
-    margin: auto;
-    padding-top: 10em;
-}
-p {
-    width: 300px;
-    margin:  0 auto;
-    font-size: 1.2em;
 
+
+.bracket-create-form {
+    form {
+      text-align: center;
+      width: 800px;
+      margin: auto;
+      padding-top: 2em;
+      font-size: 1.15em;
+      border: 3px solid $dark-gray;
+      border-width: thick;
+      font-weight: 100;
+      border-radius: 5px;
+      line-height: 1em;
 }
+}
+.instructions {
+  padding-top: 10em;
+  font-size: 1.15em;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+
 h2 {
-    margin: 10px 0;
     font-size: 1.2em;
     font-weight: bold
 }
 
-
-
-
-#result {
-    margin: 10px;
-    background: #eee;
-    padding: 10px;
-    height: 40px;
-    overflow: auto;
+#trash {
+  cursor: pointer;
 }
+
+.new_competitor {
+  padding-right: 2.85em;
+}
+
 
 .divider{
     width:10px;

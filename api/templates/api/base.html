@@ -7,6 +7,7 @@
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
       <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
@@ -14,38 +15,53 @@
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
     </head>
 
+
     <body>
     <header class="navigation" role="banner">
       <div class="js-menu-screen sliding-panel-fade-screen"></div>
       <div class="navigation-wrapper">
-        <nav class="navigation">
-        <ul id="js-navigation-menu" class="navigation-menu show">
         <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">&#9776;</a>
+        <a class="logo" href="/">versus.live</a>
+        <nav class="navigation">
           <ul id="js-navigation-menu" class="navigation-menu show">
-            <li class="nav-link"><a class="logo" href="/">versus.live</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'index' %}">Home</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'bracket_create' %}">Create a Bracket</a></li>
             {% if request.user.is_authenticated %}
+            <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">My Brackets</a>
+              <ul class="submenu">
+                <li class="nav-link"><a class="nav-btn" href="{% url 'user_profile' user.pk %}">Brackets Created</a></li>
+                <li class="nav-link"><a class="nav-btn" href="{% url 'comp_view' user.pk %}">Brackets Competed In</a></li>
+              </ul>
             <li class="nav-link"><a class="nav-btn" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-            <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
-          <ul class="submenu">
-            <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter</a></li>
-            <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook</a></li>
+              <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
+                <ul class="submenu">
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter" height= 30 width = 30>
+Twitter</a></li>
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook" height= 30 width = 30 > Facebook</a></li>
+                </ul>
+              </li>
             {% endif %}
-          </ul>
-        </li>
-              </ul>
-            </li>
           </ul>
         </nav>
       </div>
     </header>
+
+
+
+</div>
     {% block content %}
     {% endblock %}
-  </body>
-    <script src="{% static 'jquery-1.8.1-min.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="{% static 'create-bracket-form-jquery.js' %}"></script>
     <script src="{% static 'slide-menu-jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'facebook-auth-jquery.js' %}"></script>
+
+    </script>
+  </body>
+
+    {% block scripts %}
+    {% endblock%}
+
 </html>

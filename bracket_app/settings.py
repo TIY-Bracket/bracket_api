@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -163,3 +164,10 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET")
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_LOGIN_URL = '/'
+
+ACCOUNT_SID = os.environ.get("account_sid")
+AUTH_TOKEN = os.environ.get("auth_token")
+
+PUSHER_APP_ID = '154316'
+PUSHER_KEY = 'bc4d80d7383e11cf31ec'
+PUSHER_SECRET = '4271888d157f8c02fe3b'

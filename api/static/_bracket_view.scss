@@ -8,6 +8,10 @@ g {
   overflow: auto;
 }
 
+label {
+  display: block;
+}
+
 svg {
   overflow: auto;
 }
@@ -17,20 +21,22 @@ svg {
     display: flex;
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* aspect ratio */
+    padding-bottom: 65%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
 }
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 0;
+    overflow: auto;
 }
 
 
 
 #center {
+  h3 {
   text-align: center;
   font-color: $dark-gray;
   margin: scroll;
@@ -44,41 +50,48 @@ svg {
     margin-bottom: -.009em;
   }
 }
-
+}
 
 .node circle {
-  fill: #000;
+  fill: $white;
+  cursor: pointer;
 }
 
 .node rect {
-  stroke: black;
-    stroke-width: 1;
-  fill: #D0D0D0;
+  stroke: $light-gray;
+    stroke-width: 3;
+  cursor: pointer;
+  fill: $white;
  }
 
+.node image {
+  cursor: pointer;
+}
 
 .node text {
   font-family: 'Lato', sans-serif;
   color: $black;
   font-size: 16px;
+  font-weight: lighter;
   cursor: pointer;
+  text-align: right;
 
 }
 
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px;
+  stroke: $light-gray;
+  stroke-width: 3;
 }
 
 .hyper {
-    color: $black;
+    color: $white;
     font-size: 20px;
     font-weight: bold;
 }
 .hyper:hover {
     color: $black;
     /*text-decoration: underline;*/
-    font-size: 26px;
+    font-size: base-font-size;
 }
