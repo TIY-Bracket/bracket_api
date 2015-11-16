@@ -22,7 +22,8 @@ h6 {
   font-family: 'Graduate';
   font-size: $base-font-size;
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
+  padding: 0;
+  // margin: 0 0 $small-spacing;
 }
 
 p {
@@ -33,6 +34,7 @@ a {
   color: $action-color;
   text-decoration: none;
   transition: color $base-duration $base-timing;
+
 
   &:active,
   &:focus,
@@ -47,6 +49,7 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: $base-spacing 0;
+  border-top: 0;
 }
 
 img,

@@ -24,14 +24,13 @@
         <a class="logo" href="/">versus.live</a>
         <nav class="navigation">
           <ul id="js-navigation-menu" class="navigation-menu show">
-            <li class="nav-link"><a class="nav-btn" href="{% url 'index' %}">Home</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'bracket_create' %}">Create a Bracket</a></li>
             {% if request.user.is_authenticated %}
-            <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">My Brackets</a>
-              <ul class="submenu">
+            <li class="nav-link more"><a class="nav-btn" href="{% url 'user_profile' user.pk %}">My Brackets</a>
+              <!-- <ul class="submenu">
                 <li class="nav-link"><a class="nav-btn" href="{% url 'user_profile' user.pk %}">Brackets Created</a></li>
                 <li class="nav-link"><a class="nav-btn" href="{% url 'comp_view' user.pk %}">Brackets Competed In</a></li>
-              </ul>
+              </ul> -->
             <li class="nav-link"><a class="nav-btn" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
               <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>

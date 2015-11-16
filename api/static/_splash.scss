@@ -29,7 +29,6 @@
 /* This is the main heading that appears on the gallery section */
 .splash-head {
     font-size: 21px;
-    font-family: 'Graduate';
     font-weight: bold;
     color: $dark-gray;
     border: 3px solid $dark-gray;
@@ -38,13 +37,16 @@
     font-weight: 100;
     border-radius: 5px;
     line-height: 1em;
+    text-transform: none;
 }
+
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
     color: $black;
     letter-spacing: 0.05em;
     opacity: 0.8;
+    text-transform: none;
 }
 
 /*
