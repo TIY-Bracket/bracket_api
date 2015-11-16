@@ -2,28 +2,34 @@
     text-align: center;
     width: 600px;
     margin: auto;
-    padding-top: 11em;
+    padding-top: 2em;
     font-size: 1.15em;
     padding-right:1em;
 }
 
-p {
 
-}
+.instructions {
+  text-align: center;
+  padding-top: 8em;
+  color: $dark-gray;
+  }
 
 h2 {
     font-size: 1.2em;
     font-weight: bold
 }
 
-
+.fa-trash-o {
+  float: none;
+}
 .new_competitor {
   padding-right: 2.65em;
 }
 
 
-.divider{
-    width:10px;
-    height:auto;
-    display:inline-block;
-}
+
+// .divider{
+//     width:10px;
+//     height:auto;
+//     display:inline-block;
+// }

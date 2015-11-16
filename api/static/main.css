@@ -262,7 +262,7 @@ header.navigation {
   position: fixed;
   background-color: #333;
   border-bottom: 1px solid #1a1a1a;
-  min-height: 100px;
+  min-height: 60px;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -283,19 +283,19 @@ header.navigation {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
-    line-height: 100px;
+    line-height: 60px;
     text-decoration: none;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    padding-left: .25em; }
     header.navigation .logo img {
-      max-height: 100px;
-      padding: 0.8em 0; }
+      max-height: 60px; }
   header.navigation .navigation-menu-button {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
-    line-height: 100px;
+    line-height: 60px;
     margin: 0;
-    padding-right: 1em;
+    padding-right: .5em;
     text-decoration: none;
     text-transform: uppercase; }
     @media screen and (min-width: 53.75em) {
@@ -305,7 +305,7 @@ header.navigation {
       color: white; }
   header.navigation nav {
     float: right;
-    min-height: 100px;
+    min-height: 60px;
     z-index: 9999999; }
     @media screen and (min-width: 53.75em) {
       header.navigation nav {
@@ -315,7 +315,7 @@ header.navigation {
     display: none;
     overflow: visible;
     padding: 0;
-    width: 80%;
+    width: 100%;
     z-index: 9999; }
     header.navigation ul.navigation-menu.show {
       display: block; }
@@ -326,7 +326,7 @@ header.navigation {
   header.navigation ul li.nav-link {
     background: #333;
     display: block;
-    line-height: 100px;
+    line-height: 60px;
     overflow: hidden;
     padding-right: 0.8em;
     text-align: right;
@@ -336,7 +336,7 @@ header.navigation {
       header.navigation ul li.nav-link {
         background: transparent;
         display: inline;
-        line-height: 100px;
+        line-height: 60px;
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
@@ -409,7 +409,7 @@ header.navigation {
       padding-right: 0; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul.submenu li {
-          line-height: 76.92308px; }
+          line-height: 46.15385px; }
           header.navigation ul.submenu li:first-child > a {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px; }
@@ -432,7 +432,7 @@ header.navigation {
     background: #505050;
     clear: both;
     display: block;
-    height: 100px; }
+    height: 60px; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
         background: transparent;
@@ -451,30 +451,39 @@ header.navigation {
   font-size: 2em; }
 
 .nav-btn {
-  font-size: 1.2em; }
+  margin-left: auto; }
+
+.header.navigation .navigation-wrapper {
+  margin-left: auto; }
 
 .all-the-buttons {
   padding-top: 1.2em; }
+
+.social-media {
+  padding-right: .1em; }
 
 .bracket-create-form {
   text-align: center;
   width: 600px;
   margin: auto;
-  padding-top: 11em;
+  padding-top: 2em;
   font-size: 1.15em;
   padding-right: 1em; }
+
+.instructions {
+  text-align: center;
+  padding-top: 8em;
+  color: #333; }
 
 h2 {
   font-size: 1.2em;
   font-weight: bold; }
 
+.fa-trash-o {
+  float: none; }
+
 .new_competitor {
   padding-right: 2.65em; }
-
-.divider {
-  width: 10px;
-  height: auto;
-  display: inline-block; }
 
 #win_center {
   text-align: center;
