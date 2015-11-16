@@ -1,22 +1,28 @@
 
 .container{
-  padding-top: 20em;
+  padding-top: 5em;
   text-align: center;
   margin:auto;
 
   h1, p, input, label, {
     font-family: 'Lato', sans-serif;
-    font-size: 3em;
+
   }
 
 }
 
 .logo {
   font-family: 'Graduate', cursive;
+  font-size: 2em;
 }
 
 .nav-btn {
+  font-size: 1.2em;
 
+}
+
+.all-the-buttons {
+  padding-top: 1.2em;
 }
 
 // .divider {

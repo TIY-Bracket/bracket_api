@@ -21,43 +21,44 @@
       <div class="js-menu-screen sliding-panel-fade-screen"></div>
       <div class="navigation-wrapper">
         <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">&#9776;</a>
+        <a class="logo" href="/">versus.live</a>
         <nav class="navigation">
-        <ul id="js-navigation-menu" class="navigation-menu show">
-            <li class="nav-link"><a class="logo" href="/">versus.live</a></li>
+          <ul id="js-navigation-menu" class="navigation-menu show">
             <li class="nav-link"><a class="nav-btn" href="{% url 'index' %}">Home</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'bracket_create' %}">Create a Bracket</a></li>
             {% if request.user.is_authenticated %}
+
             <li class="nav-link"><a class="nav-btn" href="{% url 'user_profile' user.pk %}">My Brackets</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-            <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
-          <ul class="submenu">
-            <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter</a></li>
-            <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook</a></li>
+              <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
+                <ul class="submenu">
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter" height= 30 width = 30>
+Twitter</a></li>
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook" height= 30 width = 30 > Facebook</a></li>
+                </ul>
+              </li>
             {% endif %}
-          </ul>
-        </li>
-              </ul>
-            </li>
           </ul>
         </nav>
       </div>
     </header>
+
+
+
+</div>
     {% block content %}
     {% endblock %}
-  </body>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="{% static 'create-bracket-form-jquery.js' %}"></script>
     <script src="{% static 'slide-menu-jquery.js' %}"></script>
-    <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'facebook-auth-jquery.js' %}"></script>
+
+    </script>
+  </body>
 
     {% block scripts %}
-
     {% endblock%}
 
-
-    <footer>
-      <h2 class="site-footer"><span>Versus.Live &copy 2015</span></h2>
-    </footer>
 </html>

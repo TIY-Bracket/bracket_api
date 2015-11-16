@@ -1,8 +1,23 @@
 
 #win_center {
   text-align: center;
+  font-family: 'Lato', sans-serif;
   font-color: $dark-gray;
-  font-size: 2em;
+  font-size: 1em;
+
+  button {
+    margin: 0;
+    padding: 0;
+}
+
+.email-form {
+  padding: 0;
+}
+  h3 {
+    font-family: 'Lato', sans-serif;
+
+  }
+
 }
 
 

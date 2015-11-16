@@ -16,13 +16,27 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
+$blue: #1F8ED6;
+$dark-blue: #05588E;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $black: #000;
 $white: #fff;
+$gallery: #eee;
 $chucknorris: #C00000;
+$caribbean-green: #03C9A9;
+$cape-honey: #FDE3A7;
+$alice-blue: #E4F1FE;
+$turquoise: #36D7B7;
+$dark-turquoise: #00493D;
+
+
+
+
+
+
+
 
 // Font Colors
 $base-font-color: $black;
@@ -33,7 +47,7 @@ $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $white;
+$base-background-color: $gallery;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms
