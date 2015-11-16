@@ -8,6 +8,7 @@
 <table class="table">
 <tr>
 <th>Title</th>
+<th>Bracket</th>
 <th>Date Created</th>
 <th></th>
 
@@ -15,7 +16,8 @@
 {% for competitor in competitors %}
   <tr>
     <td><a href="#">{{ competitor.title|truncatechars:150}}</a></td>
-    <td><small>{{ competitor.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td><a href="#">{{ competitor.bracket.title|truncatechars:150}}</a></td>
+    <td><small>{{ competitor.timestamp}} ({{ competitor.timestamp | timesince }} ago)</small></td>
     <td><a href="#"><i class="fa fa-link"></i></a></td>
   </tr>
   {% endfor %}
