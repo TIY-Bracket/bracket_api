@@ -75,8 +75,8 @@
 
     $(function(){
         $('form').submit(function(){
+            console.log('here')
             var $this = $(this);
-            console.log($this)
             $.ajax({
                 url: $this.attr('action'),
                 type: $this.attr('method'),
@@ -121,8 +121,6 @@ var bracket_id = {{ bracket_id }};
 d3.json("{% url "get_bracket" bracket_id %}",
     function(data) {
         input_data = data
-        console.log("test");
-        console.log(input_data);
         var dataMap = input_data.reduce(function(map, node) {
             map[node.position] = node;
             return map;
@@ -137,24 +135,18 @@ d3.json("{% url "get_bracket" bracket_id %}",
                 bracketConvert.push(node);
             }
         });
-        console.log("test 2");
-        console.log(bracketConvert);
-        console.log(bracketConvert[0]);
         root = bracketConvert[0];
         update(root);
     });
 
 var inter = setInterval(function() {
                 data_again();
-                console.log('test');
         }, 2000);
 
 function data_again(){
     d3.json("{% url "get_bracket" bracket_id %}",
     function(data) {
         input_data = data
-        console.log("test");
-        console.log(input_data);
         var dataMap = input_data.reduce(function(map, node) {
             map[node.position] = node;
             return map;
@@ -169,9 +161,6 @@ function data_again(){
                 bracketConvert.push(node);
             }
         });
-        console.log("test 2");
-        console.log(bracketConvert);
-        console.log(bracketConvert[0]);
         root = bracketConvert[0];
         update(root);
     });
@@ -243,7 +232,6 @@ function opendialog(page) {
 
 
 function clack(d) {
-  console.log(d)
     var parent_pos = Math.floor(d['position']/2);
     opendialog("/matchup/" + bracket_id + "/" + parent_pos);
 }
