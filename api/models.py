@@ -18,6 +18,7 @@ class Competitor(models.Model):
     email = models.EmailField(blank=True, null=True)
     phone = PhoneNumberField(blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Position(models.Model):
