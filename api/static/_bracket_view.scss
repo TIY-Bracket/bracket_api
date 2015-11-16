@@ -1,5 +1,7 @@
 body {
+  background-color: #eee;
 }
+
 g {
   margin-right: auto;
   margin-left: auto;
@@ -38,22 +40,28 @@ svg {
   text-align: center;
   font-color: $dark-gray;
   margin: scroll;
-  padding-top: 5em;
-  font-family: 'Graduate', sans-serif;
+  padding-top: 3em;
+  font-family: 'Lato', sans-serif;
   font-size: 1.5em;
+
+
+  h3 {
+    font-family: 'Lato', sans-serif;
+    margin-bottom: -.009em;
+  }
 }
 }
 
 .node circle {
-  fill: #000;
+  fill: $white;
   cursor: pointer;
 }
 
 .node rect {
   stroke: $light-gray;
-    stroke-width: 1;
-  fill: #D0D0D0;
+    stroke-width: 3;
   cursor: pointer;
+  fill: $white;
  }
 
 .node image {
@@ -73,12 +81,12 @@ svg {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px;
+  stroke: $light-gray;
+  stroke-width: 3;
 }
 
 .hyper {
-    color: $black;
+    color: $white;
     font-size: 20px;
     font-weight: bold;
 }

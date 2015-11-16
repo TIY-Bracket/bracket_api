@@ -159,7 +159,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-size: 1.15em;
   line-height: 1.2;
   margin: 0 0 0.75em; }
@@ -185,6 +185,9 @@ img,
 picture {
   margin: 0;
   max-width: 100%; }
+
+body {
+  background-color: #eee; }
 
 g {
   margin-right: auto;
@@ -218,19 +221,22 @@ svg {
   text-align: center;
   font-color: #333;
   margin: scroll;
-  padding-top: 5em;
-  font-family: 'Graduate', sans-serif;
+  padding-top: 3em;
+  font-family: 'Lato', sans-serif;
   font-size: 1.5em; }
+  #center h3 h3 {
+    font-family: 'Lato', sans-serif;
+    margin-bottom: -.009em; }
 
 .node circle {
-  fill: #000;
+  fill: #fff;
   cursor: pointer; }
 
 .node rect {
   stroke: #ddd;
-  stroke-width: 1;
-  fill: #D0D0D0;
-  cursor: pointer; }
+  stroke-width: 3;
+  cursor: pointer;
+  fill: #fff; }
 
 .node image {
   cursor: pointer; }
@@ -245,11 +251,11 @@ svg {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px; }
+  stroke: #ddd;
+  stroke-width: 3; }
 
 .hyper {
-  color: #000;
+  color: #fff;
   font-size: 20px;
   font-weight: bold; }
 
@@ -447,7 +453,7 @@ header.navigation {
     font-family: 'Lato', sans-serif; }
 
 .logo {
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-size: 2em; }
 
 .nav-btn {
@@ -456,20 +462,33 @@ header.navigation {
 .all-the-buttons {
   padding-top: 1.2em; }
 
-.bracket-create-form {
+.bracket-create-form form {
   text-align: center;
-  width: 600px;
+  width: 800px;
   margin: auto;
-  padding-top: 11em;
+  padding-top: 2em;
   font-size: 1.15em;
-  padding-right: 1em; }
+  border: 3px solid #333;
+  border-width: thick;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 1em; }
+
+.instructions {
+  padding-top: 10em;
+  font-size: 1.15em;
+  font-family: 'Lato', sans-serif;
+  text-align: center; }
 
 h2 {
   font-size: 1.2em;
   font-weight: bold; }
 
+#trash {
+  cursor: pointer; }
+
 .new_competitor {
-  padding-right: 2.65em; }
+  padding-right: 2.85em; }
 
 .divider {
   width: 10px;
@@ -525,7 +544,7 @@ h2 {
 /* This is the main heading that appears on the gallery section */
 .splash-head {
   font-size: 21px;
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-weight: bold;
   color: #333;
   border: 3px solid #333;

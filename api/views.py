@@ -97,6 +97,16 @@ class UserListView(generic.ListView):
         return self.user.bracket_set.all().order_by('-timestamp')
 
 
+class CompListView(generic.ListView):
+    template_name = 'api/competitor_list.html'
+    context_object_name = 'competitors'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.competitor_set.all().order_by('-timestamp')
+
+
 def index(request):
     return render(request, 'api/index.html')
 
@@ -218,6 +228,15 @@ def add_contact_phone(request, competitor_id):
     return Response(request.data)
 
 
+@api_view(['PUT'])
+def claim_competitor(request, competitor_id):
+    user_id = request.data["user_id"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.user_id = user_id
+    competitor.save()
+    return Response(request.data)
+
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
@@ -317,6 +336,7 @@ def matchup(request, bracket_id, parent_id):
         competitor_a_email = comp_a.email
         competitor_a_phone = comp_a.phone
     except:
+        comp_a = None
         competitor_a_email = None
         competitor_a_phone = None
 
@@ -328,6 +348,7 @@ def matchup(request, bracket_id, parent_id):
         competitor_b_email = comp_b.email
         competitor_b_phone = comp_b.phone
     except:
+        comp_b = None
         competitor_b_email = None
         competitor_b_phone = None
 
@@ -351,6 +372,7 @@ def matchup(request, bracket_id, parent_id):
                                'a_id': competitor_a_id, 'b_id': competitor_b_id,
                                'bracket_id': bracket_id, 'a_email': competitor_a_email,
                                'b_email': competitor_b_email, 'parent_id': parent_id,
+                               'comp_a': comp_a, 'comp_b': comp_b,
                                'bracket_permissions': bracket_permissions,
                                'comm_permissions': comm_permissions,
                                'winner': winner,
