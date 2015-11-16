@@ -91,7 +91,9 @@ def new_bracket(request):
         bracket = Bracket(title=json_obj['Title'])
         bracket.save()
         for value in json_obj['Competitors']:
-            competitor = Competitor(title=value['name'], email=value['email'], phone=value['phone'])
+            base_phone = value['phone']
+            phone = "+1"+base_phone
+            competitor = Competitor(title=value['name'], email=value['email'], phone=phone)
             competitor.save()
             new_competitors.append(competitor)
         for new_competitor in new_competitors:
