@@ -315,7 +315,7 @@ header.navigation {
     display: none;
     overflow: visible;
     padding: 0;
-    width: 80%;
+    width: 100%;
     z-index: 9999; }
     header.navigation ul.navigation-menu.show {
       display: block; }
@@ -418,7 +418,7 @@ header.navigation {
             border-bottom-right-radius: 3px;
             padding-bottom: 0.7em; } }
       header.navigation ul.submenu li a {
-        background-color: #2b2b2b;
+        background-color: #333;
         display: inline-block;
         text-align: right;
         width: 100%; }

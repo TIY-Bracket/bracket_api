@@ -90,7 +90,7 @@ header.navigation {
 
     overflow: visible;
     padding: 0;
-    width: 80%;
+    width: 100%;
     z-index: 9999;
 
     &.show {
@@ -246,7 +246,7 @@ header.navigation {
       }
 
       a {
-        background-color: darken($navigation-background, 3%);
+        background-color: $navigation-background;
         display: inline-block;
         text-align: right;
         width: 100%;
