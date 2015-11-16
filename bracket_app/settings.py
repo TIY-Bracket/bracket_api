@@ -167,3 +167,7 @@ SOCIAL_AUTH_LOGIN_URL = '/'
 
 ACCOUNT_SID = os.environ.get("account_sid")
 AUTH_TOKEN = os.environ.get("auth_token")
+
+PUSHER_APP_ID = '154316'
+PUSHER_KEY = 'bc4d80d7383e11cf31ec'
+PUSHER_SECRET = '4271888d157f8c02fe3b'
