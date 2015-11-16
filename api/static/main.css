@@ -624,5 +624,17 @@ h2 {
   /* We increase the header font size even more */
   .splash-head {
     font-size: 300%; } }
+#champ_center {
+  text-align: center;
+  font-color: #333;
+  font-size: 2em; }
+
+.table {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto; }
+
+#no_brack {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

@@ -9,13 +9,15 @@ class Bracket(models.Model):
     title = models.CharField(max_length=255)
     start_dt = models.DateTimeField(blank=True, null=True)
     end_dt = models.DateTimeField(blank=True, null=True)
+    owner = models.ForeignKey(User, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Competitor(models.Model):
     title = models.CharField(max_length=255)
     email = models.EmailField(blank=True, null=True)
     phone = PhoneNumberField(blank=True, null=True)
-    # user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
 
 
 class Position(models.Model):

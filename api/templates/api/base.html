@@ -27,7 +27,9 @@
             <li class="nav-link"><a class="nav-btn" href="{% url 'index' %}">Home</a></li>
             <li class="nav-link"><a class="nav-btn" href="{% url 'bracket_create' %}">Create a Bracket</a></li>
             {% if request.user.is_authenticated %}
-              <li class="nav-link"><a class="nav-btn" href="{% url 'logout' %}">Logout</a></li>
+
+            <li class="nav-link"><a class="nav-btn" href="{% url 'user_profile' user.pk %}">My Brackets</a></li>
+            <li class="nav-link"><a class="nav-btn" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
               <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
                 <ul class="submenu">
