@@ -14,66 +14,60 @@
 
   </head>
   <body>
+    <div id="win_center">
+      <h3> {{ a }} vs. {{ b }} </h3>
+    </div>
+    {% if bracket_permissions %}
+    {% if winner = a_id %}
+      <div>
+          <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+      </div>
+      {% elif winner = b_id %}
+      <div>
+          <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+      </div>
+      {% else %}
+      <div>
+        <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+        <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+      </div>
+      {% endif %}
+      <br>
+      {% if comm_permissions %}
+        <div>
+        {% if a_email %}
+          <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+        {% elif a_phone %}
+          <a href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
+        {% else %}
+          <input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Contact Info" />
+          <form action="" method="put">
+            {% csrf_token %}
+            <div id="email_input"></div>
+          </form>
+        {% endif %}
 
-<div id="win_center">
-    <h3> {{ a }}
-    vs.
-    {{ b }} </h3>
-  </div>
+        {% if b_email %}
+        <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
 
-  {% if winner = a_id %}
-<div>
-    <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-</div>
-{% elif winner = b_id %}
-<div>
-    <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-    <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-</div>
-{% else %}
-<div>
-<button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-<button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-</div>
-{% endif %}
+        {% elif b_phone %}
 
-     <br>
-<div>
-{% if a_email %}
-<a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+        <a href="{% url 'send_text' b_id %}"><button>Text {{ b }}</i></button></a>
 
-{% elif a_phone %}
-
-<a href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
-
-{% else %}
-
-<input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Contact Info" />
-<form action="" method="put">
-    {% csrf_token %}
-<div id="email_input"></div>
-</form>
-
-{% endif %}
-
-{% if b_email %}
-<a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
-
-{% elif b_phone %}
-
-<a href="{% url 'send_text' b_id %}"><button>Text {{ b }}</i></button></a>
-
-{% else %}
-<input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />
-<form action="" method="put">
-    {% csrf_token %}
-<div id="email_input"></div>
-</form>
+        {% else %}
+        <input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />
+        <form action="" method="put">
+            {% csrf_token %}
+        <div id="email_input"></div>
+        </form>
+      {% endif %}
 
 
-{% endif %}
-</div>
+      {% endif %}
+    {% endif %}
+    </div>
   </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
