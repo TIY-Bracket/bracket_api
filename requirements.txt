@@ -26,3 +26,4 @@ twilio==4.9.0
 wheel==0.24.0
 whitenoise==2.0.2
 django-phonenumber-field==0.7.2
+pusher==1.2.3
