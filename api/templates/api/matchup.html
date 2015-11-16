@@ -17,6 +17,10 @@
     <div id="win_center">
       <h3> {{ a }} vs. {{ b }} </h3>
     </div>
+
+{% if a_id = None %}
+{% elif b_id = None %}
+{% else %}
     {% if bracket_permissions %}
     {% if winner = a_id %}
       <div>
@@ -67,6 +71,7 @@
 
       {% endif %}
     {% endif %}
+{% endif %}
     </div>
   </body>
 
