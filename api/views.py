@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from api.serializers import UserSerializer, GroupSerializer, BracketSerializer, \
     CompetitorSerializer, PositionSerializer
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.contrib.auth import logout as auth_logout
 from django.conf import settings
+from django.views import generic
 from api.models import Bracket, Competitor, Position
 from twilio.rest import TwilioRestClient
 import requests
@@ -73,6 +74,28 @@ class PositionViewSet(viewsets.ModelViewSet):
     serializer_class = PositionSerializer
 
 
+class ChampListView(generic.ListView):
+    template_name = 'api/champ.html'
+    context_object_name = 'positions'
+    paginate_by = 25
+
+
+    def get_queryset(self):
+        self.bracket = get_object_or_404(Bracket, pk=self.kwargs['pk'])
+        self.champ = self.bracket.position_set.all().filter(position=1)
+        return self.champ
+
+
+class UserListView(generic.ListView):
+    template_name = 'api/profile.html'
+    context_object_name = 'brackets'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.bracket_set.all().order_by('-timestamp')
+
+
 def index(request):
     return render(request, 'api/index.html')
 
@@ -106,7 +129,9 @@ def new_bracket(request):
         bracket = Bracket(title=json_obj['Title'], owner_id=user_id)
         bracket.save()
         for value in json_obj['Competitors']:
-            competitor = Competitor(title=value['name'])
+            base_phone = value['phone']
+            phone = "+1"+base_phone
+            competitor = Competitor(title=value['name'], email=value['email'], phone=phone)
             competitor.save()
             new_competitors.append(competitor)
         for new_competitor in new_competitors:
@@ -265,22 +290,46 @@ def matchup(request, bracket_id, parent_id):
     bracket = Bracket.objects.get(pk=bracket_id)
     bracket_owner = bracket.owner_id
     bracket_permissions = True
+
     if bracket_owner != request.user.id and bracket_owner is not None:
         bracket_permissions = False
+
     comm_permissions = True
+
     if bracket_owner is None:
         comm_permissions = False
+
+    # Pulling back competitors in matchup
     competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
+
+    # Get Competitor a object
     competitor_a = competitors[0]
+
+    # Setting the competitor a id from the competitor a object
     competitor_a_id = competitor_a.competitor_id
-    comp_a = Competitor.objects.get(pk=competitor_a_id)
-    competitor_a_email = comp_a.email
-    competitor_a_phone = comp_a.phone
+
+    # Get competitor a object and set attributes
+    try:
+        comp_a = Competitor.objects.get(pk=competitor_a_id)
+        competitor_a_email = comp_a.email
+        competitor_a_phone = comp_a.phone
+    except:
+        competitor_a_email = None
+        competitor_a_phone = None
+
     competitor_b = competitors[1]
     competitor_b_id = competitor_b.competitor_id
-    comp_b = Competitor.objects.get(pk=competitor_b_id)
-    competitor_b_email = comp_b.email
-    competitor_b_phone = comp_b.phone
+
+    try:
+        comp_b = Competitor.objects.get(pk=competitor_b_id)
+        competitor_b_email = comp_b.email
+        competitor_b_phone = comp_b.phone
+    except:
+        competitor_b_email = None
+        competitor_b_phone = None
+
+    winner_obj = Position.objects.filter(bracket_id=bracket_id, position=parent_id)
+    winner = winner_obj[0].competitor_id
 
     try:
         competitor = Competitor.objects.get(pk=competitor_a.competitor_id)
@@ -300,5 +349,8 @@ def matchup(request, bracket_id, parent_id):
                                'bracket_id': bracket_id, 'a_email': competitor_a_email,
                                'b_email': competitor_b_email, 'parent_id': parent_id,
                                'bracket_permissions': bracket_permissions,
-                               'comm_permissions': comm_permissions},
+                               'comm_permissions': comm_permissions,
+                               'winner': winner,
+                               'b_phone': competitor_b_phone,
+                               'a_phone': competitor_a_phone},
                               context_instance=RequestContext(request))
