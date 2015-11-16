@@ -72,12 +72,12 @@ user- {{ user }} {{ user.id }}
       {% endif %}
     {% endif %}
 {% endif %}
-
+{% if request.user.is_authenticated %}
 <div>
   <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
-  <button onclick="claim_competitor({{b_id}})">CLaim {{ b }}</button>
+  <button onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
 </div>
-
+{% endif %}
     </div>
   </body>
 

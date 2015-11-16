@@ -98,6 +98,16 @@ class UserListView(generic.ListView):
         return self.user.bracket_set.all().order_by('-timestamp')
 
 
+class CompListView(generic.ListView):
+    template_name = 'api/competitor_list.html'
+    context_object_name = 'competitors'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.competitor_set.all().order_by('-timestamp')
+
+
 def index(request):
     return render(request, 'api/index.html')
 

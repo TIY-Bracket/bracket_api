@@ -1,0 +1,33 @@
+{% extends "api/base.html" %}
+{% block content %}
+
+<div id="profile_center"><h2>{{ view.user.username }}</h2></div>
+{% if user == view.user %}
+{% if competitors %}
+<br>
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Date Created</th>
+<th></th>
+
+</tr>
+{% for competitor in competitors %}
+  <tr>
+    <td><a href="#">{{ competitor.title|truncatechars:150}}</a></td>
+    <td><small>{{ competitor.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td><a href="#"><i class="fa fa-link"></i></a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% else %}
+<br><br>
+<div id="no_brack"> <h6>You haven't competed in any brackets yet.</h6></div>
+
+{% endif %}
+{% endif %}
+
+
+{% endblock %}
