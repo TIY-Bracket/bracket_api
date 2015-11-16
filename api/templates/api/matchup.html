@@ -16,6 +16,7 @@
   <body>
     <div id="win_center">
       <h3> {{ a }} vs. {{ b }} </h3>
+      test- {{ comp_a.user_id }}
     </div>
 
 {% if a_id = None %}
@@ -74,8 +75,18 @@
 {% endif %}
 {% if request.user.is_authenticated %}
 <div>
+  {% if comp_a.user_id %}
+  <p>{{ a }}'s claimed</p>
+  {% else %}
   <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
+  {% endif %}
+
+  {% if comp_b.user_id %}
+  <p>{{ b }}'s claimed</p>
+  {% else %}
   <button onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
+  {% endif %}
+
 </div>
 {% endif %}
     </div>
@@ -86,7 +97,7 @@
 <script>
 
 function a_b_win(winner) {
-                  $.ajaxSetup({ 
+                  $.ajaxSetup({
                      beforeSend: function(xhr, settings) {
                          function getCookie(name) {
                              var cookieValue = null;
@@ -107,7 +118,7 @@ function a_b_win(winner) {
                              // Only send the token to relative URLs i.e. locally.
                              xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
                          }
-                     } 
+                     }
                 });
                 $.ajax({
                   async: false,

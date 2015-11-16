@@ -336,6 +336,7 @@ def matchup(request, bracket_id, parent_id):
         competitor_a_email = comp_a.email
         competitor_a_phone = comp_a.phone
     except:
+        comp_a = None
         competitor_a_email = None
         competitor_a_phone = None
 
@@ -347,6 +348,7 @@ def matchup(request, bracket_id, parent_id):
         competitor_b_email = comp_b.email
         competitor_b_phone = comp_b.phone
     except:
+        comp_b = None
         competitor_b_email = None
         competitor_b_phone = None
 
@@ -370,6 +372,7 @@ def matchup(request, bracket_id, parent_id):
                                'a_id': competitor_a_id, 'b_id': competitor_b_id,
                                'bracket_id': bracket_id, 'a_email': competitor_a_email,
                                'b_email': competitor_b_email, 'parent_id': parent_id,
+                               'comp_a': comp_a, 'comp_b': comp_b,
                                'bracket_permissions': bracket_permissions,
                                'comm_permissions': comm_permissions,
                                'winner': winner,
