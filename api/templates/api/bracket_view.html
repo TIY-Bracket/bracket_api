@@ -211,10 +211,10 @@ function update(source) {
 
 
 function opendialog(page) {
+    $("#dialog:ui-dialog").dialog("destroy");
     var $dialog = $('#modaldiv')
         .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
         .dialog({
-            title: "Matchup",
             modal: true,
             autoOpen: false,
             dialogClass: 'dialog_fixed,ui-widget-header',
@@ -224,11 +224,20 @@ function opendialog(page) {
             minWidth: 300,
             minHeight: 300,
             draggable: false,
+            open: function(){
+            jQuery('.ui-widget-overlay').bind('click',function(){
+                jQuery('#modaldiv').dialog('close');
+            })}
             // close: function () { $(this).remove(); },
         });
     $dialog.dialog('open');
+    $(".ui-dialog-titlebar").hide();
 
-}
+    $("#modaldiv").bind( "clickoutside", function(event){
+        console.log('herererer')
+        $(this).hide();
+    });
+};
 
 
 function clack(d) {
