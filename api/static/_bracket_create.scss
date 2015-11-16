@@ -1,14 +1,24 @@
+
+
 .bracket-create-form {
-    text-align: center;
-    width: 600px;
-    margin: auto;
-    padding-top: 11em;
-    font-size: 1.15em;
-    padding-right:1em;
+    form {
+      text-align: center;
+      width: 800px;
+      margin: auto;
+      padding-top: 2em;
+      font-size: 1.15em;
+      border: 3px solid $dark-gray;
+      border-width: thick;
+      font-weight: 100;
+      border-radius: 5px;
+      line-height: 1em;
 }
-
-p {
-
+}
+.instructions {
+  padding-top: 10em;
+  font-size: 1.15em;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 h2 {
@@ -16,9 +26,12 @@ h2 {
     font-weight: bold
 }
 
+#trash {
+  cursor: pointer;
+}
 
 .new_competitor {
-  padding-right: 2.65em;
+  padding-right: 2.85em;
 }
 
 
