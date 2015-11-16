@@ -223,14 +223,14 @@ svg {
   font-size: 1.5em; }
 
 .node circle {
-  fill: #000;
+  fill: #fff;
   cursor: pointer; }
 
 .node rect {
   stroke: #ddd;
-  stroke-width: 1;
-  fill: #D0D0D0;
-  cursor: pointer; }
+  stroke-width: 3;
+  cursor: pointer;
+  fill: #fff; }
 
 .node image {
   cursor: pointer; }
@@ -245,11 +245,11 @@ svg {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px; }
+  stroke: #ddd;
+  stroke-width: 3; }
 
 .hyper {
-  color: #000;
+  color: #fff;
   font-size: 20px;
   font-weight: bold; }
 
@@ -456,20 +456,33 @@ header.navigation {
 .all-the-buttons {
   padding-top: 1.2em; }
 
-.bracket-create-form {
+.bracket-create-form form {
   text-align: center;
-  width: 600px;
+  width: 800px;
   margin: auto;
-  padding-top: 11em;
+  padding-top: 2em;
   font-size: 1.15em;
-  padding-right: 1em; }
+  border: 3px solid #333;
+  border-width: thick;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 1em; }
+
+.instructions {
+  padding-top: 10em;
+  font-size: 1.15em;
+  font-family: 'Lato', sans-serif;
+  text-align: center; }
 
 h2 {
   font-size: 1.2em;
   font-weight: bold; }
 
+#trash {
+  cursor: pointer; }
+
 .new_competitor {
-  padding-right: 2.65em; }
+  padding-right: 2.85em; }
 
 .divider {
   width: 10px;

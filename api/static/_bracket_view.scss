@@ -45,15 +45,15 @@ svg {
 }
 
 .node circle {
-  fill: #000;
+  fill: $white;
   cursor: pointer;
 }
 
 .node rect {
   stroke: $light-gray;
-    stroke-width: 1;
-  fill: #D0D0D0;
+    stroke-width: 3;
   cursor: pointer;
+  fill: $white;
  }
 
 .node image {
@@ -73,12 +73,12 @@ svg {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px;
+  stroke: $light-gray;
+  stroke-width: 3;
 }
 
 .hyper {
-    color: $black;
+    color: $white;
     font-size: 20px;
     font-weight: bold;
 }
