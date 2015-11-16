@@ -1,8 +1,8 @@
-form, {
+.bracket-create-form {
     text-align: center;
     width: 600px;
     margin: auto;
-    padding-top: 5em;
+    padding-top: 11em;
     font-size: 1.15em;
     padding-right:1em;
 }
@@ -21,13 +21,6 @@ h2 {
   padding-right: 2.65em;
 }
 
-#result {
-    margin: 10px;
-    background: #eee;
-    padding: 10px;
-    height: 40px;
-    overflow: auto;
-}
 
 .divider{
     width:10px;

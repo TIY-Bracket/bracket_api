@@ -150,7 +150,8 @@ body {
 
 html, body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 h1,
 h2,
@@ -213,11 +214,11 @@ svg {
   left: 0;
   overflow: auto; }
 
-#center {
+#center h3 {
   text-align: center;
   font-color: #333;
   margin: scroll;
-  padding-top: 3em;
+  padding-top: 5em;
   font-family: 'Graduate', sans-serif;
   font-size: 1.5em; }
 
@@ -455,11 +456,11 @@ header.navigation {
 .all-the-buttons {
   padding-top: 1.2em; }
 
-form {
+.bracket-create-form {
   text-align: center;
   width: 600px;
   margin: auto;
-  padding-top: 5em;
+  padding-top: 11em;
   font-size: 1.15em;
   padding-right: 1em; }
 
@@ -469,13 +470,6 @@ h2 {
 
 .new_competitor {
   padding-right: 2.65em; }
-
-#result {
-  margin: 10px;
-  background: #eee;
-  padding: 10px;
-  height: 40px;
-  overflow: auto; }
 
 .divider {
   width: 10px;
