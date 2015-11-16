@@ -228,8 +228,8 @@ svg {
 
 .node rect {
   stroke: #ddd;
-  stroke-width: 1;
-  fill: #D0D0D0;
+  stroke-width: 3;
+  fill: #fff;
   cursor: pointer; }
 
 .node image {
@@ -245,8 +245,8 @@ svg {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 4px; }
+  stroke: #ddd;
+  stroke-width: 3; }
 
 .hyper {
   color: #000;
