@@ -24,8 +24,6 @@ $(document).ready(
                 );
 
                 o["Competitors"] = a;
-                console.log("hereeeee; " + o);
-                console.log(JSON.stringify(o))
                 $.ajaxSetup({
                      beforeSend: function(xhr, settings) {
                          function getCookie(name) {

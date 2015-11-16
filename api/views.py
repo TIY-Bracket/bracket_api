@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, render_to_response, get_object_or
 from django.contrib.auth import logout as auth_logout
 from django.conf import settings
 from django.views import generic
-from api.models import Bracket, Competitor, Position
+from api.models import Bracket, Competitor, Position, Chat
 from twilio.rest import TwilioRestClient
 import requests
 from django.http import HttpResponseRedirect
@@ -38,13 +38,15 @@ def chat_message(request):
         username = str(request.user)
     except:
         username = None
-
-    print(username)
+    message = request.POST.get('message')
+    bracket = Bracket.objects.get(pk=request.POST.get('bracket_id'))
+    user = User.objects.get(pk=request.POST.get('user_id'))
+    chat_message = Chat(text=message, bracket=bracket, user=user)
+    chat_message.save()
     if request.session.get('user') and request.POST.get('message'):
         p.trigger('bracket_chat', 'chat', {
             'message': request.POST.get('message'),
             'user': username,
-            'username': username,
         })
     return HttpResponse('')
 
@@ -102,9 +104,12 @@ def index(request):
 
 def bracket_view(request, bracket_id):
     bracket = Bracket.objects.get(pk=bracket_id)
+    chat = Chat.objects.filter(bracket=bracket_id)
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
-                   "bracket": bracket},)
+                   "bracket": bracket,
+                   'PUSHER_KEY': settings.PUSHER_KEY,
+                   'chats': chat},)
 
 
 def bracket_create(request):

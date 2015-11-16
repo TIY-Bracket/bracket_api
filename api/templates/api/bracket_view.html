@@ -15,6 +15,30 @@
 
 <div id="chartId"></div>
 
+  <div id="messages"><h1>Bracket Chat</h1></div>
+  <table id="chat_table">
+    <tr>
+    <th>User</th>
+    <th>Message</th>
+
+    </tr>
+    {% for chat in chats %}
+      <tr>
+        <td>{{ chat.user }}</a></td>
+        <td>{{ chat.text }}</td>
+      </tr>
+      {% endfor %}
+  </table>
+  {% if request.user.is_authenticated %}
+    <form action='/chat_message/' method="POST">
+        {% csrf_token %}
+        <input type="text" name="message" />
+        <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <input type="submit">
+  </form>
+  {% endif %}
+
 {% endblock %}
 
 {% block scripts %}
@@ -26,7 +50,43 @@
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 {% csrf_token %}
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
+<script type="text/javascript">
+  {% if 1 %}
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) window.console.log(message);
+    };
 
+    // Flash fallback logging - don't include this in production
+    WEB_SOCKET_DEBUG = true;
+  {% endif %}
+
+    var pusher = new Pusher('{{ PUSHER_KEY }}');
+    var channel = pusher.subscribe('bracket_chat');
+    channel.bind('chat', function(data) {
+      var table = document.getElementById("chat_table")
+      var row = table.insertRow(-1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = data.user;
+      cell2.innerHTML = data.message;
+    });
+
+    $(function(){
+        $('form').submit(function(){
+            var $this = $(this);
+            console.log($this)
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+            });
+            this.reset();
+            return false;
+        });
+    });
+</script>
 
   <script>
 

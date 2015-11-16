@@ -25,3 +25,9 @@ class Position(models.Model):
     competitor = models.ForeignKey(Competitor, blank=True, null=True)
     position = models.IntegerField()
     parent = models.CharField(max_length=255)
+
+
+class Chat(models.Model):
+    text = models.TextField()
+    bracket = models.ForeignKey(Bracket)
+    user = models.ForeignKey(User)
