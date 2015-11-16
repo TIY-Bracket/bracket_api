@@ -2,6 +2,21 @@ body {
   background-color: #eee;
 }
 
+#bracket_container {
+  width: 90%;
+}
+
+
+#messages {
+  width: 30%;
+  float: right;
+}
+
+#chat_table {
+  width: 30%;
+  float: right;
+}
+
 g {
   margin-right: auto;
   margin-left: auto;
@@ -20,7 +35,8 @@ svg {
     background-color: #eee;
     display: flex;
     position: relative;
-    width: 100%;
+    width: 66%;
+    float:left;
     padding-bottom: 65%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
