@@ -43,11 +43,10 @@ def chat_message(request):
     user = User.objects.get(pk=request.POST.get('user_id'))
     chat_message = Chat(text=message, bracket=bracket, user=user)
     chat_message.save()
-    if request.session.get('user') and request.POST.get('message'):
-        p.trigger('bracket_chat', 'chat', {
-            'message': request.POST.get('message'),
-            'user': username,
-        })
+    p.trigger('bracket_chat', 'chat', {
+        'message': request.POST.get('message'),
+        'user': username,
+    })
     return HttpResponse('')
 
 
