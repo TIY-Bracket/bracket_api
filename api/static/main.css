@@ -159,7 +159,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-size: 1.15em;
   line-height: 1.2;
   margin: 0 0 0.75em; }
@@ -447,7 +447,7 @@ header.navigation {
     font-family: 'Lato', sans-serif; }
 
 .logo {
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-size: 2em; }
 
 .nav-btn {
@@ -525,7 +525,7 @@ h2 {
 /* This is the main heading that appears on the gallery section */
 .splash-head {
   font-size: 21px;
-  font-family: 'Graduate', cursive;
+  font-family: 'Graduate';
   font-weight: bold;
   color: #333;
   border: 3px solid #333;

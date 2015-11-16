@@ -76,13 +76,15 @@
 {% if request.user.is_authenticated %}
 <div>
   {% if comp_a.user_id %}
-  <p>{{ a }}'s claimed</p>
+  <br>
+  <h4>{{ a }} claimed</h4>
   {% else %}
   <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
   {% endif %}
 
   {% if comp_b.user_id %}
-  <p>{{ b }}'s claimed</p>
+  <br>
+  <h4>{{ b }}'s claimed</h4>
   {% else %}
   <button onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
   {% endif %}
