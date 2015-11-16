@@ -12,6 +12,40 @@ from twilio.rest import TwilioRestClient
 import requests
 from django.http import HttpResponseRedirect
 import phonenumbers
+from django.template import RequestContext
+
+import pusher
+from django.http import HttpResponse
+
+p = pusher.Pusher(
+        app_id='154316',
+        key='bc4d80d7383e11cf31ec',
+        secret='4271888d157f8c02fe3b'
+    )
+
+
+def chat_test(request):
+    if not request.session.get('user'):
+        request.session['user'] = 'user-%s' % request.session.session_key
+    return render_to_response('api/chattest.html', {
+                              'PUSHER_KEY': settings.PUSHER_KEY},
+                              RequestContext(request))
+
+
+def chat_message(request):
+    try:
+        username = str(request.user)
+    except:
+        username = None
+
+    print(username)
+    if request.session.get('user') and request.POST.get('message'):
+        p.trigger('bracket_chat', 'chat', {
+            'message': request.POST.get('message'),
+            'user': username,
+            'username': username,
+        })
+    return HttpResponse('')
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -228,6 +262,14 @@ def caller_validate(phone_number):
 
 
 def matchup(request, bracket_id, parent_id):
+    bracket = Bracket.objects.get(pk=bracket_id)
+    bracket_owner = bracket.owner_id
+    bracket_permissions = True
+    if bracket_owner != request.user.id and bracket_owner is not None:
+        bracket_permissions = False
+    comm_permissions = True
+    if bracket_owner is None:
+        comm_permissions = False
     competitors = Position.objects.filter(bracket_id=bracket_id, parent=parent_id)
     competitor_a = competitors[0]
     competitor_a_id = competitor_a.competitor_id
@@ -252,7 +294,11 @@ def matchup(request, bracket_id, parent_id):
     except:
         competitor_b = 'TBD'
 
-    return render_to_response('api/matchup.html', {'a': competitor_a, 'b': competitor_b,
-                                                   'a_id': competitor_a_id, 'b_id': competitor_b_id,
-                                                   'bracket_id': bracket_id, 'a_email': competitor_a_email,
-                                                   'b_email': competitor_b_email, 'parent_id': parent_id})
+    return render_to_response('api/matchup.html',
+                              {'a': competitor_a, 'b': competitor_b,
+                               'a_id': competitor_a_id, 'b_id': competitor_b_id,
+                               'bracket_id': bracket_id, 'a_email': competitor_a_email,
+                               'b_email': competitor_b_email, 'parent_id': parent_id,
+                               'bracket_permissions': bracket_permissions,
+                               'comm_permissions': comm_permissions},
+                              context_instance=RequestContext(request))
