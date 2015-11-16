@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^add_contact_phone/(?P<competitor_id>.+)', views.add_contact_phone, name="add_contact_phone"),
     url(r'^chat_message/', views.chat_message, name='message'),
     url(r'^profile/(?P<pk>.+)', views.UserListView.as_view(), name="user_profile"),
+    url(r'^claim_competitor/(?P<competitor_id>.+)', views.claim_competitor, name="claim_competitor"),
 ]

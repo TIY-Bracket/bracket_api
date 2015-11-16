@@ -17,7 +17,7 @@
     <div id="win_center">
       <h3> {{ a }} vs. {{ b }} </h3>
     </div>
-
+user- {{ user }} {{ user.id }}
 {% if a_id = None %}
 {% elif b_id = None %}
 {% else %}
@@ -74,8 +74,8 @@
 {% endif %}
 
 <div>
-  <button onclick="#">Claim {{ a }}</button>
-  <button onclick="#">CLaim {{ b }}</button>
+  <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
+  <button onclick="claim_competitor({{b_id}})">CLaim {{ b }}</button>
 </div>
 
     </div>
@@ -99,11 +99,30 @@ function a_b_win(winner) {
             };
 
 
+function claim_competitor(competitor) {
+              var user_id = {{ user.id }}
+              $.ajax({
+                async: false,
+                url: "/" + "claim_competitor/" + competitor,
+                type: "PUT",
+                headers: {
+                    "Authorization": "Basic " + btoa("admin:password")
+                  },
+                data: {
+                    "user_id": user_id
+                    }
+                }).success(
+                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                );
+              };
+
+
 function addEmail(competitor) {
                 var div = document.createElement('div');
                 div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
                 document.getElementById('email_input').appendChild(div);
             }
+
 
 function update_winner(bracket_id, parent_id){
     var winner_id = "";
@@ -124,6 +143,27 @@ function update_winner(bracket_id, parent_id){
                     window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
                     );
                 };
+
+
+function add_contact_email(competitor){
+        var email = $(".comp_email").val();
+        console.log("email : " + email)
+        $("form").submit(
+              $.ajax(
+                    {
+                     async: false,
+                     url: "/add_contact_email/" + competitor,
+                     type: "PUT",
+                     headers: {
+                               "Authorization": "Basic " + btoa("admin:password")
+                                     },
+                    data: {
+                              "email": email
+                                  }
+                      })).success(
+                                window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                              );
+                  };
 
 
 function add_contact_phone(competitor){

@@ -219,6 +219,15 @@ def add_contact_phone(request, competitor_id):
     return Response(request.data)
 
 
+@api_view(['PUT'])
+def claim_competitor(request, competitor_id):
+    user_id = request.data["user_id"]
+    competitor = Competitor.objects.get(pk=competitor_id)
+    competitor.user_id = user_id
+    competitor.save()
+    return Response(request.data)
+
+
 def send_email(email_address, subject, text):
     MAILGUN_KEY = settings.MAILGUN_KEY
 
