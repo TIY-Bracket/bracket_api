@@ -96,14 +96,14 @@
 
 var num_competitors = {{ num_competitors }}
 var adj_height = (num_competitors * 60)
-var adj_width = (num_competitors * 70)
+var adj_width = (num_competitors * 100)
   var margin = {
         top: 10,
-        right: -200,
+        right: 10,
         bottom: 10,
         left: 10
     },
-    width = adj_width - margin.right - margin.left,
+    width = adj_width - margin.left,
     height = adj_height - margin.top - margin.bottom;
 var i = 0;
 var rectSize = 30;
@@ -118,7 +118,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " 2500")
+    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(60 * num_competitors)+ "")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;
