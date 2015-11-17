@@ -16,15 +16,18 @@
 <div class="bracket_container">
   <div id="chartId"></div>
 
-  <div id="messages"><h1>Bracket Chat</h1></div>
+<div id="chat_div">
+  <div id="messages_title"><h1>Bracket Chat</h1></div>
 
   {% if request.user.is_authenticated %}
+  <div id="chat_submit">
     <form action='/chat_message/' method="POST">
         {% csrf_token %}
         <input type="text" name="message" />
         <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
         <input type="hidden" name="user_id" value="{{ user.id }}">
         <input type="submit">
+      </div>
   {% endif %}
 
   <table id="chat_table">
@@ -42,6 +45,8 @@
   </table>
   </form>
 </div>
+</div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -96,7 +101,7 @@
 
 var num_competitors = {{ num_competitors }}
 var adj_height = (num_competitors * 60)
-var adj_width = (num_competitors * 100)
+var adj_width = (num_competitors * 100) //$(window).width()
   var margin = {
         top: 10,
         right: 10,
@@ -118,7 +123,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(60 * num_competitors)+ "")
+    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(80 * num_competitors)+ "")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;

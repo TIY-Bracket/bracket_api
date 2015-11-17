@@ -6,16 +6,30 @@ body {
   width: 90%;
 }
 
-
-#messages {
+#chat_div {
   width: 30%;
   float: right;
+  padding-right: 2%;
+}
+
+#messages_title {
+  text-align: center;
+  // width: 30%;
+  // float: right;
+}
+
+#chat_submit {
+  float: right;
+  padding-right: 20%;
+  // padding-top: 5%;
+  // position: relative;
 }
 
 #chat_table {
-  width: 30%;
-  float: right;
+  // width: 30%;
+  // float: right;
 }
+
 
 g {
   margin-right: auto;
@@ -49,7 +63,9 @@ svg {
     left: 0;
 }
 
-
+#chartId{
+  padding-left: 5em;
+}
 
 #center {
   h3 {
@@ -66,6 +82,10 @@ svg {
     margin-bottom: -.009em;
   }
 }
+}
+
+#messages {
+  font-family: 'Lato', sans-serif;
 }
 
 .node circle {

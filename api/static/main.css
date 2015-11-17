@@ -159,7 +159,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Graduate';
+  font-family: 'Lato', sans-serif;
   font-size: 1.15em;
   line-height: 1.2;
   margin: 0 0 0.75em; }
@@ -192,13 +192,17 @@ body {
 #bracket_container {
   width: 90%; }
 
-#messages {
+#chat_div {
   width: 30%;
-  float: right; }
+  float: right;
+  padding-right: 2%; }
 
-#chat_table {
-  width: 30%;
-  float: right; }
+#messages_title {
+  text-align: center; }
+
+#chat_submit {
+  float: right;
+  padding-right: 20%; }
 
 g {
   margin-right: auto;
@@ -229,6 +233,9 @@ svg {
   top: 0px;
   left: 0; }
 
+#chartId {
+  padding-left: 5em; }
+
 #center h3 {
   text-align: center;
   font-color: #333;
@@ -239,6 +246,9 @@ svg {
   #center h3 h3 {
     font-family: 'Lato', sans-serif;
     margin-bottom: -.009em; }
+
+#messages {
+  font-family: 'Lato', sans-serif; }
 
 .node circle {
   fill: #fff;
@@ -556,7 +566,7 @@ h2 {
 /* This is the main heading that appears on the gallery section */
 .splash-head {
   font-size: 21px;
-  font-family: 'Graduate';
+  font-family: 'Lato', sans-serif;
   font-weight: bold;
   color: #333;
   border: 3px solid #333;
