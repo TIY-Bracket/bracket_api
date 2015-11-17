@@ -4,8 +4,9 @@
     form {
       text-align: center;
       width: 800px;
-      margin: auto;
-      padding-top: 2em;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 1em;
       font-size: 1.15em;
       border: 3px solid $dark-gray;
       border-width: thick;
@@ -14,6 +15,27 @@
       line-height: 1em;
 }
 }
+.form {
+  border: 3px solid $dark-gray;
+  border-width: thick;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1em;
+  border-radius: 5px;
+  width: 800px;
+
+
+}
+
+div#new_competitor {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
 .instructions {
   padding-top: 10em;
   font-size: 1.15em;

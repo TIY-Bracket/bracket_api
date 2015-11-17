@@ -465,14 +465,30 @@ header.navigation {
 .bracket-create-form form {
   text-align: center;
   width: 800px;
-  margin: auto;
-  padding-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1em;
   font-size: 1.15em;
   border: 3px solid #333;
   border-width: thick;
   font-weight: 100;
   border-radius: 5px;
   line-height: 1em; }
+
+.form {
+  border: 3px solid #333;
+  border-width: thick;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1em;
+  border-radius: 5px;
+  width: 800px; }
+
+div#new_competitor {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
 
 .instructions {
   padding-top: 10em;

@@ -5,19 +5,15 @@ $(document).ready(
                 event.preventDefault();
                 var o = {};
                 o["Title"] = $(".bracket-title").val();
-
                 var a = [];
                 $('.new_competitor').each(
                     function(){
-                      // var name = document.getElementById("comp_name").value;
-                      // var email = document.getElementById("comp_email").value;
-                      // var phone = document.getElementById("comp_phone").value;
+                      console.log("jdasoifpjdsaoipfjdsaoipjfdsaoipjdiosapfjidosajfdsaoiidjsaoi;fjds")
+                      console.log("Player: " + $(".comp_name",this).val());
                       var name = $(".comp_name",this).val();
-                      var email = $(".comp_email",this).val();
-                      var phone = $(".comp_phone",this).val();
+                      var contact = $(".comp_contact",this).val();
                       a.push({"name": name,
-                              "email": email,
-                              "phone": phone
+                              "contact": contact,
                       }
                     );
                     }
