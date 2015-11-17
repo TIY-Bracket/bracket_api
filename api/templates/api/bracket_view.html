@@ -31,11 +31,11 @@
   {% endif %}
 
   <table id="chat_table">
-    <tr>
-    <th>User</th>
-    <th>Message</th>
+    {# <tr>#}
+    {# <th></th>#}
+    {# <th>Message</th>#}
 
-    </tr>
+    {# </tr>#}
     {% for chat in chats %}
       <tr>
         <td id="chat_user"><b>{{ chat.user|truncatechars:15 }}: </b></td>
@@ -74,7 +74,7 @@
     var channel = pusher.subscribe('bracket_chat');
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
-      var row = table.insertRow(1);
+      var row = table.insertRow(0);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       cell1.innerHTML = data.user + ": ";
