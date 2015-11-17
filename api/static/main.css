@@ -431,7 +431,12 @@ header.navigation {
   .container h1, .container p, .container input, .container label {
     font-family: 'Lato', sans-serif; }
 
-.logo {
+.logo-color {
+  padding: 0;
+  color: #F89406;
+  margin: -1px; }
+
+.logo, h4 {
   font-family: 'Graduate';
   font-size: 2em; }
 
@@ -507,7 +512,7 @@ h2 {
  * This is the gallery top section that appears on the page.
  */
 .splash-container {
-  background-image: url("./images/arm.jpg");
+  background-image: linear-gradient(to bottom, rgba(65, 131, 215, 0.5) 0%, rgba(65, 131, 215, 0.5) 100%), url("./images/arm.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;

@@ -10,8 +10,13 @@
   }
 
 }
+.logo-color {
+  padding: 0;
+  color: $california;
+  margin: -1px;
+}
 
-.logo {
+.logo, h4{
   font-family: 'Graduate';
   font-size: 2em;
 }
