@@ -195,14 +195,35 @@ body {
 #chat_div {
   width: 30%;
   float: right;
-  padding-right: 2%; }
+  padding-right: 3px; }
 
 #messages_title {
-  text-align: center; }
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2em; }
 
 #chat_submit {
   float: right;
   padding-right: 20%; }
+
+td {
+  border: 5px solid #eee;
+  padding: 0.5rem; }
+
+table {
+  border-spacing: 3rem; }
+
+td:nth-child(1) {
+  background: #40bf80; }
+
+td:nth-child(2) {
+  background: #01aafe; }
+
+#chat_table {
+  table-layout: auto; }
+
+b {
+  font-size: bolder; }
 
 g {
   margin-right: auto;
@@ -240,9 +261,9 @@ svg {
   text-align: center;
   font-color: #333;
   margin: scroll;
-  padding-top: 6em;
+  padding-top: 4em;
   font-family: 'Lato', sans-serif;
-  font-size: 1.5em; }
+  font-size: 2em; }
   #center h3 h3 {
     font-family: 'Lato', sans-serif;
     margin-bottom: -.009em; }

@@ -38,8 +38,8 @@
     </tr>
     {% for chat in chats %}
       <tr>
-        <td>{{ chat.user }}</a></td>
-        <td>{{ chat.text }}</td>
+        <td id="chat_user"><b>{{ chat.user|truncatechars:15 }}: </b></td>
+        <td>{{ chat.text }} <small> - ({{ chat.timestamp | timesince }} ago)</small></td>
       </tr>
       {% endfor %}
   </table>
@@ -77,7 +77,7 @@
       var row = table.insertRow(1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = data.user;
+      cell1.innerHTML = data.user + ": ";
       cell2.innerHTML = data.message;
     });
 
