@@ -289,17 +289,17 @@ header.navigation {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
-    line-height: 80px;
+    line-height: 60px;
     text-decoration: none;
     text-transform: uppercase; }
     header.navigation .logo img {
-      max-height: 80px;
+      max-height: 60px;
       padding: 0.8em 0; }
   header.navigation .navigation-menu-button {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
-    line-height: 80px;
+    line-height: 60px;
     margin: 0;
     padding-right: 1em;
     text-decoration: none; }
@@ -331,7 +331,7 @@ header.navigation {
   header.navigation ul li.nav-link {
     background: #333;
     display: block;
-    line-height: 80px;
+    line-height: 60px;
     overflow: hidden;
     padding-right: 0.8em;
     text-align: right;
@@ -341,7 +341,7 @@ header.navigation {
       header.navigation ul li.nav-link {
         background: transparent;
         display: inline;
-        line-height: 80px;
+        line-height: 60px;
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
@@ -361,7 +361,8 @@ header.navigation {
       padding-right: 0.6em; }
   header.navigation li.more {
     overflow: visible;
-    padding-right: 0; }
+    padding-right: 0;
+    line-height: 0px; }
     header.navigation li.more a {
       padding-right: 0.8em; }
     header.navigation li.more > a {
@@ -393,7 +394,7 @@ header.navigation {
       margin: 0; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul.submenu li {
-          line-height: 61.53846px; }
+          line-height: 46.15385px; }
           header.navigation ul.submenu li:first-child > a {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px; }
@@ -415,7 +416,7 @@ header.navigation {
     background: #505050;
     clear: both;
     display: block;
-    height: 80px;
+    height: 60px;
     padding: 0; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
@@ -424,7 +425,7 @@ header.navigation {
         float: right; } }
 
 .container {
-  padding-top: 5em;
+  padding-top: 4em;
   text-align: center;
   margin: auto; }
   .container h1, .container p, .container input, .container label {
@@ -435,14 +436,19 @@ header.navigation {
   font-size: 2em; }
 
 .nav-btn {
+  padding: 0;
   font-size: 1.2em; }
 
 .all-the-buttons {
-  padding-top: 1.2em; }
+  padding-top: 35em;
+  text-align: center;
+  position: relative;
+  overflow: visible; }
 
 .social-media-share {
-  padding-top: 20em;
-  position: fixed;
+  margin-top: 5em;
+  padding-left: .1em;
+  float: left;
   z-index: 99999999; }
 
 .bracket-create-form form {
@@ -501,8 +507,9 @@ h2 {
  * This is the gallery top section that appears on the page.
  */
 .splash-container {
-  background: #eee;
-  z-index: 1;
+  background-image: url("./images/arm.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
   width: 100%;
@@ -517,41 +524,36 @@ h2 {
   height: 50%;
   margin: auto;
   position: absolute;
-  top: 100px;
+  top: 200px;
   left: 0;
   bottom: 0;
   right: 0;
   text-align: center;
   text-transform: uppercase; }
 
-/* This is the main heading that appears on the gallery section */
 .splash-head {
   font-size: 21px;
   font-weight: bold;
-  color: #333;
-  border: 3px solid #333;
+  color: #fff;
   border-width: thick;
-  padding: 1em 1.6em;
   font-weight: 100;
   border-radius: 5px;
-  line-height: 1em;
   text-transform: none; }
 
-/* This is the subheading that appears on the blue section */
 .splash-subhead {
-  color: #000;
+  color: #fff;
+  opacity: 1;
   letter-spacing: 0.05em;
-  opacity: 0.8;
   text-transform: none; }
 
 /*
- * -- CONTENT STYLES --
- * This represents the content area (everything below the blue section)
- */
+ // * -- CONTENT STYLES --
+ // * This represents the content area (everything below the blue section)
+ // */
 .content-wrapper {
   /* These styles are required for the "scroll-over" effect */
   position: absolute;
-  top: 87%;
+  top: 100%;
   width: 100%;
   min-height: 12%;
   z-index: 2;
@@ -569,30 +571,21 @@ h2 {
   color: white; }
 
 /* This is the class used for the content sub-headers (<h3>) */
-.content-subhead {
-  color: #1f8dd6; }
-
-.content-subhead i {
-  margin-right: 7px; }
-
 /* This is the class used for the dark-background areas. */
 .ribbon {
   background: #2d3e50;
   color: #aaa; }
 
-/*
- * -- TABLET (AND UP) MEDIA QUERIES --
- * On tablets and other medium-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 48em) {
+@media (min-width: 18em) {
   /* We increase the body font size */
   body {
-    font-size: 16px; }
+    font-size: 16px;
+    background-size: c; }
 
   /* We want to give the content area some more padding */
   .content {
-    padding: 1em; }
+    padding: 1em;
+    margin: 0 auto; }
 
   /* We can align the menu header to the left, but float the
   menu items to the right. */
@@ -603,9 +596,9 @@ h2 {
     float: right; }
 
   /* We increase the height of the splash-container */
-  /*    .splash-container {
-          height: 500px;
-      }*/
+  .splash-container {
+    height: 100%; }
+
   /* We decrease the width of the .splash, since we have more width
   to work with */
   .splash {
@@ -618,11 +611,6 @@ h2 {
   /* We remove the border-separator assigned to .l-box-lrg */
   .l-box-lrg {
     border: none; } }
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
 @media (min-width: 78em) {
   /* We increase the header font size even more */
   .splash-head {

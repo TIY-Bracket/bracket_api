@@ -35,9 +35,8 @@
             {% else %}
               <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
                 <ul class="submenu">
-                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter" height= 30 width = 30>
-Twitter</a></li>
-                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="social-media-img" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook" height= 30 width = 30 > Facebook</a></li>
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><i class="fa fa-twitter"></i>Twitter</a></li>
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><i class="fa fa-facebook"></i>Facebook</a></li>
                 </ul>
               </li>
             {% endif %}

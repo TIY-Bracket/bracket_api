@@ -1,31 +1,18 @@
 {% extends "api/base.html" %}
 {% block content %}
-
 <div class="container">
-
+  <div class="splash-container">
+    <div class="splash">
+      <h1 class="splash-head">No Fuss Brackets</h1>
+        <p class="splash-subhead">
+          We'll let you know when it's your turn.<br> All you have to do is show up.
+        </p>
+    </div>
+  </div>
   <div class="all-the-buttons">
     <a class=" button create-bracket-button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a>
-
+  </div>
 </div>
 
-<div class="splash-container">
-  <div class="splash">
-    <h1 class="splash-head">No Fuss Brackets</h1>
-      <p class="splash-subhead">
-        Paper brackets are obsolete.  <br>
-        We'll let you know when it's your turn;<br> all you have to do is show up.
-      </p>
-    <div class="all-the-buttons">
-      <a class=" button create-bracket-button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a>
-</div>
-</div>
-</div>
-
-<div class="social-media-share"
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
 
 {% endblock %}

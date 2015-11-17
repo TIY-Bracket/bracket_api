@@ -1,6 +1,6 @@
 
 .container{
-  padding-top: 5em;
+  padding-top: 4em;
   text-align: center;
   margin:auto;
 
@@ -17,17 +17,22 @@
 }
 
 .nav-btn {
+  padding: 0;
   font-size: 1.2em;
 
 }
 
 .all-the-buttons {
-  padding-top: 1.2em;
+  padding-top: 35em;
+  text-align: center;
+  position: relative;
+  overflow: visible;
 }
 
 .social-media-share {
-  padding-top: 20em;
-  position: fixed;
+  margin-top: 5em;
+  padding-left: .1em;
+  float:left;
   z-index: 99999999;
 }
 // .divider {

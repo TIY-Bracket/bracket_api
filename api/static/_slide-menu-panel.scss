@@ -9,7 +9,7 @@ header.navigation {
   $navigation-background: $dark-gray;
   $navigation-color: transparentize(white, 0.1);
   $navigation-color-hover: white;
-  $navigation-height: 80px;
+  $navigation-height: 60px;
   $navigation-nav-button-background: $action-color;
   $navigation-nav-button-background-hover: lighten($navigation-background, 10%);
   $navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20%);
@@ -175,6 +175,7 @@ header.navigation {
   li.more {
     overflow: visible;
     padding-right: 0;
+    line-height: 0px;
 
     a {
       padding-right: 0.8em;
