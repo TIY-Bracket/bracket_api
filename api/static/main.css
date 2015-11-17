@@ -6,7 +6,7 @@ html {
 
 button, input[type="button"], input[type="reset"], input[type="submit"] {
   appearance: none;
-  background-color: #333;
+  background-color: #F89406;
   border: 0;
   border-radius: 3px;
   color: #fff;
@@ -445,7 +445,7 @@ header.navigation {
   font-size: 1.2em; }
 
 .all-the-buttons {
-  padding-top: 35em;
+  padding-top: 30em;
   text-align: center;
   position: relative;
   overflow: visible; }
