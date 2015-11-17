@@ -115,7 +115,7 @@ def bracket_view(request, bracket_id):
     bracket = Bracket.objects.get(pk=bracket_id)
     positions = Position.objects.filter(bracket=bracket_id)
     num_competitors = int((len(positions)+1)/2)
-    chat = Chat.objects.filter(bracket=bracket_id)
+    chat = Chat.objects.filter(bracket=bracket_id).order_by('-timestamp')
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
                    "bracket": bracket,
