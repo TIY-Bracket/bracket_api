@@ -495,23 +495,41 @@ h2 {
   height: auto;
   display: inline-block; }
 
-#win_center {
+.match_container {
+  width: 100%;
+  overflow: hidden;
   text-align: center;
-  font-family: 'Lato', sans-serif;
-  font-color: #333;
-  font-size: 1em; }
-  #win_center button {
-    margin: 0;
-    padding: 0; }
-  #win_center .email-form {
-    padding: 0; }
-  #win_center h3 {
-    font-family: 'Lato', sans-serif; }
+  background-color: orange; }
 
-.ui-widget-overlay {
-  opacity: .70 !important;
-  filter: Alpha(Opacity=70) !important;
-  background: #323232 !important; }
+.player_a {
+  float: left;
+  width: 45%;
+  background-color: red;
+  text-align: center; }
+
+.player_b {
+  float: left;
+  width: 45%;
+  background-color: blue;
+  text-align: center; }
+
+.vs {
+  float: left;
+  width: 10%;
+  text-align: center;
+  background-color: white; }
+
+.me_button {
+  background-color: purple;
+  line-height: 8px;
+  padding: 12px 13px 11px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 18px;
+  text-decoration: none; }
+  .me_button:hover {
+    background-color: teal; }
 
 /*
  * -- SPLASH STYLES --

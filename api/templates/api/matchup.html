@@ -10,93 +10,49 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{% static 'main.css' %}"/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="{% static 'main.css' %}"/>
-
   </head>
   <body>
-    <div id="win_center">
-      <h3> {{ a }} vs. {{ b }} </h3>
-      test- {{ comp_a.user_id }}
-    </div>
-
-{% if a_id = None %}
-{% elif b_id = None %}
-{% else %}
-    {% if bracket_permissions %}
-    {% if winner = a_id %}
-      <div>
-          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-      </div>
-      {% elif winner = b_id %}
-      <div>
-          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-      </div>
-      {% else %}
-      <div>
-        <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-        <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-      </div>
-      {% endif %}
-      <br>
-      {% if comm_permissions %}
-        <div>
-        {% if a_email %}
-          <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
-        {% elif a_phone %}
-          <a href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
-        {% else %}
-          <input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Contact Info" />
-          <form action="" method="put">
-            {% csrf_token %}
-            <div id="email_input"></div>
-          </form>
+    <div class="match_container">
+      <div class="player_a">
+        <h2>{{ a }}</h2>
+        <!-- Claim user button -->
+        {% if request.user.is_authenticated %}
+          {% if comp_a.user_id %}
+            <!-- Show Nothing if id is assigned -->
+          {% else %}
+            <button class="me_button" onclick="claim_competitor({{a_id}})">This is me!</button>
+          {% endif %}
         {% endif %}
 
-        {% if b_email %}
-        <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
+        <!-- Declar winner button -->
+        {% if bracket_permissions %}
+          {% if winner == None %}
+            <h2> Here </h2>
+          {% elif %}
+            <h2> Other </h2>
+          {% endif %}
+        {% endif %}
 
-        {% elif b_phone %}
-
-        <a href="{% url 'send_text' b_id %}"><button>Text {{ b }}</i></button></a>
-
-        {% else %}
-        <input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />
-        <form action="" method="put">
-            {% csrf_token %}
-        <div id="email_input"></div>
-        </form>
-      {% endif %}
-
-
-      {% endif %}
-    {% endif %}
-{% endif %}
-{% if request.user.is_authenticated %}
-<div>
-  {% if comp_a.user_id %}
-  <br>
-  <h4>{{ a }} claimed</h4>
-  {% else %}
-  <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
-  {% endif %}
-
-  {% if comp_b.user_id %}
-  <br>
-  <h4>{{ b }} claimed</h4>
-  {% else %}
-  <button onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
-  {% endif %}
-
-</div>
-{% endif %}
+      </div>
+      <div class="vs">
+        <h2>vs</h2>
+      </div>
+      <div class="player_b">
+        <h2>{{ b }}</h2>
+          {% if request.user.is_authenticated %}
+            {% if comp_b.user_id %}
+              <!-- Show Nothing -->
+            {% else %}
+              <button class="me_button" onclick="claim_competitor({{b_id}})">This is me!</button>
+            {% endif %}
+          {% endif %}
+      </div>
     </div>
   </body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script>
-
-function a_b_win(winner) {
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    function claim_competitor(competitor) {
+                var user_id = {{ user.id }}
                   $.ajaxSetup({
                      beforeSend: function(xhr, settings) {
                          function getCookie(name) {
@@ -122,192 +78,17 @@ function a_b_win(winner) {
                 });
                 $.ajax({
                   async: false,
-                  url: "/" + "update_bracket/" + {{ bracket_id }} + "/" + winner,
+                  url: "/" + "claim_competitor/" + competitor,
                   type: "PUT",
                   headers: {
                       "Authorization": "Basic " + btoa("admin:password")
-                  }
-                }).success(
-                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-                );
-            };
-
-
-function claim_competitor(competitor) {
-              var user_id = {{ user.id }}
-                $.ajaxSetup({
-                   beforeSend: function(xhr, settings) {
-                       function getCookie(name) {
-                           var cookieValue = null;
-                           if (document.cookie && document.cookie != '') {
-                               var cookies = document.cookie.split(';');
-                               for (var i = 0; i < cookies.length; i++) {
-                                   var cookie = jQuery.trim(cookies[i]);
-                                   // Does this cookie string begin with the name we want?
-                                   if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                       cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                       break;
-                                   }
-                               }
-                           }
-                           return cookieValue;
-                       }
-                       if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                           // Only send the token to relative URLs i.e. locally.
-                           xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                       }
-                   }
-              });
-              $.ajax({
-                async: false,
-                url: "/" + "claim_competitor/" + competitor,
-                type: "PUT",
-                headers: {
-                    "Authorization": "Basic " + btoa("admin:password")
-                  },
-                data: {
-                    "user_id": user_id
-                    }
-                }).success(
-                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-                );
-              };
-
-
-function addEmail(competitor) {
-                var div = document.createElement('div');
-                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
-                document.getElementById('email_input').appendChild(div);
-            }
-
-
-function update_winner(bracket_id, parent_id){
-    var winner_id = "";
-      $.ajaxSetup({
-         beforeSend: function(xhr, settings) {
-             function getCookie(name) {
-                 var cookieValue = null;
-                 if (document.cookie && document.cookie != '') {
-                     var cookies = document.cookie.split(';');
-                     for (var i = 0; i < cookies.length; i++) {
-                         var cookie = jQuery.trim(cookies[i]);
-                         // Does this cookie string begin with the name we want?
-                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                             break;
-                         }
-                     }
-                 }
-                 return cookieValue;
-             }
-             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                 // Only send the token to relative URLs i.e. locally.
-                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-             }
-         }
-    });
-    $.ajax(
-          {
-            async: false,
-            url: "/winner/",
-            type: "PUT",
-            headers: {
-                    "Authorization": "Basic " + btoa("admin:password")
-                     },
-            data: {
-                  "competitor_id": winner_id,
-                  "bracket_id": bracket_id,
-                  "position": parent_id
-                  }
-          }).success(
-                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-            );
-    };
-
-
-function add_contact_email(competitor){
-        var email = $(".comp_email").val();
-      $.ajaxSetup({
-         beforeSend: function(xhr, settings) {
-             function getCookie(name) {
-                 var cookieValue = null;
-                 if (document.cookie && document.cookie != '') {
-                     var cookies = document.cookie.split(';');
-                     for (var i = 0; i < cookies.length; i++) {
-                         var cookie = jQuery.trim(cookies[i]);
-                         // Does this cookie string begin with the name we want?
-                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                             break;
-                         }
-                     }
-                 }
-                 return cookieValue;
-             }
-             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                 // Only send the token to relative URLs i.e. locally.
-                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-             }
-         }
-    });
-    $.ajax(
-          {
-            async: false,
-            url: "/add_contact_email/" + competitor,
-            type: "PUT",
-            headers: {
-                    "Authorization": "Basic " + btoa("admin:password")
-                     },
-            data: {
-                  "email": email
-                  }
-          }).success(
-                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-            );
-    };
-
-
-function add_contact_phone(competitor){
-      var phone = $(".comp_phone").val();
-      $.ajaxSetup({
-         beforeSend: function(xhr, settings) {
-             function getCookie(name) {
-                 var cookieValue = null;
-                 if (document.cookie && document.cookie != '') {
-                     var cookies = document.cookie.split(';');
-                     for (var i = 0; i < cookies.length; i++) {
-                         var cookie = jQuery.trim(cookies[i]);
-                         // Does this cookie string begin with the name we want?
-                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                             break;
-                         }
-                     }
-                 }
-                 return cookieValue;
-             }
-             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                 // Only send the token to relative URLs i.e. locally.
-                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-             }
-         }
-    });
-    $.ajax(
-          {
-            async: false,
-            url: "/add_contact_phone/" + competitor,
-            type: "PUT",
-            headers: {
-                    "Authorization": "Basic " + btoa("admin:password")
-                     },
-            data: {
-                  "phone": phone
-                  }
-          }).success(
-                  window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
-            );
-    };
-
-</script>
-
+                    },
+                  data: {
+                      "user_id": user_id
+                      }
+                  }).success(
+                    window.location = "/matchup/" + {{ bracket_id }} + "/" + {{ parent_id }}
+                  );
+                };
+  </script>
 </html>

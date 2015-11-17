@@ -1,28 +1,68 @@
+// #win_center {
+//   text-align: center;
+//   font-family: 'Lato', sans-serif;
+//   font-color: $dark-gray;
+//   font-size: 1em;
 
-#win_center {
+//   button {
+//     margin: 0;
+//     padding: 0;
+// }
+
+// .email-form {
+//   padding: 0;
+// }
+//   h3 {
+//     font-family: 'Lato', sans-serif;
+
+//   }
+
+// }
+
+
+// .ui-widget-overlay {
+//   opacity: .70 !important;
+//  filter: Alpha(Opacity=70) !important;
+//  background: rgb(50, 50, 50) !important;
+// }
+.match_container {
+  width: 100%;
+  overflow: hidden;
   text-align: center;
-  font-family: 'Lato', sans-serif;
-  font-color: $dark-gray;
-  font-size: 1em;
-
-  button {
-    margin: 0;
-    padding: 0;
+  background-color: orange;
 }
 
-.email-form {
-  padding: 0;
+.player_a {
+  float: left;
+  width: 45%;
+  background-color: red;
+  text-align: center;
 }
-  h3 {
-    font-family: 'Lato', sans-serif;
 
+.player_b {
+  float: left;
+  width: 45%;
+  background-color: blue;
+  text-align: center;
+}
+
+.vs {
+  float: left;
+  width: 10%;
+  text-align: center;
+  background-color: white;
+}
+
+  .me_button {
+      background-color: purple;
+      line-height: 8px;
+      padding: 12px 13px 11px;
+      text-align: center;
+      display: inline-block;
+      margin-top: 5px;
+      margin-bottom: 18px;
+      text-decoration: none;
+      &:hover {
+        background-color: teal;
+      }
   }
-
-}
-
-
-.ui-widget-overlay {
-  opacity: .70 !important;
- filter: Alpha(Opacity=70) !important;
- background: rgb(50, 50, 50) !important;
-}

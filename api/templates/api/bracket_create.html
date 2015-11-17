@@ -38,7 +38,10 @@ function addCompetitor() {
     i++;
     var div = document.createElement('div');
     div.className = "new_competitor"
-    div.innerHTML = '<input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone detectTab" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i id="trash" class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)">';
+    div.innerHTML = '<input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/>
+                     <input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/>
+                     <input type="text" class="comp_phone detectTab" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/>
+                     <div class="divider"></div><i id="trash" class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)">';
     document.getElementById('competitors').appendChild(div);
 }
 
