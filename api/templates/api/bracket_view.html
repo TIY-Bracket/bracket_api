@@ -8,7 +8,6 @@
 
   <div id="center">
     <h3>{{ bracket.title }}</h3>
-    t- {{ num_competitors }}
   </div>
 
 
@@ -18,6 +17,16 @@
   <div id="chartId"></div>
 
   <div id="messages"><h1>Bracket Chat</h1></div>
+
+  {% if request.user.is_authenticated %}
+    <form action='/chat_message/' method="POST">
+        {% csrf_token %}
+        <input type="text" name="message" />
+        <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <input type="submit">
+  {% endif %}
+
   <table id="chat_table">
     <tr>
     <th>User</th>
@@ -31,15 +40,7 @@
       </tr>
       {% endfor %}
   </table>
-  {% if request.user.is_authenticated %}
-    <form action='/chat_message/' method="POST">
-        {% csrf_token %}
-        <input type="text" name="message" />
-        <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
-        <input type="hidden" name="user_id" value="{{ user.id }}">
-        <input type="submit">
   </form>
-  {% endif %}
 </div>
 {% endblock %}
 
@@ -68,7 +69,7 @@
     var channel = pusher.subscribe('bracket_chat');
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
-      var row = table.insertRow(-1);
+      var row = table.insertRow(1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       cell1.innerHTML = data.user;
@@ -94,15 +95,15 @@
 
 
 var num_competitors = {{ num_competitors }}
-var adj_height = (num_competitors * 100)
-var adj_width = (num_competitors * 200)
+var adj_height = (num_competitors * 60)
+var adj_width = (num_competitors * 70)
   var margin = {
         top: 10,
-        right: 3000/num_competitors,
+        right: -200,
         bottom: 10,
         left: 10
     },
-    width = 1300 - margin.right - margin.left,
+    width = adj_width - margin.right - margin.left,
     height = adj_height - margin.top - margin.bottom;
 var i = 0;
 var rectSize = 30;
@@ -117,7 +118,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " +adj_width+ " 800")
+    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " 2500")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;

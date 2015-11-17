@@ -209,7 +209,8 @@ label {
   display: block; }
 
 svg {
-  overflow: auto; }
+  overflow: auto;
+  float: right; }
 
 .svg-container {
   background-color: #eee;
@@ -220,14 +221,13 @@ svg {
   padding-bottom: 65%;
   /* aspect ratio */
   vertical-align: top;
-  overflow: hidden; }
+  overflow: auto; }
 
 .svg-content-responsive {
-  display: inline-block;
+  display: flex;
   position: absolute;
   top: 0px;
-  left: 0;
-  overflow: auto; }
+  left: 0; }
 
 #center h3 {
   text-align: center;

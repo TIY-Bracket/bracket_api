@@ -29,6 +29,7 @@ label {
 
 svg {
   overflow: auto;
+  float:right;
 }
 
 .svg-container {
@@ -39,14 +40,13 @@ svg {
     float:left;
     padding-bottom: 65%; /* aspect ratio */
     vertical-align: top;
-    overflow: hidden;
+    overflow: auto;
 }
 .svg-content-responsive {
-    display: inline-block;
+    display: flex;
     position: absolute;
     top: 0px;
     left: 0;
-    overflow: auto;
 }
 
 
