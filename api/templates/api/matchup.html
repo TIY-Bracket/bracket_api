@@ -25,12 +25,10 @@
     {% if bracket_permissions %}
     {% if winner = a_id %}
       <div>
-          <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
           <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
       </div>
       {% elif winner = b_id %}
       <div>
-          <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
           <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
       </div>
       {% else %}
