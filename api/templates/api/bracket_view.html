@@ -63,7 +63,7 @@
   {% endif %}
 
     var pusher = new Pusher('{{ PUSHER_KEY }}');
-    var channel = pusher.subscribe('bracket_chat');
+    var channel = pusher.subscribe('bracket_chat'+{{ bracket_id }});
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
       var row = table.insertRow(-1);
