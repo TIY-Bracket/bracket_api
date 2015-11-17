@@ -266,9 +266,9 @@ svg {
 
 header.navigation {
   position: fixed;
+  margin-bottom: 0;
   background-color: #333;
   border-bottom: 1px solid #1a1a1a;
-  min-height: 90px;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -289,17 +289,17 @@ header.navigation {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
-    line-height: 90px;
+    line-height: 80px;
     text-decoration: none;
     text-transform: uppercase; }
     header.navigation .logo img {
-      max-height: 90px;
+      max-height: 80px;
       padding: 0.8em 0; }
   header.navigation .navigation-menu-button {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
-    line-height: 90px;
+    line-height: 80px;
     margin: 0;
     padding-right: 1em;
     text-decoration: none; }
@@ -311,7 +311,6 @@ header.navigation {
   header.navigation nav {
     float: right;
     padding: 0;
-    min-height: 90px;
     z-index: 9999999; }
     @media screen and (min-width: 53.75em) {
       header.navigation nav {
@@ -332,7 +331,7 @@ header.navigation {
   header.navigation ul li.nav-link {
     background: #333;
     display: block;
-    line-height: 90px;
+    line-height: 80px;
     overflow: hidden;
     padding-right: 0.8em;
     text-align: right;
@@ -342,7 +341,7 @@ header.navigation {
       header.navigation ul li.nav-link {
         background: transparent;
         display: inline;
-        line-height: 90px;
+        line-height: 80px;
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
@@ -394,7 +393,7 @@ header.navigation {
       margin: 0; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul.submenu li {
-          line-height: 69.23077px; }
+          line-height: 61.53846px; }
           header.navigation ul.submenu li:first-child > a {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px; }
@@ -416,7 +415,7 @@ header.navigation {
     background: #505050;
     clear: both;
     display: block;
-    height: 90px;
+    height: 80px;
     padding: 0; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
