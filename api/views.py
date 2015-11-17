@@ -43,7 +43,8 @@ def chat_message(request):
     user = User.objects.get(pk=request.POST.get('user_id'))
     chat_message = Chat(text=message, bracket=bracket, user=user)
     chat_message.save()
-    p.trigger('bracket_chat', 'chat', {
+    channel = 'bracket_chat' + str(bracket.id)
+    p.trigger(channel, 'chat', {
         'message': request.POST.get('message'),
         'user': username,
     })
