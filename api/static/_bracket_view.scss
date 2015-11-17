@@ -2,6 +2,57 @@ body {
   background-color: #eee;
 }
 
+#bracket_container {
+  width: 90%;
+}
+
+#chat_div {
+  width: 30%;
+  float: right;
+  padding-right: 3px;
+}
+
+#messages_title {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2em;
+  // width: 30%;
+  // float: right;
+}
+
+#chat_submit {
+  float: right;
+  padding-right: 20%;
+  // padding-top: 5%;
+  // position: relative;
+}
+
+td {
+  border: 5px solid #eee;
+  padding: 0.5rem;
+}
+
+table {
+  border-spacing: 3rem;
+}
+
+td:nth-child(1) { background: hsl(150, 50%, 50%); }
+td:nth-child(2) { background: hsl(200, 99%, 50%); }
+
+#chat_table {
+  // width: 30%;
+  // float: right;
+  table-layout: auto;
+}
+
+// #chat_user {
+//     column-length: 10px;
+// }
+
+b {
+  font-size: bolder;
+}
+
 g {
   margin-right: auto;
   margin-left: auto;
@@ -14,35 +65,38 @@ label {
 
 svg {
   overflow: auto;
+  float:right;
 }
 
 .svg-container {
     background-color: #eee;
     display: flex;
     position: relative;
-    width: 100%;
+    width: 66%;
+    float:left;
     padding-bottom: 65%; /* aspect ratio */
     vertical-align: top;
-    overflow: hidden;
+    overflow: auto;
 }
 .svg-content-responsive {
-    display: inline-block;
+    display: flex;
     position: absolute;
     top: 0px;
     left: 0;
-    overflow: auto;
 }
 
-
+#chartId{
+  padding-left: 5em;
+}
 
 #center {
   h3 {
   text-align: center;
   font-color: $dark-gray;
   margin: scroll;
-  padding-top: 3em;
+  padding-top: 4em;
   font-family: 'Lato', sans-serif;
-  font-size: 1.5em;
+  font-size: 2em;
 
 
   h3 {
@@ -51,6 +105,11 @@ svg {
   }
 }
 }
+
+#messages {
+  font-family: 'Lato', sans-serif;
+}
+
 
 .node circle {
   fill: $white;

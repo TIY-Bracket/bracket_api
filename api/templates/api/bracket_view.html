@@ -13,31 +13,39 @@
 
 <div id ="modaldiv"></div>
 
-<div id="chartId"></div>
+<div class="bracket_container">
+  <div id="chartId"></div>
 
-  <div id="messages"><h1>Bracket Chat</h1></div>
-  <table id="chat_table">
-    <tr>
-    <th>User</th>
-    <th>Message</th>
+<div id="chat_div">
+  <div id="messages_title"><h1>Bracket Chat</h1></div>
 
-    </tr>
-    {% for chat in chats %}
-      <tr>
-        <td>{{ chat.user }}</a></td>
-        <td>{{ chat.text }}</td>
-      </tr>
-      {% endfor %}
-  </table>
   {% if request.user.is_authenticated %}
+  <div id="chat_submit">
     <form action='/chat_message/' method="POST">
         {% csrf_token %}
         <input type="text" name="message" />
         <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
         <input type="hidden" name="user_id" value="{{ user.id }}">
         <input type="submit">
-  </form>
+      </div>
   {% endif %}
+
+  <table id="chat_table">
+    {# <tr>#}
+    {# <th></th>#}
+    {# <th>Message</th>#}
+
+    {# </tr>#}
+    {% for chat in chats %}
+      <tr>
+        <td id="chat_user"><b>{{ chat.user|truncatechars:15 }}: </b></td>
+        <td>{{ chat.text }} <small> - ({{ chat.timestamp | timesince }} ago)</small></td>
+      </tr>
+      {% endfor %}
+  </table>
+  </form>
+</div>
+</div>
 
 {% endblock %}
 
@@ -66,10 +74,10 @@
     var channel = pusher.subscribe('bracket_chat'+{{ bracket_id }});
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
-      var row = table.insertRow(-1);
+      var row = table.insertRow(0);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = data.user;
+      cell1.innerHTML = data.user + ": ";
       cell2.innerHTML = data.message;
     });
 
@@ -91,15 +99,17 @@
   <script>
 
 
-
+var num_competitors = {{ num_competitors }}
+var adj_height = (num_competitors * 60)
+var adj_width = (num_competitors * 100) //$(window).width()
   var margin = {
         top: 10,
-        right: ($(window).width() / 5),
+        right: 10,
         bottom: 10,
         left: 10
     },
-    width = 1300 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = adj_width - margin.left,
+    height = adj_height - margin.top - margin.bottom;
 var i = 0;
 var rectSize = 30;
 var tree = d3.layout.tree().size([height, width]);
@@ -113,7 +123,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1300 800")
+    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(80 * num_competitors)+ "")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;

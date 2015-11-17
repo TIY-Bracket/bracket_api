@@ -114,10 +114,13 @@ def index(request):
 
 def bracket_view(request, bracket_id):
     bracket = Bracket.objects.get(pk=bracket_id)
-    chat = Chat.objects.filter(bracket=bracket_id)
+    positions = Position.objects.filter(bracket=bracket_id)
+    num_competitors = int((len(positions)+1)/2)
+    chat = Chat.objects.filter(bracket=bracket_id).order_by('-timestamp')
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
                    "bracket": bracket,
+                   "num_competitors": num_competitors,
                    'PUSHER_KEY': settings.PUSHER_KEY,
                    'chats': chat},)
 
@@ -290,7 +293,7 @@ def five_min_text(request, competitor_id):
     print("here")
     print(position.position)
     bracket_id = str(position.bracket_id)
-    comp_position = str(position.position)
+    position = str(position.position)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
@@ -298,6 +301,8 @@ def five_min_text(request, competitor_id):
     message = client.messages.create(body="hello world",
                                      to=phone_number,
                                      from_="+19196959988",)
+
+    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
 
 
 def caller_validate(phone_number):

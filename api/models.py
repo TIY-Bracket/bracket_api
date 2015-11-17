@@ -32,3 +32,4 @@ class Chat(models.Model):
     text = models.TextField()
     bracket = models.ForeignKey(Bracket)
     user = models.ForeignKey(User)
+    timestamp = models.DateTimeField(auto_now_add=True)
