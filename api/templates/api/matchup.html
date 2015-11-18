@@ -16,7 +16,7 @@
   <body>
 <div class="matchup_cont">
     <div id="win_center">
-      <h3> {{ a }} vs. {{ b }} </h3>
+      <h2> {{ a }} <small>vs.</small> {{ b }} </h2>
     </div>
 
 {% if a_id = None %}
@@ -31,17 +31,17 @@
 
 <div class="a_button_div">
     {% if winner = None %}
-<button class="modal_button_a" onclick="a_b_win({{a_id}})">{{ a|truncatechars:9 }} wins!</button>
+<button class="modal_button_a" onclick="a_b_win({{a_id}})">{{ a|truncatechars:8 }} wins!</button>
 <br>
     {% endif %}
   {% if comm_permissions %}
     {% if a_email %}
     <br>
-<a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Email {{ a|truncatechars:9 }}</i></button></a>
+<a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Email {{ a|truncatechars:8 }}</i></button></a>
 <br>
     {% elif a_phone %}
     <br>
-<a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Text {{ a|truncatechars:9 }}</i></button></a>
+<a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Text {{ a|truncatechars:8 }}</i></button></a>
 <br>
     {% else %}
     <br>
@@ -55,24 +55,24 @@
   {% endif %}
     {% if comp_a.user_id = None %}
     <br>
-      <button class="modal_button_a"  onclick="claim_competitor({{a_id}})">Claim {{ a|truncatechars:9 }}</button>
+      <button class="modal_button_a"  onclick="claim_competitor({{a_id}})">Claim {{ a|truncatechars:8 }}</button>
     {% endif %}
 </div>
 
 <div class="b_button_div">
 {% if bracket_permissions %}
   {% if winner = None %}
-<button class="modal_button_b" onclick="a_b_win({{b_id}})">{{ b|truncatechars:9 }} wins!</button>
+<button class="modal_button_b" onclick="a_b_win({{b_id}})">{{ b|truncatechars:8 }} wins!</button>
 <br>
 {% endif %}
 {% if comm_permissions %}
 {% if b_email %}
 <br>
-<a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Email {{ b|truncatechars:9 }}</button></a>
+<a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Email {{ b|truncatechars:8 }}</button></a>
 <br>
 {% elif b_phone %}
 <br>
-<a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Text {{ b|truncatechars:9 }}</button></a>
+<a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Text {{ b|truncatechars:8 }}</button></a>
 <br>
 {% else %}
 <br>
@@ -87,7 +87,7 @@
 {% endif %}
 {% if comp_b.user_id = None %}
 <br>
-  <button class="modal_button_b"  onclick="claim_competitor({{b_id}})">Claim {{ b|truncatechars:9 }}</button>
+  <button class="modal_button_b"  onclick="claim_competitor({{b_id}})">Claim {{ b|truncatechars:8 }}</button>
 {% endif %}
 </div>
 {% endif %}
