@@ -463,7 +463,7 @@ header.navigation {
             border-bottom-right-radius: 3px; } }
       header.navigation ul.submenu li a {
         background-color: #244672;
-        display: inline-block;
+        display: block;
         text-align: right;
         width: 100%; }
         @media screen and (min-width: 53.75em) {
@@ -472,6 +472,18 @@ header.navigation {
             padding-left: 0em;
             text-align: left;
             width: 12em; } }
+  header.navigation .nav-btn .fa-stack .fa {
+    color: #55ACEE; }
+  header.navigation .fa-stack .fa.fa-square {
+    color: #FFFFFF; }
+  header.navigation .nav-btn-1 .fa-stack .fa {
+    color: #3B5998; }
+  header.navigation .fa-stack .fa.fa-square {
+    color: #FFFFFF; }
+  header.navigation .nav-btn-1 {
+    font-size: 1.15em; }
+  header.navigation .nav-btn {
+    font-size: 1.15em; }
   header.navigation .navigation-tools {
     background: #505050;
     clear: both;
