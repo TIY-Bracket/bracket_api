@@ -18,32 +18,34 @@
 
 <div id="chat_div">
   <div id="messages_title"><h1>Bracket Chat</h1></div>
-
-  {% if request.user.is_authenticated %}
-  <div id="chat_submit">
-    <form action='/chat_message/' method="POST">
-        {% csrf_token %}
-        <input type="text" name="message" />
-        <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
-        <input type="hidden" name="user_id" value="{{ user.id }}">
-        <input type="submit">
-      </div>
-  {% endif %}
-
+  <div class="scroll_box" id="scroll_box">
   <table id="chat_table">
     {# <tr>#}
     {# <th></th>#}
     {# <th>Message</th>#}
 
     {# </tr>#}
+
+
     {% for chat in chats %}
       <tr>
-        <td id="chat_user"><b>{{ chat.user|truncatechars:15 }}: </b></td>
-        <td>{{ chat.text }} <small> - ({{ chat.timestamp | timesince }} ago)</small></td>
+        <td id="chat_user"><i class='fa fa-user fa-3x'></i></td>
+        <td><span id='bold'>{{ chat.user|truncatechars:15 }}</span> says: <br>{{ chat.text }}</td>
       </tr>
       {% endfor %}
   </table>
   </form>
+  </div>
+  {% if request.user.is_authenticated %}
+  <div id="chat_submit">
+    <form action='/chat_message/' method="POST">
+        {% csrf_token %}
+        <input id="chat_input" type="text" name="message" />
+        <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <input type="submit" onclick="updateScroll()">
+      </div>
+  {% endif %}
 </div>
 </div>
 
@@ -74,11 +76,11 @@
     var channel = pusher.subscribe('bracket_chat'+{{ bracket_id }});
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
-      var row = table.insertRow(0);
+      var row = table.insertRow(-1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = data.user + ": ";
-      cell2.innerHTML = data.message;
+      cell1.innerHTML = "<i class='fa fa-user fa-3x'></i>";
+      cell2.innerHTML = "<span id='bold'>" +data.user + " </span></b>says:<br>" + data.message;
     });
 
     $(function(){
@@ -98,6 +100,31 @@
 
   <script>
 
+setInterval("updateScroll",1000);
+
+  // function updateScroll(){
+  //     var element = document.getElementById("scroll_box");
+  //     console.log("hehrhehreherh")
+  //     element.scrollTop = element.scrollHeight;
+  // }
+
+  function updateScroll(){
+      $(".scroll_box").prop({ scrollTop: $(".scroll_box").prop("scrollHeight") });
+  }
+
+
+  // $('.submit').keyup(function(e) {
+  //     if (e.keyCode == 13) {
+  //         // $cont.append('<p>' + $(this).val() + '</p>');
+  //         $cont[0].scrollTop = $cont[0].scrollHeight;
+  //         $(this).val('');
+  //     }
+  // })
+  // .focus();
+
+
+
+ $(".scroll_box").prop({ scrollTop: $(".scroll_box").prop("scrollHeight") });
 
 var num_competitors = {{ num_competitors }}
 var adj_height = (num_competitors * 60)
