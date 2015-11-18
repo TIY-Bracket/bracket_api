@@ -43,7 +43,7 @@
         <input id="chat_input" type="text" name="message" />
         <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
         <input type="hidden" name="user_id" value="{{ user.id }}">
-        <input type="submit" onclick="updateScroll()" value="Send">
+        <input type="submit" onclick="setTimeout(updateScroll, 1000)" value="Send">
       </div>
   {% endif %}
 </div>
@@ -220,7 +220,7 @@ function update(source) {
         .attr("y", -rectSize / 2)
         .attr("width", rectSize * 4)
         .attr("height", rectSize)
-        .attr("class", "hyper").on("click", clack);
+        .attr("class", "hyper").on("click", clack).text("\uf144");
 
 
 
