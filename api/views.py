@@ -262,13 +262,16 @@ def five_min_email(request, competitor_id):
     bracket_id = position.bracket_id
     position = position.parent
 
+    email_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
+    email_message = "You're match starts in 5 minutes. \n {}".format(email_url)
+
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
         auth=("api", MAILGUN_KEY),
         data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
               "to": email_address,
               'subject': 'versus.live: Your matchup starts in 5 mins',
-              'text': 'Your matchup starts in 5 minutes! Good luck!'})
+              'text': email_message})
 
     return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + position)
 
@@ -291,7 +294,7 @@ def five_min_text(request, competitor_id):
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
-    sms_url = "https://tiy-bracket.herokuapp.com/view/" + bracket_id
+    sms_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
     sms_message = "You're match starts in 5 minutes. \n {}".format(sms_url)
 
     message = client.messages.create(body=sms_message ,
