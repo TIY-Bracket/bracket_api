@@ -43,7 +43,8 @@ def chat_message(request):
     user = User.objects.get(pk=request.POST.get('user_id'))
     chat_message = Chat(text=message, bracket=bracket, user=user)
     chat_message.save()
-    p.trigger('bracket_chat', 'chat', {
+    channel = 'bracket_chat' + str(bracket.id)
+    p.trigger(channel, 'chat', {
         'message': request.POST.get('message'),
         'user': username,
     })
@@ -113,10 +114,13 @@ def index(request):
 
 def bracket_view(request, bracket_id):
     bracket = Bracket.objects.get(pk=bracket_id)
-    chat = Chat.objects.filter(bracket=bracket_id)
+    positions = Position.objects.filter(bracket=bracket_id)
+    num_competitors = int((len(positions)+1)/2)
+    chat = Chat.objects.filter(bracket=bracket_id).order_by('timestamp')
     return render(request, 'api/bracket_view.html',
                   {"bracket_id": bracket_id,
                    "bracket": bracket,
+                   "num_competitors": num_competitors,
                    'PUSHER_KEY': settings.PUSHER_KEY,
                    'chats': chat},)
 
@@ -288,9 +292,9 @@ def five_min_text(request, competitor_id):
     number = str(competitor.phone)
     phone_number = "+1"+number
     position = position_data[0]
+
     bracket_id = position.bracket_id
     position = position.parent
-    print(request)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)

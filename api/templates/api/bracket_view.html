@@ -13,31 +13,41 @@
 
 <div id ="modaldiv"></div>
 
-<div id="chartId"></div>
+<div class="bracket_container">
+  <div id="chartId"></div>
 
-  <div id="messages"><h1>Bracket Chat</h1></div>
+<div id="chat_div">
+  <div id="messages_title"><h1>Bracket Chat</h1></div>
+  <div class="scroll_box" id="scroll_box">
   <table id="chat_table">
-    <tr>
-    <th>User</th>
-    <th>Message</th>
+    {# <tr>#}
+    {# <th></th>#}
+    {# <th>Message</th>#}
 
-    </tr>
+    {# </tr>#}
+
+
     {% for chat in chats %}
       <tr>
-        <td>{{ chat.user }}</a></td>
-        <td>{{ chat.text }}</td>
+        <td id="chat_user"><i class='fa fa-user fa-3x'></i></td>
+        <td><span id='bold'>{{ chat.user|truncatechars:15 }}</span> says: <br>{{ chat.text }}</td>
       </tr>
       {% endfor %}
   </table>
+  </form>
+  </div>
   {% if request.user.is_authenticated %}
+  <div id="chat_submit">
     <form action='/chat_message/' method="POST">
         {% csrf_token %}
-        <input type="text" name="message" />
+        <input id="chat_input" type="text" name="message" />
         <input type="hidden" name="bracket_id" value="{{ bracket_id }}">
         <input type="hidden" name="user_id" value="{{ user.id }}">
-        <input type="submit">
-  </form>
+        <input type="submit" onclick="setTimeout(updateScroll, 1000)" value="Send">
+      </div>
   {% endif %}
+</div>
+</div>
 
 {% endblock %}
 
@@ -63,14 +73,14 @@
   {% endif %}
 
     var pusher = new Pusher('{{ PUSHER_KEY }}');
-    var channel = pusher.subscribe('bracket_chat');
+    var channel = pusher.subscribe('bracket_chat'+{{ bracket_id }});
     channel.bind('chat', function(data) {
       var table = document.getElementById("chat_table")
       var row = table.insertRow(-1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = data.user;
-      cell2.innerHTML = data.message;
+      cell1.innerHTML = "<i class='fa fa-user fa-3x'></i>";
+      cell2.innerHTML = "<span id='bold'>" +data.user + " </span></b>says:<br>" + data.message;
     });
 
     $(function(){
@@ -90,16 +100,43 @@
 
   <script>
 
+setInterval("updateScroll",1000);
+
+  // function updateScroll(){
+  //     var element = document.getElementById("scroll_box");
+  //     console.log("hehrhehreherh")
+  //     element.scrollTop = element.scrollHeight;
+  // }
+
+  function updateScroll(){
+      $(".scroll_box").prop({ scrollTop: $(".scroll_box").prop("scrollHeight") });
+  }
 
 
+  // $('.submit').keyup(function(e) {
+  //     if (e.keyCode == 13) {
+  //         // $cont.append('<p>' + $(this).val() + '</p>');
+  //         $cont[0].scrollTop = $cont[0].scrollHeight;
+  //         $(this).val('');
+  //     }
+  // })
+  // .focus();
+
+
+
+ $(".scroll_box").prop({ scrollTop: $(".scroll_box").prop("scrollHeight") });
+
+var num_competitors = {{ num_competitors }}
+var adj_height = (num_competitors * 60)
+var adj_width = (num_competitors * 100) //$(window).width()
   var margin = {
         top: 10,
-        right: ($(window).width() / 5),
+        right: 10,
         bottom: 10,
         left: 10
     },
-    width = 1300 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = adj_width - margin.left,
+    height = adj_height - margin.top - margin.bottom;
 var i = 0;
 var rectSize = 30;
 var tree = d3.layout.tree().size([height, width]);
@@ -113,7 +150,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1300 800")
+    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(80 * num_competitors)+ "")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;
@@ -183,7 +220,7 @@ function update(source) {
         .attr("y", -rectSize / 2)
         .attr("width", rectSize * 4)
         .attr("height", rectSize)
-        .attr("class", "hyper").on("click", clack);
+        .attr("class", "hyper").on("click", clack).text("\uf144");
 
 
 
@@ -211,10 +248,10 @@ function update(source) {
 
 
 function opendialog(page) {
+    $("#dialog:ui-dialog").dialog("destroy");
     var $dialog = $('#modaldiv')
         .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
         .dialog({
-            title: "Matchup",
             modal: true,
             autoOpen: false,
             dialogClass: 'dialog_fixed,ui-widget-header',
@@ -224,11 +261,15 @@ function opendialog(page) {
             minWidth: 300,
             minHeight: 300,
             draggable: false,
+            open: function(){
+            jQuery('.ui-widget-overlay').bind('click',function(){
+                jQuery('#modaldiv').dialog('close');
+            })}
             // close: function () { $(this).remove(); },
         });
     $dialog.dialog('open');
-
-}
+    $(".ui-dialog-titlebar").hide();
+};
 
 
 function clack(d) {
