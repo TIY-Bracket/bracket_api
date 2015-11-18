@@ -1,0 +1,98 @@
+{# {% extends "api/base.html" %}
+{% block content %}
+
+<div id="profile_center"><h2>{{ view.user.username }}</h2></div>
+{% if user == view.user %}
+{% if brackets %}
+<br>
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Date Created</th>
+<th></th>
+
+</tr>
+{% for bracket in brackets %}
+  <tr>
+    <td><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
+    <td><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td><a href="{% url 'bracket_view' bracket.id %}"><i class="fa fa-link"></i></a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% else %}
+<br><br>
+<div id="no_brack"> <h6>You don't have any brackets yet.</h6></div>
+<br>
+<div id="no_brack"><a class=" button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a></div>
+<br>
+{% endif %}
+{% endif %}
+
+
+{% endblock %}
+
+{% extends "api/base.html" %}
+{% block content %}
+
+<div id="profile_center"><h2>{{ view.user.username }}</h2>
+{% if user == view.user %}
+{% if brackets %}
+<br>
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Date Created</th>
+<th>Brackets Created</th>
+</tr>
+{% for bracket in brackets %}
+  <tr>
+    <td><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
+    <td><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td><a href="{% url 'bracket_view' bracket.id %}"><i class="fa fa-link"></i></a></td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+
+
+<div id="profile_center-comp"><h2>{{ view.user.username }}</h2>
+{% if user == view.user %}
+{% if competitors %}
+<br>
+<table class="table-1">
+<tr>
+<th>Title</th>
+<th>Bracket</th>
+<th>Date Created</th>
+<th>Brackets Competed In</th>
+
+</tr>
+{% for competitor in competitors %}
+  <tr>
+    <td><a href="#">{{ competitor.title|truncatechars:150}}</a></td>
+    <td><a href="#">{{ competitor.bracket.title|truncatechars:150}}</a></td>
+    <td><small>{{ competitor.timestamp}} ({{ competitor.timestamp | timesince }} ago)</small></td>
+    <td><a href="#"><i class="fa fa-link"></i></a></td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+
+
+{% else %}
+
+<br><br>
+<div id="no_brack"> <h6>You don't have any brackets yet.</h6></div>
+<br>
+<div id="no_brack"><a class=" button"  href="{% url "bracket_create" %}"><button type="button">Create a Bracket</button></a></div>
+<br>
+{% endif %}
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% endblock %}
+#}
