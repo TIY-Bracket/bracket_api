@@ -5,18 +5,16 @@
 {% if user == view.user %}
 {% if brackets %}
 <br>
-<table class="table">
+<table class="table comp_table">
 <tr>
-<th>Title</th>
+<th>Bracket Title</th>
 <th>Date Created</th>
-<th></th>
 
 </tr>
 {% for bracket in brackets %}
   <tr>
-    <td><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
-    <td><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
-    <td><a href="{% url 'bracket_view' bracket.id %}"><i class="fa fa-link"></i></a></td>
+    <td class="comp_td" id="comp_list"><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
+    <td class="comp_td" id="comp_list"><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
   </tr>
   {% endfor %}
 </table>

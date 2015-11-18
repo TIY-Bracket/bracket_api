@@ -13,3 +13,30 @@
   text-align: center;
   font-size: 1.5em;
 }
+
+td.comp_td {
+  // border: 0px solid #black;
+  border-width: 1px 0;
+  border-color: LightGray;
+  border-style: solid;
+  padding: 0rem;
+  border-radius: 0px;
+  height: 3em;
+}
+
+table.comp_table {
+  border-spacing: 0rem;
+}
+
+#comp_list:nth-child(1) {
+  width: 10%;
+  // background: #C4C4C4;
+  background: #eee;
+  color: black;
+
+ }
+#comp_list:nth-child(2) {
+  background: #eee;
+  font-weight: normal;
+  color: black;
+}
