@@ -317,8 +317,8 @@ svg {
 header.navigation {
   position: fixed;
   margin-bottom: 0;
-  background-color: #333;
-  border-bottom: 1px solid #1a1a1a;
+  background-color: #1e406c;
+  border-bottom: 1px solid #132844;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -379,7 +379,7 @@ header.navigation {
         display: inline;
         padding: 0; } }
   header.navigation ul li.nav-link {
-    background: #333;
+    background: #1e406c;
     display: block;
     line-height: 60px;
     overflow: hidden;
@@ -452,13 +452,13 @@ header.navigation {
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px; } }
       header.navigation ul.submenu li a {
-        background-color: #333;
+        background-color: #1e406c;
         display: block;
         text-align: right;
         width: 100%; }
         @media screen and (min-width: 53.75em) {
           header.navigation ul.submenu li a {
-            background-color: #333;
+            background-color: #1e406c;
             padding-left: 0em;
             text-align: left;
             width: 12em; } }
