@@ -155,52 +155,39 @@ var svg = d3.select("div#chartId")
     .classed("svg-content-responsive", true);
 var input_data;
 var bracket_id = {{ bracket_id }};
-d3.json("{% url "get_bracket" bracket_id %}",
-    function(data) {
-        input_data = data
-        var dataMap = input_data.reduce(function(map, node) {
-            map[node.position] = node;
-            return map;
-        },{});
-        var bracketConvert = [];
-        input_data.forEach(function(node) {
-            var parent = dataMap[node.parent];
-            if (parent) {
-                (parent.children || (parent.children = []))
-                .push(node);
-            } else {
-                bracketConvert.push(node);
-            }
-        });
-        root = bracketConvert[0];
-        update(root);
-    });
+bracket_data();
 
 var inter = setInterval(function() {
-                data_again();
+                bracket_data();
         }, 2000);
 
-function data_again(){
-    d3.json("{% url "get_bracket" bracket_id %}",
-    function(data) {
-        input_data = data
-        var dataMap = input_data.reduce(function(map, node) {
-            map[node.position] = node;
-            return map;
-        },{});
-        var bracketConvert = [];
-        input_data.forEach(function(node) {
-            var parent = dataMap[node.parent];
-            if (parent) {
-                (parent.children || (parent.children = []))
-                .push(node);
-            } else {
-                bracketConvert.push(node);
-            }
-        });
-        root = bracketConvert[0];
-        update(root);
-    });
+function bracket_data(){
+  d3.json("{% url "get_bracket" bracket_id %}",
+      function(data) {
+          var input_data = data;
+          var sort_data = input_data.sort(function(a, b) {
+            console.log('hehehe21')
+      return parseFloat(a.position_id) - parseFloat(b.position_id);
+          });
+          console.log(sort_data);
+          var dataMap = sort_data.reduce(function(map, node) {
+              map[node.position] = node;
+              return map;
+          },{});
+
+          var bracketConvert = [];
+          sort_data.forEach(function(node) {
+              var parent = dataMap[node.parent];
+              if (parent) {
+                  (parent.children || (parent.children = []))
+                  .push(node);
+              } else {
+                  bracketConvert.push(node);
+              }
+          });
+          root = bracketConvert[0];
+          update(root);
+      });
 };
 
 function update(source) {
