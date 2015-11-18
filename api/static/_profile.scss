@@ -1,11 +1,16 @@
 .table {
   width: 95%;
   margin-left:auto;
-    margin-right:auto;
+  margin-right:auto;
+  padding: 0;
+
 }
 
-#no_brack{
-  text-align: center;
+.table-1 {
+  clear: both;
+  width: 95%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 #profile_center {
@@ -13,6 +18,7 @@
   text-align: center;
   font-size: 1.5em;
 }
+
 
 td.comp_td {
   // border: 0px solid #black;

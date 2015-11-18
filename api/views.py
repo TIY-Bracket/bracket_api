@@ -107,6 +107,21 @@ class CompListView(generic.ListView):
         self.user = get_object_or_404(User, pk=self.kwargs['pk'])
         return self.user.competitor_set.all().order_by('-timestamp')
 
+# class BothBracketsListView(generic.ListView):
+#     template_name = 'api/brackets.html'
+#     context_object_name = "all_brackets"
+#
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(BothBracketsListView, self).get_context_data(**kwargs)
+#         context['competitors'] = Competitor.objects.all().order_by('timestamp')
+#         context['brackets'] = Bracket.objects.all().order_by('timestamp')
+#         context['positions'] = Position.objects.all()
+#         return context
+#
+#     def get_queryset(self):
+#         self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+#         return self.user.bracket_set.all().order_by('timestamp')
 
 def index(request):
     return render(request, 'api/index.html')

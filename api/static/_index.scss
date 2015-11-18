@@ -1,6 +1,6 @@
 
 .container{
-  padding-top: 5em;
+  padding-top: 4em;
   text-align: center;
   margin:auto;
 
@@ -9,21 +9,42 @@
 
   }
 
+  .all-the-buttons {
+    padding-top: 30em;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+    border-color: $california;
+    border-width: thick;
+
+  }
+
+}
+.logo-color {
+  padding: 0;
+  color: $california;
 }
 
-.logo {
+.logo, h4{
   font-family: 'Graduate';
   font-size: 2em;
 }
 
 .nav-btn {
+  padding: 0;
   font-size: 1.2em;
 
 }
 
 .all-the-buttons {
-  padding-top: 1.2em;
+  padding-top: 30em;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  z-index: 3;
 }
+
 
 // .divider {
 //

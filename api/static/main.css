@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html {
   box-sizing: border-box; }
 
@@ -7,13 +6,13 @@ html {
 
 button, input[type="button"], input[type="reset"], input[type="submit"] {
   appearance: none;
-  background-color: #333;
+  background-color: #F89406;
   border: 0;
   border-radius: 3px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1.15em;
   -webkit-font-smoothing: antialiased;
   font-weight: 600;
@@ -42,7 +41,7 @@ fieldset {
 input,
 label,
 select {
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1.15em; }
 
 label {
@@ -60,7 +59,7 @@ select[multiple=multiple] {
   border-radius: 3px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1.15em;
   margin-bottom: 0.75em;
   padding: 0.5em;
@@ -162,7 +161,7 @@ h6 {
   font-family: 'Lato', sans-serif;
   font-size: 1.15em;
   line-height: 1.2;
-  margin: 0 0 0.75em; }
+  padding: 0; }
 
 p {
   margin: 0 0 0.75em; }
@@ -179,7 +178,8 @@ hr {
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  margin: 1.5em 0; }
+  margin: 1.5em 0;
+  border-top: 0; }
 
 img,
 picture {
@@ -326,9 +326,9 @@ svg {
 
 header.navigation {
   position: fixed;
+  margin-bottom: 0;
   background-color: #333;
   border-bottom: 1px solid #1a1a1a;
-  min-height: 100px;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -349,21 +349,20 @@ header.navigation {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: left;
-    line-height: 100px;
+    line-height: 60px;
     text-decoration: none;
     text-transform: uppercase; }
     header.navigation .logo img {
-      max-height: 100px;
+      max-height: 60px;
       padding: 0.8em 0; }
   header.navigation .navigation-menu-button {
     color: rgba(255, 255, 255, 0.9);
     display: block;
     float: right;
-    line-height: 100px;
+    line-height: 60px;
     margin: 0;
     padding-right: 1em;
-    text-decoration: none;
-    text-transform: uppercase; }
+    text-decoration: none; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-menu-button {
         display: none; } }
@@ -371,7 +370,7 @@ header.navigation {
       color: white; }
   header.navigation nav {
     float: right;
-    min-height: 100px;
+    padding: 0;
     z-index: 9999999; }
     @media screen and (min-width: 53.75em) {
       header.navigation nav {
@@ -381,7 +380,7 @@ header.navigation {
     display: none;
     overflow: visible;
     padding: 0;
-    width: 80%;
+    width: 100%;
     z-index: 9999; }
     header.navigation ul.navigation-menu.show {
       display: block; }
@@ -392,7 +391,7 @@ header.navigation {
   header.navigation ul li.nav-link {
     background: #333;
     display: block;
-    line-height: 100px;
+    line-height: 60px;
     overflow: hidden;
     padding-right: 0.8em;
     text-align: right;
@@ -402,7 +401,7 @@ header.navigation {
       header.navigation ul li.nav-link {
         background: transparent;
         display: inline;
-        line-height: 100px;
+        line-height: 60px;
         text-decoration: none;
         width: auto; } }
     header.navigation ul li.nav-link a {
@@ -414,31 +413,16 @@ header.navigation {
           padding-right: 1em; } }
       header.navigation ul li.nav-link a:focus, header.navigation ul li.nav-link a:hover {
         color: white; }
-  header.navigation .active-nav-item a {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    padding-bottom: 3px; }
   header.navigation li.more.nav-link {
     padding-right: 0; }
-    @media screen and (min-width: 53.75em) {
-      header.navigation li.more.nav-link {
-        padding-right: 1em; } }
-    header.navigation li.more.nav-link > ul > li:first-child a {
-      padding-top: 1em; }
     header.navigation li.more.nav-link a {
-      margin-right: 1em; }
+      margin-right: 0em; }
     header.navigation li.more.nav-link > a {
       padding-right: 0.6em; }
-    header.navigation li.more.nav-link > a:after {
-      position: absolute;
-      top: auto;
-      right: -0.4em;
-      bottom: auto;
-      left: auto;
-      content: '\25BE';
-      color: rgba(255, 255, 255, 0.9); }
   header.navigation li.more {
     overflow: visible;
-    padding-right: 0; }
+    padding-right: 0;
+    line-height: 0px; }
     header.navigation li.more a {
       padding-right: 0.8em; }
     header.navigation li.more > a {
@@ -446,12 +430,7 @@ header.navigation {
       position: relative; }
       @media screen and (min-width: 53.75em) {
         header.navigation li.more > a {
-          margin-right: 1em; } }
-      header.navigation li.more > a:after {
-        content: '›';
-        font-size: 1.2em;
-        position: absolute;
-        right: 0.5em; }
+          margin-right: 0em; } }
     header.navigation li.more:focus > .submenu, header.navigation li.more:hover > .submenu {
       display: block; }
     @media screen and (min-width: 53.75em) {
@@ -463,42 +442,42 @@ header.navigation {
     padding-left: 0; }
     @media screen and (min-width: 53.75em) {
       header.navigation ul.submenu {
-        left: -1em;
-        position: absolute;
-        top: 1.5em; } }
+        left: 0em;
+        position: absolute; } }
     @media screen and (min-width: 53.75em) {
       header.navigation ul.submenu .submenu {
         left: 11.8em;
         top: 0; } }
     header.navigation ul.submenu li {
       display: block;
-      padding-right: 0; }
+      padding-right: 0;
+      margin: 0; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul.submenu li {
-          line-height: 76.92308px; }
+          line-height: 46.15385px; }
           header.navigation ul.submenu li:first-child > a {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px; }
           header.navigation ul.submenu li:last-child > a {
             border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            padding-bottom: 0.7em; } }
+            border-bottom-right-radius: 3px; } }
       header.navigation ul.submenu li a {
-        background-color: #2b2b2b;
+        background-color: #333;
         display: inline-block;
         text-align: right;
         width: 100%; }
         @media screen and (min-width: 53.75em) {
           header.navigation ul.submenu li a {
             background-color: #333;
-            padding-left: 1em;
+            padding-left: 0em;
             text-align: left;
             width: 12em; } }
   header.navigation .navigation-tools {
     background: #505050;
     clear: both;
     display: block;
-    height: 100px; }
+    height: 60px;
+    padding: 0; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
         background: transparent;
@@ -506,21 +485,38 @@ header.navigation {
         float: right; } }
 
 .container {
-  padding-top: 5em;
+  padding-top: 4em;
   text-align: center;
   margin: auto; }
   .container h1, .container p, .container input, .container label {
     font-family: 'Lato', sans-serif; }
+  .container .all-the-buttons {
+    padding-top: 30em;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+    border-color: #F89406;
+    border-width: thick; }
 
-.logo {
+.logo-color {
+  padding: 0;
+  color: #F89406; }
+
+.logo, h4 {
   font-family: 'Graduate';
   font-size: 2em; }
 
 .nav-btn {
+  padding: 0;
   font-size: 1.2em; }
 
 .all-the-buttons {
-  padding-top: 1.2em; }
+  padding-top: 30em;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  z-index: 3; }
 
 .bracket-create-form form {
   text-align: center;
@@ -578,8 +574,9 @@ h2 {
  * This is the gallery top section that appears on the page.
  */
 .splash-container {
-  background: #eee;
-  z-index: 1;
+  background-image: linear-gradient(to bottom, rgba(65, 131, 215, 0.5) 0%, rgba(65, 131, 215, 0.5) 100%), url("./images/arm.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
   width: 100%;
@@ -594,40 +591,37 @@ h2 {
   height: 50%;
   margin: auto;
   position: absolute;
-  top: 100px;
+  top: 200px;
   left: 0;
   bottom: 0;
   right: 0;
   text-align: center;
   text-transform: uppercase; }
 
-/* This is the main heading that appears on the gallery section */
 .splash-head {
   font-size: 21px;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
-  color: #333;
-  border: 3px solid #333;
+  color: #fff;
   border-width: thick;
-  padding: 1em 1.6em;
   font-weight: 100;
   border-radius: 5px;
-  line-height: 1em; }
+  text-transform: none; }
 
-/* This is the subheading that appears on the blue section */
 .splash-subhead {
-  color: #000;
+  color: #fff;
+  opacity: 1;
   letter-spacing: 0.05em;
-  opacity: 0.8; }
+  text-transform: none; }
 
 /*
- * -- CONTENT STYLES --
- * This represents the content area (everything below the blue section)
- */
+ // * -- CONTENT STYLES --
+ // * This represents the content area (everything below the blue section)
+ // */
 .content-wrapper {
   /* These styles are required for the "scroll-over" effect */
   position: absolute;
-  top: 87%;
+  top: 100%;
   width: 100%;
   min-height: 12%;
   z-index: 2;
@@ -645,30 +639,21 @@ h2 {
   color: white; }
 
 /* This is the class used for the content sub-headers (<h3>) */
-.content-subhead {
-  color: #1f8dd6; }
-
-.content-subhead i {
-  margin-right: 7px; }
-
 /* This is the class used for the dark-background areas. */
 .ribbon {
   background: #2d3e50;
   color: #aaa; }
 
-/*
- * -- TABLET (AND UP) MEDIA QUERIES --
- * On tablets and other medium-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 48em) {
+@media (min-width: 18em) {
   /* We increase the body font size */
   body {
-    font-size: 16px; }
+    font-size: 16px;
+    background-size: c; }
 
   /* We want to give the content area some more padding */
   .content {
-    padding: 1em; }
+    padding: 1em;
+    margin: 0 auto; }
 
   /* We can align the menu header to the left, but float the
   menu items to the right. */
@@ -679,9 +664,9 @@ h2 {
     float: right; }
 
   /* We increase the height of the splash-container */
-  /*    .splash-container {
-          height: 500px;
-      }*/
+  .splash-container {
+    height: 100%; }
+
   /* We decrease the width of the .splash, since we have more width
   to work with */
   .splash {
@@ -694,11 +679,6 @@ h2 {
   /* We remove the border-separator assigned to .l-box-lrg */
   .l-box-lrg {
     border: none; } }
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
 @media (min-width: 78em) {
   /* We increase the header font size even more */
   .splash-head {
@@ -711,10 +691,14 @@ h2 {
 .table {
   width: 95%;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  padding: 0; }
 
-#no_brack {
-  text-align: center; }
+.table-1 {
+  clear: both;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto; }
 
 #profile_center {
   padding-top: 6em;
