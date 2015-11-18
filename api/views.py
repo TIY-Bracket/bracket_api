@@ -263,8 +263,11 @@ def five_min_email(request, competitor_id):
     email_address = competitor.email
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
-    bracket_id = str(position.bracket_id)
-    comp_position = str(position.position)
+    bracket_id = position.bracket_id
+    position = position.parent
+
+    email_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
+    email_message = "You're match starts in 5 minutes. \n {}".format(email_url)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -272,9 +275,9 @@ def five_min_email(request, competitor_id):
         data={"from": "Bracket Guys <mailgun@sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org>",
               "to": email_address,
               'subject': 'versus.live: Your matchup starts in 5 mins',
-              'text': 'Your matchup starts in 5 minutes! Good luck!'})
+              'text': email_message})
 
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
+    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + position)
 
 
 def contact(request):
@@ -288,21 +291,21 @@ def five_min_text(request, competitor_id):
     competitor = Competitor.objects.get(pk=competitor_id)
     number = str(competitor.phone)
     phone_number = "+1"+number
-    print(phone_number)
     position = position_data[0]
-    print("here")
-    print(position.position)
-    bracket_id = str(position.bracket_id)
-    position = str(position.position)
+
+    bracket_id = position.bracket_id
+    position = position.parent
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
+    sms_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
+    sms_message = "You're match starts in 5 minutes. \n {}".format(sms_url)
 
-    message = client.messages.create(body="hello world",
+    message = client.messages.create(body=sms_message ,
                                      to=phone_number,
                                      from_="+19196959988",)
 
-    return HttpResponseRedirect("/matchup/" + bracket_id + "/" + position)
+    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + position)
 
 
 def caller_validate(phone_number):
