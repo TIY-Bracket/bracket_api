@@ -29,8 +29,8 @@
 
     {% for chat in chats %}
       <tr>
-        <td id="chat_user"><i class='fa fa-user fa-3x'></i></td>
-        <td><span id='bold'>{{ chat.user|truncatechars:15 }}</span> says: <br>{{ chat.text }}</td>
+        <td id="chat_user" class="td_chat"><i class='fa fa-user fa-3x'></i></td>
+        <td class="td_chat"><span id='bold'>{{ chat.user|truncatechars:15 }}</span> says: <br>{{ chat.text }}</td>
       </tr>
       {% endfor %}
   </table>
