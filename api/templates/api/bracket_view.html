@@ -155,13 +155,13 @@ var svg = d3.select("div#chartId")
     .classed("svg-content-responsive", true);
 var input_data;
 var bracket_id = {{ bracket_id }};
-data_again();
+bracket_data();
 
 var inter = setInterval(function() {
-                data_again();
+                bracket_data();
         }, 2000);
 
-function data_again(){
+function bracket_data(){
   d3.json("{% url "get_bracket" bracket_id %}",
       function(data) {
           var input_data = data;
