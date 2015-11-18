@@ -28,6 +28,9 @@
   button{
     background-color: #244672;
     width: 100%;
+    &:hover{
+      background-color: shade($action-color, 20%),
+    }
   }
 }
 

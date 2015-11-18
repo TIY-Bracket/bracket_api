@@ -583,6 +583,8 @@ h2 {
   .a_button_div button {
     background-color: #244672;
     width: 100%; }
+    .a_button_div button:hover {
+      background-color: #292929; }
 
 .email-form {
   padding: 0; }
