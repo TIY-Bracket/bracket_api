@@ -162,8 +162,13 @@ d3.json("{% url "get_bracket" bracket_id %}",
             map[node.position] = node;
             return map;
         },{});
+        var sort_data = input_data.sort();
+    //       function(a, b) {
+    //       console.log('hehehe21')
+    // return parseFloat(a.position) - parseFloat(b.position);
+    //     });
         var bracketConvert = [];
-        input_data.forEach(function(node) {
+        sort_data.forEach(function(node) {
             var parent = dataMap[node.parent];
             if (parent) {
                 (parent.children || (parent.children = []))
