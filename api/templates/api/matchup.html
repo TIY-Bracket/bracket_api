@@ -45,7 +45,7 @@
 <br>
     {% else %}
     <br>
-<button class="modal_button_a" onClick="addEmail_a({{ a_id }})">Add</button>
+<button class="modal_button_a" onClick="addEmail_a({{ a_id }})">Contact Info</button>
 <form action="" method="put">
   {% csrf_token %}
   <div id="email_input_a"></div>
@@ -76,7 +76,7 @@
 <br>
 {% else %}
 <br>
-<button class="modal_button_b" onClick="addEmail({{ b_id }})">Add</button>
+<button class="modal_button_b" onClick="addEmail({{ b_id }})">Contact Info</button>
 <form action="" method="put">
   {% csrf_token %}
   <div id="email_input"></div>
