@@ -287,11 +287,14 @@ def five_min_text(request, competitor_id):
     position = position_data[0]
     bracket_id = position.bracket_id
     position = position.parent
+    print(request)
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
+    sms_url = "https://tiy-bracket.herokuapp.com/view/" + bracket_id
+    sms_message = "You're match starts in 5 minutes. \n {}".format(sms_url)
 
-    message = client.messages.create(body="hello world",
+    message = client.messages.create(body=sms_message ,
                                      to=phone_number,
                                      from_="+19196959988",)
 
