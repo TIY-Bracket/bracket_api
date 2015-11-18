@@ -4,10 +4,34 @@
   font-family: 'Lato', sans-serif;
   font-color: $dark-gray;
   font-size: 1em;
+}
 
-  button {
-    margin: 0;
-    padding: 0;
+.modal_buttons {
+  text-align: center;
+}
+
+.b_button_div {
+  float: left;
+  text-align: center;
+  width: 45%;
+  // position: relative;
+  button{
+    width: 100%;
+  }
+}
+
+#gfu {
+  width: 100% !important;
+}
+
+.a_button_div {
+  float: right;
+  text-align: center;
+  width: 45%;
+  // position: relative;
+  button{
+    width: 100%;
+  }
 }
 
 .email-form {
@@ -18,7 +42,6 @@
 
   }
 
-}
 
 
 .ui-widget-overlay {
@@ -26,3 +49,12 @@
  filter: Alpha(Opacity=70) !important;
  background: rgb(50, 50, 50) !important;
 }
+
+// .matchup_cont{
+//     button{
+//       width: 100px;
+//     }
+//     .remove_winner {
+//       width: 80%;
+//     }
+// }

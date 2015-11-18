@@ -14,6 +14,7 @@
 
   </head>
   <body>
+<div class="matchup_cont">
     <div id="win_center">
       <h3> {{ a }} vs. {{ b }} </h3>
     </div>
@@ -21,76 +22,71 @@
 {% if a_id = None %}
 {% elif b_id = None %}
 {% else %}
-    {% if bracket_permissions %}
-    {% if winner = a_id %}
-      <div>
-          <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-      </div>
-      {% elif winner = b_id %}
-      <div>
-          <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-          <button onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
-      </div>
-      {% else %}
-      <div>
-        <button onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
-        <button onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
-      </div>
-      {% endif %}
-      <br>
-      {% if comm_permissions %}
-        <div>
-        {% if a_email %}
-          <a href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
-        {% elif a_phone %}
-          <a href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
-        {% else %}
-          <input type="button" id="add_email()" onClick="addEmail({{ a_id }})" value="Add Contact Info" />
-          <form action="" method="put">
-            {% csrf_token %}
-            <div id="email_input"></div>
-          </form>
-        {% endif %}
-
-        {% if b_email %}
-        <a href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
-
-        {% elif b_phone %}
-
-        <a href="{% url 'send_text' b_id %}"><button>Text {{ b }}</i></button></a>
-
-        {% else %}
-        <input type="button" id="add_email()" onClick="addEmail({{ b_id }})" value="Add Contact Info" />
-        <form action="" method="put">
-            {% csrf_token %}
-        <div id="email_input"></div>
-        </form>
-      {% endif %}
-
-
-      {% endif %}
+  {% if bracket_permissions %}
+    {% if winner %}
+  <div class="modal_buttons" id="remove_win">
+    <button class="remove_winner" onClick="update_winner({{ bracket_id }}, {{ parent_id }})">Remove Winner</button>
+  </div>
     {% endif %}
+
+<div class="a_button_div">
+    {% if winner = None %}
+<button class="modal_button_a" onclick="a_b_win({{a_id}})">{{ a }} wins!</button>
+<br>
+    {% endif %}
+  {% if comm_permissions %}
+    {% if a_email %}
+<a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
+<br>
+    {% elif a_phone %}
+<a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
+<br>
+    {% else %}
+    <br>
+<input class="modal_button_a" type="button" onClick="addEmail({{ a_id }})" value="Add " id="gfu" style="width 100%"/>
+<form action="" method="put">
+  {% csrf_token %}
+  <div id="email_input"></div>
+  </form>
+<br>
+    {% endif %}
+  {% endif %}
+  {% endif %}
+    {% if comp_a.user_id = None %}
+      <button class="modal_button_a"  onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
+    {% endif %}
+</div>
+
+<div class="b_button_div">
+{% if bracket_permissions %}
+  {% if winner = None %}
+<button class="modal_button_b" onclick="a_b_win({{b_id}})">{{ b }} wins!</button>
+<br>
 {% endif %}
-{% if request.user.is_authenticated %}
-<div>
-  {% if comp_a.user_id %}
+{% if comm_permissions %}
+{% if b_email %}
+<a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
+<br>
+{% elif b_phone %}
+<a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Text {{ b }}</button></a>
+<br>
+{% else %}
+<br>
+<button class="modal_button_b" onClick="addEmail({{ b_id }})">Add</button>
+<form action="" method="put">
+  {% csrf_token %}
+  <div id="email_input"></div>
+  </form>
   <br>
-  <h4>{{ a }} claimed</h4>
-  {% else %}
-  <button onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
   {% endif %}
-
-  {% if comp_b.user_id %}
-  <br>
-  <h4>{{ b }} claimed</h4>
-  {% else %}
-  <button onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
   {% endif %}
-
+{% endif %}
+{% if comp_b.user_id = None %}
+  <button class="modal_button_b"  onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
+{% endif %}
 </div>
 {% endif %}
-    </div>
+</div>
   </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
