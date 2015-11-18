@@ -36,23 +36,25 @@
     {% endif %}
   {% if comm_permissions %}
     {% if a_email %}
+    <br>
 <a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Email {{ a }}</i></button></a>
 <br>
     {% elif a_phone %}
+    <br>
 <a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Text {{ a }}</i></button></a>
 <br>
     {% else %}
     <br>
-<button class="modal_button_a" onClick="addEmail({{ a_id }})">Add</button>
+<button class="modal_button_a" onClick="addEmail_a({{ a_id }})">Add</button>
 <form action="" method="put">
   {% csrf_token %}
-  <div id="email_input"></div>
+  <div id="email_input_a"></div>
   </form>
-<br>
     {% endif %}
   {% endif %}
   {% endif %}
     {% if comp_a.user_id = None %}
+    <br>
       <button class="modal_button_a"  onclick="claim_competitor({{a_id}})">Claim {{ a }}</button>
     {% endif %}
 </div>
@@ -65,9 +67,11 @@
 {% endif %}
 {% if comm_permissions %}
 {% if b_email %}
+<br>
 <a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Email {{ b }}</button></a>
 <br>
 {% elif b_phone %}
+<br>
 <a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Text {{ b }}</button></a>
 <br>
 {% else %}
@@ -77,11 +81,12 @@
   {% csrf_token %}
   <div id="email_input"></div>
   </form>
-  <br>
+
   {% endif %}
   {% endif %}
 {% endif %}
 {% if comp_b.user_id = None %}
+<br>
   <button class="modal_button_b"  onclick="claim_competitor({{b_id}})">Claim {{ b }}</button>
 {% endif %}
 </div>
@@ -173,9 +178,16 @@ function claim_competitor(competitor) {
 
 function addEmail(competitor) {
                 var div = document.createElement('div');
-                div.innerHTML = '<input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
+                div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
                 document.getElementById('email_input').appendChild(div);
             }
+
+
+function addEmail_a(competitor) {
+                  var div = document.createElement('div');
+                  div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><button class="modal_button_a" onClick="add_contact_email('+competitor+')">Submit</button><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><button class="modal_button_a" onClick="onClick="add_contact_phone('+competitor+')"">Submit</button>';
+                  document.getElementById('email_input_a').appendChild(div);
+              }
 
 
 function update_winner(bracket_id, parent_id){

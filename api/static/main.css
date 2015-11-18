@@ -602,6 +602,9 @@ h3 {
   border-color: #eee !important;
   background-color: #eee !important; }
 
+#email_submit_b {
+  background-color: #244672; }
+
 /*
  * -- SPLASH STYLES --
  * This is the gallery top section that appears on the page.
