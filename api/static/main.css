@@ -227,7 +227,7 @@ table {
 
 td:nth-child(1) {
   width: 10%;
-  background: #4183D7;
+  background: #244672;
   color: #FEFEFE; }
 
 td:nth-child(2) {
@@ -569,6 +569,7 @@ h2 {
   text-align: center;
   width: 45%; }
   .a_button_div button {
+    background-color: #244672;
     width: 100%; }
 
 .email-form {
@@ -577,10 +578,17 @@ h2 {
 h3 {
   font-family: 'Lato', sans-serif; }
 
+.remove_winner {
+  background-color: #AE2C2C; }
+
 .ui-widget-overlay {
   opacity: .70 !important;
   filter: Alpha(Opacity=70) !important;
   background: #323232 !important; }
+
+.ui-dialog-content {
+  border-color: #eee !important;
+  background-color: #eee !important; }
 
 /*
  * -- SPLASH STYLES --
