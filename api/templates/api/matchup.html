@@ -43,7 +43,7 @@
 <br>
     {% else %}
     <br>
-<input class="modal_button_a" type="button" onClick="addEmail({{ a_id }})" value="Add " id="gfu" style="width 100%"/>
+<button class="modal_button_a" onClick="addEmail({{ a_id }})">Add</button>
 <form action="" method="put">
   {% csrf_token %}
   <div id="email_input"></div>
