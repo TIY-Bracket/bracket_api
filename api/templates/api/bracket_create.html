@@ -1,4 +1,5 @@
 {% extends "api/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 
@@ -10,9 +11,7 @@
     <br/>
     <div id="competitors">
       <div class="new_competitor">
-        <input type="text" class="comp_name" name="Competitor1" size="12" autocomplete="off" placeholder="Name"/>
-        <input type="text" class="comp_email" name="Competitor_email1" size="12" autocomplete="off" placeholder="Email"/>
-        <input type="text" class="comp_phone detectTab" name="Competitor_phone1" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div>
+        <i id="trash" class="fa fa-fw fa-2x"></i><i id="trash" class="fa fa-fw fa-2x"></i><input type="text" class="comp_name" name="Competitor1" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email1" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone detectTab" name="Competitor_phone1" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i id="trash" class="fa fa-fw fa-2x"></i>
       </div>
     </div>
     <p><input type="button" id="add_competitor()" onClick="addCompetitor()" value="Add Competitor" /></p>
@@ -37,7 +36,7 @@ function addCompetitor() {
     i++;
     var div = document.createElement('div');
     div.className = "new_competitor"
-    div.innerHTML = '<input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone detectTab" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i id="trash" class="fa fa-trash-o fa-2x" onClick="removeCompetitor(this)">';
+    div.innerHTML = '<i id="trash" class="fa fa-fw fa-2x"></i><i id="trash" class="fa fa-fw fa-2x"></i><input type="text" class="comp_name" name="Competitor'+i+'" size="12" autocomplete="off" placeholder="Name"/><input type="text" class="comp_email" name="Competitor_email'+i+'" size="12" autocomplete="off" placeholder="Email"/><input type="text" class="comp_phone detectTab" name="Competitor_phone'+i+'" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><i id="trash" class="fa fa-fw fa-trash-o fa-2x" onClick="removeCompetitor(this)"></i>';
     document.getElementById('competitors').appendChild(div);
 }
 
@@ -47,4 +46,8 @@ function removeCompetitor(div) {
 }
 </script>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'create-bracket-form-jquery.js' %}"></script>
 {% endblock %}
