@@ -190,10 +190,10 @@ body {
   background-color: #eee; }
 
 #bracket_container {
-  width: 90%; }
+  width: 95%; }
 
 #chat_div {
-  width: 25%;
+  width: 30%;
   float: right;
   margin-right: 2em;
   background-color: #eee;
@@ -207,11 +207,11 @@ body {
   padding-top: 1em; }
 
 #chat_submit {
-  float: right; }
+  float: right;
+  padding-right: 1em; }
 
 #chat_input {
-  float: left;
-  padding-left: 1em; }
+  float: left; }
 
 .scroll_box {
   overflow: auto;
@@ -258,7 +258,7 @@ svg {
   background-color: #eee;
   display: flex;
   position: relative;
-  width: 66%;
+  width: 65%;
   float: left;
   padding-bottom: 65%;
   /* aspect ratio */
