@@ -35,8 +35,12 @@
             {% else %}
               <li class="nav-link more"><a class="nav-btn" href="javascript:void(0)">Login</a>
                 <ul class="submenu">
-                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><i class="fa fa-twitter"></i>Twitter</a></li>
-                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><i class="fa fa-facebook"></i>Facebook</a></li>
+                  <li class="nav-link"><a class="nav-btn" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><span class="fa-stack twitter">
+      <i class="fa fa-square fa-stack-1x"></i>
+      <i class="fa fa-twitter-square fa-stack-1x"></i>
+    </span>Twitter</a>
+                  <li class="nav-link"><a class="nav-btn-1" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><span class="fa-stack fb"><i class="fa fa-square fa-stack-1x"></i><i class="fa fa-facebook-square fa-stack-1x"></i></span>Facebook</a>
+                  </a></li>
                 </ul>
               </li>
             {% endif %}
