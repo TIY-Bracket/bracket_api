@@ -1,7 +1,7 @@
 {% extends "api/base.html" %}
 {% block content %}
 
-<div id="profile_center"><h2>{{ view.user.username }}</h2></div>
+<div id="profile_center"><h2>Brackets {{ view.user.username }} is competing in</h2></div>
 {% if user == view.user %}
 {% if competitors %}
 <br>
