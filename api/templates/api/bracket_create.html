@@ -2,11 +2,10 @@
 
 {% block content %}
 
-<p class="instructions">Name bracket, add in competitor details, <br> and you're ready to play.</p>
+<p class="instructions"></p>
 <div id="new_competitor" class="bracket-create-form">
 <form action="" method="post">
     {% csrf_token %}
-    <label for="Title">Title</label>
     <input type="text" class="bracket-title" name="Title" maxlength="36" size="17" placeholder="Bracket Title"/> <br/>
     <br/>
     <div id="competitors">
