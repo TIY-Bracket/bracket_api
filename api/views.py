@@ -259,8 +259,8 @@ def five_min_email(request, competitor_id):
     email_address = competitor.email
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
-    bracket_id = str(position.bracket_id)
-    comp_position = str(position.parent)
+    bracket_id = position.bracket_id
+    comp_position = position.parent
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -288,8 +288,8 @@ def five_min_text(request, competitor_id):
     position = position_data[0]
     print("here")
     print(position.position)
-    bracket_id = str(position.bracket_id)
-    comp_position = str(position.parent)
+    bracket_id = position.bracket_id
+    comp_position = position.parent
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
