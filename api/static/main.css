@@ -430,11 +430,18 @@ header.navigation {
   margin: auto; }
   .container h1, .container p, .container input, .container label {
     font-family: 'Lato', sans-serif; }
+  .container .all-the-buttons {
+    padding-top: 30em;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+    border-color: #F89406;
+    border-width: thick; }
 
 .logo-color {
   padding: 0;
-  color: #F89406;
-  margin: -1px; }
+  color: #F89406; }
 
 .logo, h4 {
   font-family: 'Graduate';
@@ -448,13 +455,8 @@ header.navigation {
   padding-top: 30em;
   text-align: center;
   position: relative;
-  overflow: visible; }
-
-.social-media-share {
-  margin-top: 5em;
-  padding-left: .1em;
-  float: left;
-  z-index: 99999999; }
+  overflow: visible;
+  z-index: 3; }
 
 .bracket-create-form form {
   text-align: center;
@@ -630,12 +632,23 @@ h2 {
   margin-left: auto;
   margin-right: auto; }
 
-#no_brack {
-  text-align: center; }
+.table-1 {
+  clear: both;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto; }
 
 #profile_center {
   padding-top: 6em;
   text-align: center;
   font-size: 1.5em; }
+
+#profile_center-comp {
+  padding-top: 12em;
+  text-align: center;
+  font-size: 1.5em; }
+
+#no_brack {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

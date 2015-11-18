@@ -9,11 +9,21 @@
 
   }
 
+  .all-the-buttons {
+    padding-top: 30em;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+    border-color: $california;
+    border-width: thick;
+
+  }
+
 }
 .logo-color {
   padding: 0;
   color: $california;
-  margin: -1px;
 }
 
 .logo, h4{
@@ -32,14 +42,10 @@
   text-align: center;
   position: relative;
   overflow: visible;
+  z-index: 3;
 }
 
-.social-media-share {
-  margin-top: 5em;
-  padding-left: .1em;
-  float:left;
-  z-index: 99999999;
-}
+
 // .divider {
 //
 // }
