@@ -274,16 +274,16 @@ svg {
 #chartId {
   padding-left: 5em; }
 
-#center h3 {
+#center_title {
   text-align: center;
   font-color: #333;
-  margin: scroll;
-  padding-top: 4em;
+  padding-top: 2em;
   font-family: 'Lato', sans-serif;
-  font-size: 2em; }
-  #center h3 h3 {
-    font-family: 'Lato', sans-serif;
-    margin-bottom: -.009em; }
+  font-size: 2em;
+  margin: 0px; }
+  #center_title h3 {
+    margin-top: .5em;
+    margin-bottom: .5em; }
 
 #messages {
   font-family: 'Lato', sans-serif; }
@@ -327,8 +327,8 @@ svg {
 header.navigation {
   position: fixed;
   margin-bottom: 0;
-  background-color: #333;
-  border-bottom: 1px solid #1a1a1a;
+  background-color: #244672;
+  border-bottom: 1px solid #182e4b;
   width: 100%;
   z-index: 999; }
   header.navigation .navigation-wrapper {
@@ -389,7 +389,7 @@ header.navigation {
         display: inline;
         padding: 0; } }
   header.navigation ul li.nav-link {
-    background: #333;
+    background: #244672;
     display: block;
     line-height: 60px;
     overflow: hidden;
@@ -462,13 +462,13 @@ header.navigation {
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px; } }
       header.navigation ul.submenu li a {
-        background-color: #333;
+        background-color: #244672;
         display: inline-block;
         text-align: right;
         width: 100%; }
         @media screen and (min-width: 53.75em) {
           header.navigation ul.submenu li a {
-            background-color: #333;
+            background-color: #244672;
             padding-left: 0em;
             text-align: left;
             width: 12em; } }
