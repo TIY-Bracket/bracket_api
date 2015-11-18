@@ -248,7 +248,7 @@ header.navigation {
 
       a {
         background-color: $navigation-background;
-        display: inline-block;
+        display: block;
         text-align: right;
         width: 100%;
 
@@ -262,6 +262,23 @@ header.navigation {
     }
   }
 
+
+  .nav-btn .fa-stack .fa {
+    color: #55ACEE; }
+  .fa-stack .fa.fa-square {
+    color: #FFFFFF; }
+
+  .nav-btn-1 .fa-stack .fa { color: #3B5998; }
+  .fa-stack .fa.fa-square { color: #FFFFFF; }
+
+  .nav-btn-1 {
+    font-size: 1.15em;
+  }
+
+  .nav-btn {
+    font-size: 1.15em;
+
+  }
   // Elements on the far right
 
   .navigation-tools {
