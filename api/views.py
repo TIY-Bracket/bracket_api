@@ -264,7 +264,7 @@ def five_min_email(request, competitor_id):
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
     bracket_id = position.bracket_id
-    position = position.parent
+    position = position.position
 
     email_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
     email_message = "You're match starts in 5 minutes. \n {}".format(email_url)
@@ -277,7 +277,7 @@ def five_min_email(request, competitor_id):
               'subject': 'versus.live: Your matchup starts in 5 mins',
               'text': email_message})
 
-    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + position)
+    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + str(position))
 
 
 def contact(request):
@@ -294,7 +294,7 @@ def five_min_text(request, competitor_id):
     position = position_data[0]
 
     bracket_id = position.bracket_id
-    position = position.parent
+    position = position.position
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
@@ -305,7 +305,7 @@ def five_min_text(request, competitor_id):
                                      to=phone_number,
                                      from_="+19196959988",)
 
-    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + position)
+    return HttpResponseRedirect("/matchup/" + str(bracket_id) + "/" + str(position))
 
 
 def caller_validate(phone_number):

@@ -37,15 +37,15 @@
   {% if comm_permissions %}
     {% if a_email %}
     <br>
-<a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Email {{ a|truncatechars:13 }}</i></button></a>
+<a class="modal_button_a"  href="{% url 'send_email' a_id %}"><button>Contact {{ a|truncatechars:13 }}</i></button></a>
 <br>
     {% elif a_phone %}
     <br>
-<a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Text {{ a|truncatechars:13 }}</i></button></a>
+<a class="modal_button_a"  href="{% url 'send_text' a_id %}"><button>Contact {{ a|truncatechars:13 }}</i></button></a>
 <br>
     {% else %}
     <br>
-<button class="modal_button_a" onClick="addEmail_a({{ a_id }})">Contact Info</button>
+<button class="modal_button_a" onClick="addEmail_a({{ a_id }})">Contact {{ a|truncatechars:13 }}</button>
 <form action="" method="put">
   {% csrf_token %}
   <div id="email_input_a"></div>
@@ -68,15 +68,15 @@
 {% if comm_permissions %}
 {% if b_email %}
 <br>
-<a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Email {{ b|truncatechars:13 }}</button></a>
+<a class="modal_button_b"  href="{% url 'send_email' b_id %}"><button>Contact {{ b|truncatechars:13 }}</button></a>
 <br>
 {% elif b_phone %}
 <br>
-<a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Text {{ b|truncatechars:13 }}</button></a>
+<a class="modal_button_b"  href="{% url 'send_text' b_id %}"><button>Contact {{ b|truncatechars:13 }}</button></a>
 <br>
 {% else %}
 <br>
-<button class="modal_button_b" onClick="addEmail({{ b_id }})">Contact Info</button>
+<button class="modal_button_b" onClick="addEmail({{ b_id }})">Contact {{ b|truncatechars:13 }}</button>
 <form action="" method="put">
   {% csrf_token %}
   <div id="email_input"></div>
