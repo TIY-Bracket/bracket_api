@@ -3,7 +3,7 @@
   text-align: center;
   font-family: 'Lato', sans-serif;
   font-color: $dark-gray;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 .modal_buttons {
@@ -28,8 +28,12 @@
   button{
     background-color: #244672;
     width: 100%;
+    &:hover{
+      background-color: shade($action-color, 20%),
+    }
   }
 }
+
 
 .email-form {
   padding: 0;
@@ -61,6 +65,11 @@
 
 .b_button_div button:hover {
   background-color: #207D46;
+}
+
+#email_submit_b {
+  background-color: #244672;
+
 }
 
 // .matchup_cont{
