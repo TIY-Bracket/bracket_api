@@ -24,13 +24,13 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   vertical-align: middle;
   white-space: nowrap; }
   button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus {
-    background-color: #292929;
+    background-color: #1d385b;
     color: #fff; }
   button:disabled, input[type="button"]:disabled, input[type="reset"]:disabled, input[type="submit"]:disabled {
     cursor: not-allowed;
     opacity: 0.5; }
     button:disabled:hover, input[type="button"]:disabled:hover, input[type="reset"]:disabled:hover, input[type="submit"]:disabled:hover {
-      background-color: #333; }
+      background-color: #244672; }
 
 fieldset {
   background-color: #f7f7f7;
@@ -560,6 +560,9 @@ h2 {
   height: auto;
   display: inline-block; }
 
+input.bracket_submit_button {
+  background-color: #207D46; }
+
 #win_center {
   text-align: center;
   font-family: 'Lato', sans-serif;
@@ -603,6 +606,12 @@ h3 {
 .ui-dialog-content {
   border-color: #eee !important;
   background-color: #eee !important; }
+
+.a_button_div button:hover {
+  background-color: #207D46; }
+
+.b_button_div button:hover {
+  background-color: #207D46; }
 
 #email_submit_b {
   background-color: #244672; }
