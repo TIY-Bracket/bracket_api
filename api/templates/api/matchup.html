@@ -178,14 +178,14 @@ function claim_competitor(competitor) {
 
 function addEmail(competitor) {
                 var div = document.createElement('div');
-                div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
+                div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><input onClick="add_contact_email('+competitor+')" type="submit"/><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><input onClick="add_contact_phone('+competitor+')" type="submit"/>';
                 document.getElementById('email_input').appendChild(div);
             }
 
 
 function addEmail_a(competitor) {
                   var div = document.createElement('div');
-                  div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><button class="modal_button_a" onClick="add_contact_email('+competitor+')">Submit</button><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="9999999999"/><div class="divider"></div><button class="modal_button_a" onClick="add_contact_phone('+competitor+')">Submit</button>';
+                  div.innerHTML = '<br><input type="text" class="comp_email" name="email" size="12" autocomplete="off" placeholder="Email"/><div class="divider"></div><button class="modal_button_a" onClick="add_contact_email('+competitor+')">Submit</button><br><div class="divider"></div><br><input type="text" class="comp_phone" id="phone" name="phone" size="12" autocomplete="off" placeholder="Phone"/><div class="divider"></div><button class="modal_button_a" onClick="add_contact_phone('+competitor+')">Submit</button>';
                   document.getElementById('email_input_a').appendChild(div);
               }
 
