@@ -264,7 +264,7 @@ def five_min_email(request, competitor_id):
     position_data = Position.objects.filter(competitor_id=competitor_id)
     position = position_data[0]
     bracket_id = position.bracket_id
-    position = position.position
+    position = position.parent
 
     email_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
     email_message = "You're match starts in 5 minutes. \n {}".format(email_url)
@@ -294,7 +294,7 @@ def five_min_text(request, competitor_id):
     position = position_data[0]
 
     bracket_id = position.bracket_id
-    position = position.position
+    position = position.parent
 
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
