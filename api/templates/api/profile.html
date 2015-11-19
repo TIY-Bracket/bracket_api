@@ -16,7 +16,7 @@
 {% for bracket in brackets %}
   <tr>
     <td class="comp_td" id="comp_list"><a href="{% url 'bracket_view' bracket.id %}">{{ bracket.title|truncatechars:150}}</a></td>
-    <td class="comp_td" id="comp_list"><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></td>
+    <td class="comp_td" id="comp_list"><a href="{% url 'bracket_view' bracket.id %}"><small>{{ bracket.timestamp}} ({{ bracket.timestamp | timesince }} ago)</small></a></td>
   </tr>
   {% endfor %}
 </table>
