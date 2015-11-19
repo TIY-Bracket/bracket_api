@@ -54,8 +54,10 @@
   {% endif %}
   {% endif %}
     {% if comp_a.user_id = None %}
+    {% if user.is_authenticated %}
     <br>
       <button class="modal_button_a"  onclick="claim_competitor({{a_id}})">Claim {{ a|truncatechars:13 }}</button>
+    {% endif %}
     {% endif %}
 </div>
 
@@ -86,8 +88,10 @@
   {% endif %}
 {% endif %}
 {% if comp_b.user_id = None %}
+{% if user.is_authenticated %}
 <br>
   <button class="modal_button_b"  onclick="claim_competitor({{b_id}})">Claim {{ b|truncatechars:13 }}</button>
+{% endif %}
 {% endif %}
 </div>
 {% endif %}
