@@ -267,7 +267,7 @@ def five_min_email(request, competitor_id):
     position = position.parent
 
     email_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
-    email_message = "You're match starts in 5 minutes. \n {}".format(email_url)
+    email_message = "Your match starts now. Good luck! \n Your bracket: {}".format(email_url)
 
     results = requests.post(
         "https://api.mailgun.net/v3/sandbox652a32e0480e41d5a283a133bcc7e501.mailgun.org/messages",
@@ -299,7 +299,7 @@ def five_min_text(request, competitor_id):
     # Your Account Sid and Auth Token from twilio.com/user/account
     client = TwilioRestClient(account_sid, auth_token)
     sms_url = "https://tiy-bracket.herokuapp.com/view/" + str(bracket_id)
-    sms_message = "You're match starts in 5 minutes. \n {}".format(sms_url)
+    sms_message = "Your match starts now. Good luck! \n Your bracket: {}".format(sms_url)
 
     message = client.messages.create(body=sms_message ,
                                      to=phone_number,
