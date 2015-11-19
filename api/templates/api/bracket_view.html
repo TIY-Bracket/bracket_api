@@ -126,9 +126,84 @@ setInterval("updateScroll",1000);
 
  $(".scroll_box").prop({ scrollTop: $(".scroll_box").prop("scrollHeight") });
 
+
 var num_competitors = {{ num_competitors }}
-var adj_height = (num_competitors * 60)
-var adj_width = (num_competitors * 100) //$(window).width()
+
+var adj_height
+
+if(num_competitors <= 2) {
+                          adj_height = 300;
+                        } else if (num_competitors <= 4) {
+                          adj_height = 400;
+                        } else if (num_competitors <= 8) {
+                          adj_height = 600;
+                        } else if (num_competitors <= 16) {
+                          adj_height = 1000;
+                        } else if (num_competitors <= 32) {
+                          adj_height = 2000;
+                        } else {
+                          adj_height = 4500;
+                        }
+
+
+
+var adj_width
+
+if(num_competitors <= 2) {
+                          adj_width = 300;
+                        } else if (num_competitors <= 4) {
+                          adj_width = 400;
+                        } else if (num_competitors <= 8) {
+                          adj_width = 600;
+                        } else if (num_competitors <= 16) {
+                          adj_width = 800;
+                        } else if (num_competitors <= 32) {
+                          adj_width = 1000;
+                        } else {
+                          adj_width = 1200;
+                        }
+
+
+var adj_height2
+
+if(num_competitors <= 2) {
+                          adj_height2 = 400;
+                        } else if (num_competitors <= 4) {
+                          adj_height2 = 400;
+                        } else if (num_competitors <= 8) {
+                          adj_height2 = 600;
+                        } else if (num_competitors <= 16) {
+                          adj_height2 = 1000;
+                        } else if (num_competitors <= 32) {
+                          adj_height2 = 2000;
+                        } else {
+                          adj_height2 = 4500;
+                        }
+
+
+
+var adj_width2
+
+if(num_competitors <= 2) {
+                          adj_width2 = 500;
+                        } else if (num_competitors <= 4) {
+                          adj_width2 = 600;
+                        } else if (num_competitors <= 8) {
+                          adj_width2 = 800;
+                        } else if (num_competitors <= 16) {
+                          adj_width2 = 1000;
+                        } else if (num_competitors <= 32) {
+                          adj_width2 = 1200;
+                        } else {
+                          adj_width2 = 1500;
+                        }
+
+
+console.log("this234;" + adj_height)
+
+
+
+
   var margin = {
         top: 10,
         right: 10,
@@ -150,7 +225,7 @@ var svg = d3.select("div#chartId")
     .append("svg")
     //responsive SVG needs these 2 attributes and no width and height attr
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " +(num_competitors * 150)+ " " +(80 * num_competitors)+ "")
+    .attr("viewBox", "0 0 " +adj_width2+ " " +adj_height2+ "")
     //class to make it responsive
     .classed("svg-content-responsive", true);
 var input_data;
