@@ -322,7 +322,7 @@ def matchup(request, bracket_id, parent_id):
     bracket_owner = bracket.owner_id
     bracket_permissions = True
 
-    if bracket_owner != request.user.id and bracket_owner is not 1:
+    if bracket_owner != request.user.id and bracket_owner is not None:
         bracket_permissions = False
 
     comm_permissions = True
