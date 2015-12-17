@@ -1,9 +1,7 @@
-# TIY-Bracket Starter Template
+# <div align="center">Versus.live</div>
 
-This is the beginning of the TIY-Bracket project.
+Versus.live makes it possible to turn any venue into a competitive arena. Whether it's chess in the park or a cornhole tournament at a tailgate, versus.live provides a simple, easy way to organize any competitive activity. Name your bracket, enter your participants and it's game on!
 
-The template from https://github.com/heroku/heroku-django-template was used to create this repo.
-
-The live Heroku site is: https://tiy-bracket.herokuapp.com/
+The live Heroku site can be found [here](https://tiy-bracket.herokuapp.com/).
 
 Good luck!
